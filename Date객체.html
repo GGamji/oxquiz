@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Date객체</title>
+	<script>
+		const now = new Date();
+
+		console.log(now); //Mon Jul 29 2024 15:09:19 GMT+0900 (한국 표준시)
+
+		let y, m, d, w, h, mn, s;
+
+		y = now.getFullYear() // 년도 추출
+		m = now.getMonth() // 월(달)추출
+		d = now.getDate() // 일(일자) 추출
+		w = now.getDay() // 요일 추출
+		h = now.getHours() // 시 추출
+		mn = now.getMinutes() // 분 추출
+		s = now.getSeconds() // 초 추출
+
+		console.log(y); //2024
+		console.log(m); //7 (월 인덱스 : 0 ~ 11)
+		console.log(d); //29
+		console.log(w); //월
+		console.log(h); //3
+		console.log(mn); //19
+		console.log(s); //22
+
+		const wKorName = ['일', '월', '화', '수', '목', '금', '토'];
+		let apm = (h > 12) ? 'PM' : 'AM';
+		h = (h > 13) ? (h - 12) : h;
+
+		console.log(
+			y + '년 ' + (m + 1) + '월 ' + d + '일 '
+			+ wKorName[w] + '요일 '
+			+ apm + ' ' + h + '시 ' + mn + '분'
+		); // 2024년 7월 29일 월요일 PM 3시 42분
+
+		// 월에 영어 이름
+		// Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+		const wEngName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		console.log('이번 ' + '달 ' + (m + 1) + '월은 영어로' + wEngName[m]); // 이번 달 7월은 영어로 Jul
+
+		// 월일에 2자리 표기
+		// 1 ~ 9(10 미만)의 날짜 앞에 '0' 추가
+		m = (m + 1);
+		const mName = (m < 10) ? ('0' + m) : m;
+		const dName = (d < 10) ? ('0' + d) : d;
+		console.log(y + '-' + mName + '-' + dName); //2024-07-29
+
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

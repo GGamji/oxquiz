@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>논리연산자</title>
+	<script>
+		/*
+		AND 연산자, 논리곱
+		A && B
+		=> A도 true이고 B도 true여야만 true를 반환
+		=> 둘 중 하나라도 false가 있다면 false
+
+		OR 연산자, 논리합
+		A || B
+		=> A 또는 B 중 하나만 true여도 true를 반환
+
+		NOT 연산자, 논리부정
+		!A
+		=> 무조건 반대 값을 반환 A가 true면 B가 false 반대로도
+		*/
+
+		// n1은 20 이상의 숫자
+		let n1 = 17;
+		console.log(n1 >= 18); //true
+
+		//n2는 1 ~ 20 범위의 숫자
+		let n2 = 22;
+		console.log(n2 >= 1 && n2 <= 20);
+
+		// 나이가 19세 이상이거나 : age 변수
+		// 동행인이 성인이라면 true : company 변수
+		// let age = prompt('나이를 입력하세요');
+		// let company = prompt('동행인의 성인여부');
+		// let enter = (age >= 19 || company == '성인');
+		// console.log(enter);
+
+		// a라면 a, A가 아니라면 b
+		let n = prompt('숫자를 입력', 0)
+		let res;
+		if(n % 2 == 0 && n != 0) {res = '짝수'}
+		else if(n % 2 != 0) {res = '홀수'}
+		else {res = 0}
+		console.log('입력하신 숫자 ' + n + '은 ' + res + '입니다.');
+
+		// 윤년 찾기
+		// 윤년 : 4년마다(y % 4 == 0), 100년(y % 100 != 0), 400년(y % 400 == 0)
+		let y = prompt('년도를 입력')
+		let isLeap;
+		if((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0)) {isLeap = '윤년'}
+		else {isLeap = '평년'}
+
+		console.log(y + '년도는' + isLeap);
+
+		// n이 0 ~ 100 사이의 숫자면 true
+		console.log(n <= 100 && n >= 0);
+
+		// n이 10 ~ 20 사이의 숫자이면 false
+		// console.log(n < 10 || n > 20);
+		console.log(n, !(n >=0 && n <= 20));
+	</script>
+	<script src="script.js"></script>
+</head>
+<body>
+
+</body>
+</html>

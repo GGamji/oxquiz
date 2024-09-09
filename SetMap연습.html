@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set,Map 연습</title>
+</head>
+<body>
+  <label for="sname">학생명</label>
+  <input type="text" id="student_name" placeholder="이름을 입력"> <br>
+  <label for="student_score">점수</label>
+  <input type="number" id="student_score" placeholder="점수를 입력"> <br>
+  <button id="input_info">입력</button>
+  <hr>
+  <ul id="student_list"></ul>
+  <script>
+    //1. 입력 버튼을 클릭 => 입력 정보를 studentMap에 추가
+    //2. 같은 이름을 작성하면 경고
+    // - 같은 사람의 점수를 수정할 건지,(맞으면 점수 업데이터)
+    // - 잘못 입력한 건지(input의 내용을 삭제하고 커서 이동)
+    //3. 전체 학생의 점수를 리스트로 출력
+
+    // const btnInput = document.getElementById('input_info')
+    // const nameInput = document.getElementById('student_name')
+    // const scoreInput = document.getElementById('student_score')
+    // const studentMap = new Map()
+
+
+    // btnInput.addEventListener('click', function() {
+    //   studentMap.set(nameInput.value, scoreInput.value)
+    //   // alert('경고창')
+    //   // confirm()
+    //   let  = '등록되어 있는 학생입니다. 점수를 수정할까요?'
+    //   if(studentMap.has(nameInput)) {
+    //     confirm(msg)
+    //   }
+    //   else {
+    //     // console.log('Cancel');
+    //   }
+
+    //   console.log(studentMap);
+
+    // })
+
+    //목표: 이름과 성적을 입력 받아서 Map으로 저장, 리스트 출력
+
+
+    const inputInfo = document.getElementById('input_info')
+    const studentList = document.getElementById('student_list')
+    const studentName = document.getElementById('student_name')
+    const studentScore = document.getElementById('student_score')
+    const studentMap = new Map()
+
+    //1. 버튼을 클릭하면
+    inputInfo.addEventListener('click', function() {
+      //2. 입력받은 이름 가져오기
+      let name = studentName.value;
+      let score = studentScore.value
+
+      if(name === '' || score === '') {
+        alert('이름과 점수를 입력하세요');
+
+        let focusElm;
+        focusElm = (name == '') ? studentName : studentScore
+        focusElm.focus();
+        return
+      }
+      //3. Map에 저장
+      // - 같은 이름으로 등록되는 데이터의 처리방법
+      // - name이 studentMap에 존재하는지
+      if(studentMap.has(name)) {
+        const update = confirm('등록된 학생입니다. 점수를 수정하시겠습니까?')
+        console.log(update); //확인(true), 취소(false)
+
+        if(!update) { //취소를 선택하면
+          clearInputs()
+          return
+        }
+
+      }
+      studentMap.set(name, score)
+      clearInputs()
+
+      //Map에서 데이터 불러와서 li에 텍스트로 추가(함수로)
+      // studentList.innerHTML += `<li>${(name)}, ${score}</li>`
+      updateStudentList()
+
+      console.log(studentMap);
+    }) //btn.event
+
+    const updaeyeStudentList = () => {
+      //클릭할 때마다, 함수가 호출될 때마다
+      //Map의 데이터로 li를 누적해서 추가해 줌
+      //기존(이미)의 li는 삭제하고 추가
+      studentList.innerHTML = ''
+      studentMap.forEach(function(value, key) {
+        // console.log(`${key} : ${value}원`);
+        studentList.innerHTML += `<li>${(key)}, ${value}</li>`;
+      })
+    }
+
+    clearInputs = () => {
+      studentName.value = '';
+      studentScore.value = '';
+      tudentName.focus()
+    }
+  </script>
+</body>
+</html>
+
+1. ui 협의
+2. 기능 협의
+- 정답이나 오답에 대한 처리방법
+예) 정답이면 다음 질문으로 자동 이동(함수)
+    오답이면 이전 질문 || 정답으로 알려주고 마지막
+
+- 맞춘 갯수를 이용해서 점수 환산
+-그만(인트로 페이지로 이동), 재도전(첫번째 문제)
+
+3. 개발 코드 업무분담

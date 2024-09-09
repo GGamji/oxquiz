@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>생성자함수</title>
+   <script>
+      //일반함수
+      function f1(a) {
+         const b = 1;
+         a = a + 10;
+         return a
+      }
+
+      //화살표 함수
+      //화살표 함수는 {}와 return문 생략
+      //객체메소드,  생성자함수, 콜백함수에서는 사용을 지양
+      const f2 = (a) => a + 1;
+
+      //객체메소드
+      const obj = {
+         name: "JS",
+         f3 : function() {console.log(this);} //this => obj
+         // f3: () => console.log(this); //this => window
+      }
+      obj.f3()
+
+      //생성자 함수
+      //- 비슷한 형식을 가진 객체를 만들어야 할 때
+      //- 함수 이름은 대문자로 시작
+      //- 화살표 함수를 사용하지 않음
+      const u1 = {
+         name: 'John',
+         age: 30
+      }
+      const u2 = {
+         name: 'Alice',
+         age: 25
+      }
+      const u3 = {
+         name: 'Tom',
+         age: 40
+      }
+
+      console.log(`name: ${u1.name}, age: ${u1.age}`);
+      console.log(`name: ${u2.name}, age: ${u2.age}`);
+      console.log(`name: ${u3.name}, age: ${u3.age}`);
+
+      function User(pname, page, pgender) { //생성자 함수
+         // name: pname,
+         // age: page,
+         // gender: pgender
+         this.name = pname;
+         this.age = page;
+         this.gender = pgender;
+         this.text = function() {
+            return `${this.name}은 ${this.gender}입니다.`
+         }
+      }
+
+      const user1 = new User('홍길동', 21, '남성'); // 객체
+      const user2 = new User('유관순', 16, '여성'); // 객체
+      const user3 = new User('황희찬', 29, '남성'); // 객체
+
+      console.log(user1.name);
+      console.log(user2.name);
+
+      console.log(user1.text());
+      console.log(user2.text());
+      console.log(user3.text());
+
+      //Fruit 생성자 함수
+      function Fruit(fname, fprice) {
+         this.name = fname;
+         this.price = fprice;
+         this.sale = function() {
+            return this.price * 0.9
+         }
+      }
+      const fruit1 = new Fruit('banana', 4500)
+
+      console.log(`${fruit1.name} : ${fruit1.price}원`);
+      console.log(`${fruit1.name} : 세일가격 ${fruit1.sale()}원`);
+
+
+      function Animal(aname, asound) {
+         this.name = aname;
+         this.makeSound = asound;
+      }
+      console.group('--* 동물농장 *--');
+      const cat = new Animal('고양이', '야옹')
+      const dog = new Animal('강아지', '멍멍')
+      const owl = new Animal('부엉이', '부엉부엉')
+      console.log(cat.makeSound); //고양이 => 야옹
+      console.log(dog.makeSound); //강아지 => 멍멍
+      console.log(owl.makeSound); //부엉이 => 부엉부엉
+      console.groupEnd();
+      // console.log(`${cat.name} ${this.sound}`);
+
+      function BankAccount(bankNAme, amount = 0) {
+         this.bankName = bankNAme;
+         this.amount = amount;
+         this.deposit = function(m) {
+            return `${this.bankName}은행에 ${m}원을 입금해서 잔금이 ${this.amount += m}원`;
+         }
+         this.withdrawal = function(m) {
+            return `${this.bankName}은행에 ${m}원을 출금해서 잔금이 ${this.amount -= m}원`;
+         }
+         this.deposit = function(k) {
+            return `${this.bankName}은행에 ${k}원을 입금해서 잔금 ${this.amount += k}원`
+         }
+         this.withdrawal = function(k) {
+            return `잔액이 부족합니다.`
+         }
+      }
+      let account1 = new BankAccount('신한', 10000)
+      let account2 = new BankAccount('KB')
+
+      console.log(account1.deposit(5000)); //신한은행에 5000원을 입금해서 잔금이 15000원
+      console.log(account1.withdrawal(7000)); //신한은행에 5000원을 입금해서 잔금이 15000원
+
+      console.log(account2.deposit(5000)); //KB은행에 5000원을 입금해서 잔금 5000원
+      console.log(account2.withdrawal(7000)); //잔액이 부족합니다.
+
+
+      console.group('--* 성적표 *--');
+      //생성자 함수 Student(name, score) => 매개변수 갯수를 바꾸지 말 것
+      //*** 60점 이상이면 합격 아니면 불합격
+      const student1 = new Student('홍길동', 60)
+      function Student(name, score) {
+         this.name = name;
+         this.score = score;
+         this.result = function() {
+            let res = score >= 60 ? '합격' : '불합격'
+            return res
+         }
+      }
+      console.log(student1.result()); //홍길동 : 합격
+
+      //*** 점수를 3개를 입력받아서 평균 점수 출력
+      // const student1 = new Student('홍길동', [60,5,5])
+      // console.log(student1.average());
+      console.groupEnd();
+   </script>
+</head>
+<body>
+   <button onclick="alert(f1(2))">f1() 호출</button>
+   <button onclick="console.log(f2(10));">f2() 호출</button>
+</body>
+</html>

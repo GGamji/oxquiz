@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반복문 for</title>
+  <style>
+    body {font-size: 20px;margin-bottom: 500px;}
+    ul, li {list-style: none;margin: 0;padding: 0;}
+    .ex1 {width: 800px;margin: auto;}
+    .color_box {
+      display: flex;justify-content: center;align-items: center;
+      height: 400px;background: #DDD;
+      font-size: 60px;color: #FFF;text-transform: uppercase;
+    }
+    .color_list {display: flex;gap: 20px;margin-top: 20px;}
+    .color_list li {
+      height: 80px;flex-grow: 1;background: #DDD;
+      cursor: pointer;user-select: none;
+    }
+    .ex2 {width: 1090px;margin: auto;display: flex;gap: 10px;margin-top: 50px;}
+    .ex2 img {width: 100px;}
+  </style>
+  <script>
+    //for문
+    //for(초기값; 반복범위;증감값) {//반복실행할 문장}
+
+    for(let i = 1; i <= 5; i++) {
+      console.log('안녕하세요~');
+    }
+
+    let a = 6;
+    let cnt = 3;
+
+    for(let i = a; i <= (a + cnt); i++) {
+      console.log('cnt만큼 반복');
+      console.log(i);
+    }
+    console.log('-----------');
+
+    //101 ~ 107
+    for(let i = 101; i <= 107; i++) {
+      console.log(`숫자 : ${i}`);
+    }
+
+    console.log('*** 1~10까지 중 홀수만');
+    //1 ~10 까지 홀수만 출력 (1,3,5,7,9)
+    for(let i = 1; i <= 10; i+=2) {
+      console.log(i);
+    }
+
+    console.log('*** 1~10까지 중 짝수만');
+    //1 ~10 까지 짝수만 출력 (2,4,6,8,10)
+    for(let i = 2; i <= 10; i+=2) {
+      console.log(i);
+    }
+
+    console.log('** 배열의 과일 이름 출력');
+    const fruits = ['딸기', '사과', '포도', '바나나', '망고', '키위', '수박']
+    // console.log(fruits[0]);
+    // console.log(fruits[1]);
+    console.log(fruits.length); //7
+
+    for(let i = 0;i < fruits.length; i++) {
+      console.log(fruits[i]);
+    }
+
+    const animals = ['강아지', '고양이', '햄스터', '거위', '기니피그', '알파카', '펭귄', '기린']
+
+    //animals 배열 순서대로 번호와 동물이름을 콘솔에 출력
+    for(let i = 0; i < animals.length; i++) {
+      console.log(`${i+1}. ${animals[i]}`)
+    }
+
+    //28 ~ 44 중 짝수만 출력
+    let num = 0;
+    for(let i = 28; i <= 44; i+=2) {
+      console.log(i);
+      num++; // num = num + 1
+    }
+    console.log(`몇번 반복? : ${num}`);
+
+    let sum = 0;
+    //1~10까지 숫자를 모두 더한 합계
+    for(let i = 1; i <= 10; i++) {
+      // console.log(`${i} + ${sum} = ${i + sum}`)
+      sum += i; // sum = sum + i
+    }
+    console.log(`1~10까지 합: ${sum}`); //55
+
+    // 별 출력
+    for(let i = 1; i <= 5; i++) { //
+      for(let j = 1; j <= i; j++) { //
+        document.write('★')
+      }
+      document.write('<br>')
+    }
+
+    let dan = 4;
+    for(let i = 1; i <= 9; i++) {
+      console.log(`${dan} * ${i} = ${dan * i}`);
+    }
+
+    // 2 ~ 9단
+    for(let d = 2; d <= 9; d++) {
+      console.log(`** ${d} 단`);
+      for(let i = 1; i <= 9; i++) {
+        console.log(`${d} * ${i} = ${d * i}`);
+      }
+    }
+    // $('.ex1_title').text('hello')
+    // $('h2').click(function() {})
+    window.onload = function() {
+      // document.getElementsByTagName('h1')[0].style.color = 'red'
+      document.querySelector('h1').style.color = 'green';
+      document.querySelector('.ex1_title').innerHTML
+        = '<em>컬러박스</em> 예제';
+
+      // 컬러 이름을 배열로 만들기
+      const colorName = ['tomato', 'green', 'blue', 'gold', 'slateblue', 'pink', 'orange']
+
+      //.color_box에 첫번째 컬러를 배경색, 텍스트 적용
+      const cBox = document.querySelector('.color_box');
+
+      cBox.style.backgroundColor = colorName[0];
+      cBox.innerHTML = colorName[0]
+
+      // document.getElementsByTagName('li')[0].style.backgroundColor = 'red'
+      // li에게 배열의 컬러를 하나씩 적용
+
+      // for(let i = 0; i < colorName.length; i++) {
+      //   const cList = document.getElementsByTagName('li');
+      //   // document.getElementsByTagName('li')[i].style.backgroundColor = colorName[i]
+      //   // document.getElementsByTagName('li')[i].innerHTML = colorName[i]
+      //   cList[i].style.backgroundColor = colorName[i]
+      //   cList[i].innerHTML = colorName[i]
+      // }
+
+      // //요소 생성 JS
+      // const h2Elm = document.createElement('h2');
+      // document.querySelector('.ex2').appendChild(h2Elm);
+      // h2Elm.innerHTML = 'h2Elm';
+
+      // document.querySelector('.color_list').appendChild(document.createElement('li'))
+
+      const cUl = document.querySelector('.color_list');
+      for(let i = 0; i < colorName.length; i++) {
+        // cUl.appendChild(document.createElement('li')).innerHTML = colorName[i]
+        const cLi = document.createElement('li')
+        cUl.appendChild(cLi)
+        cLi.innerHTML = colorName[i]
+        cLi.style.backgroundColor = colorName[i]
+      }
+      //food 이미지 10개 만드는 예제 => li 생성 예시와 같은 방법
+      // li에는 텍스트 요소가 필요 => li.innerHTML
+      // img는 src 요소가 필요 => img.src
+
+      const ex2 = document.querySelector('.ex2');
+      for(let i = 1; i <=10; i++) {
+        const img = document.createElement('img')
+        ex2.appendChild(img)
+        img.src = `img/food_${i}.png`
+      }
+    }//onload
+  </script>
+</head>
+<body>
+  <h1>반복문 for</h1>
+  <div class="ex1">
+    <h2 class="ex1_title"></h2>
+    <div class="color_box"></div>
+    <ul class="color_list"></ul>
+  </div>
+  <div class="ex2">
+    <!-- <h2></h2> -->
+  </div>
+</body>
+</html>

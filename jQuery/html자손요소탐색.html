@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>html 자손 요소 탐색</title>
+   <style>
+      div, div * {
+         padding: 20px;border: 1px solid #AAA;
+         background: #fff;
+      }
+      span, em {padding: 0;}
+      h2 {border: 1px solid red;}
+      .wrapper {position: relative;border: 2px dotted #000;}
+      .inner {position: relative;}
+   </style>
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+   <script>
+      $(function() {
+         $('.btn1').click(function() {
+            //children() => 선택자의 모든 자손요소
+            $('h2').children().css('border', '2px solid orange')
+         })
+         $('.btn2').click(function() {
+            $('.wrapper').children('div').css('border', '2px dashed green')
+         })
+         $('.btn3').click(function() {
+            //children('elm') => 자손요소 중 'elm' 요소만 탐색
+            $('h2').chlidren('em').css('border', '2px dashed green')
+         })
+         $('.btn4').click(function() {
+            //find() => 자손을 포함한 후손요소 탐색 메소드이지만, 인수가 필요
+            $('.wrapper').find().css('border', '2px dashed dodgerblue')
+         })
+         $('.btn5').click(function() {
+            //find(*) => 모든 후손요소
+            $('.wrapper').find('*').css('border', '2px dashed green')
+         })
+         $('.btn6').click(function() {
+            //find('elm') => 후손요소 중 elm 요소를 탐색
+            $('.wrapper').find('em').css('border', '2px dashed brown')
+         })
+      })
+   </script>
+</head>
+<body>
+   <h1>자손요소 탐색</h1>
+   <button class="btn1">children()</button>
+   <button class="btn2">children('div')</button>
+   <button class="btn3">children('em')</button>
+   <button class="btn4">find()</button>
+   <button class="btn5">find('*')</button>
+   <button class="btn6">find('em')</button>
+
+   <hr>
+   <div class="wrapper">
+      <div class="inner">
+         <div class="box">
+            <h2><span>후손 요소</span><em>탐색</em></h2>
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>

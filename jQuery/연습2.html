@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습2</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset.css@2.0.2/reset.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css">
+  <style>
+    button {margin: 0;padding: 0;background: none;border: none;}
+    section {padding: 80px 0;background: #000;}
+    img {display: block;width: 100%;}
+    .ex1 {width: 1230px;margin: auto;position: relative;color: #fff;}
+    .ex1 .slider {overflow: hidden;}
+    .ex1 ul {display: flex;gap: 30px;}
+    .ex1 li {width: 600px;height: 425px;flex-shrink: 0;overflow: hidden;}
+    .ex1 p {font-size: 24px;line-height: 50px;}
+    .ex1 button {
+      position: absolute;top: 50%;color: #fff;cursor: pointer;
+      transform: translateY(-50%);font-size: 50px;
+    }
+    .ex1 .prev {left: -50px;}
+    .ex1 .next {right: -50px;}
+    .ex1 .pagination {
+      position: absolute;right: 0;top: -30px;
+      font-size: 24px;
+    }
+    .ex1 .auto_btns {position: absolute;left: 0;top: -20px;}
+    .ex1 .auto_btns button {font-size: 30px;}
+    .ex1 .auto_btns .play {display: none;}
+    .progress {
+      position: absolute;left: 0;right: 0;top: 2px;
+      background: #999;height: 5px;
+    }
+    .progress .bar {
+      height: 7px;margin-top: -1px;
+      background: lightgoldenrodyellow;
+    }
+  </style>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(function() {
+      const $ulElm = $('.ex1 ul');
+      let total = $('.ex1 li').length
+      let current = 1;
+      let barW = $('section').width() / total
+      $('.ex1 .total').text(total)
+      $('.ex1 .current').text(current)
+      $('.progress .bar').css('width', barW)
+      $('.ex1 .stop').click(function() {
+        clearInterval(timer)
+        $(this).hide()
+        $('.ex1 .play').show()
+      })
+      $('.ex1 .play').click(function() {
+        setInterval(auto, 2000)
+        $(this).hide()
+        $('.ex1 .stop').show()
+      })
+
+      $('.ex1 .prev').click(function() {
+        current = (current <= 1) ? total : current - 1;
+        $('.ex1 .current').text(current)
+        $('.progress .bar').animate({'width': barW * current}) //bar가 늘어나는 모양
+        // $('.progress .bar').animate({'margin-left': barW * (current - 1)}) //bar가 움직이는 모양
+        $ulElm.children(':last-child').insertBefore($ulElm.children(':first-child'));
+        $ulElm.css('margin-left', -630);
+        $('.ex1 li:first-child p').css('margin-top', 50)
+        $ulElm.stop().animate({'margin-left': 0}, function() {
+          $('.ex1 li:first-child p').animate({'margin-top': 0})
+        })
+      })
+
+      $('.ex1 .next').click(function() {
+        auto()
+      })
+
+      let timer = setInterval(auto, 2000)
+      function auto() {
+        current = (current >= total) ? 1 : current + 1;
+        $('.ex1 .current').text(current)
+        $('.progress .bar').animate({'width': barW * current}) //bar가 늘어나는 모양
+        //$('.progress .bar').animate({'margin-left': barW * (current - 1)}) //bar가 움직이는 모양
+        $('.ex1 li:nth-child(3) p').css('margin-top', 50)
+        $ulElm.stop().animate({'margin-left': -630}, function() {
+          $ulElm.children(':first-child').insertAfter($ulElm.children(':last-child'));
+          $ulElm.css('margin-left', 0);
+          $('.ex1 li:nth-child(2) p').animate({'margin-top': 0})
+        });
+      }
+    }) //ready
+  </script>
+</head>
+<body>
+  <section>
+    <div class="ex1">
+      <div class="slider">
+        <ul>
+          <li>
+            <img src="../img/food_1.png" alt="">
+            <p>쓰고, 노래하고, 살아남은 여성들을 위한 책</p>
+          </li>
+          <li>
+            <img src="../img/food_2.png" alt="">
+            <p>금요일마다 체포되는 여자</p>
+          </li>
+          <li>
+            <img src="../img/food_3.png" alt="">
+            <p>고기영, 빛을 설계하는 여자</p>
+          </li>
+          <li>
+            <img src="../img/food_4.png" alt="">
+            <p>나와 지구의 연결고리</p>
+          </li>
+          <li>
+            <img src="../img/food_5.png" alt="">
+            <p>원더우먼! 그레타 거윅</p>
+          </li>
+        </ul>
+      </div>
+      <button class="prev"><i class="ri-arrow-left-s-line"></i></button>
+      <button class="next"><i class="ri-arrow-right-s-line"></i></button>
+      <div class="pagination">
+        <span class="current">0</span> /
+        <span class="total">0</span>
+      </div>
+      <div class="auto_btns">
+        <button class="play"><i class="ri-play-circle-fill"></i></button>
+        <button class="stop"><i class="ri-pause-circle-fill"></i></button>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="bar"></div>
+    </div>
+  </section>
+</body>
+</html>

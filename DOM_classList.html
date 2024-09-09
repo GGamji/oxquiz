@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM_classList</title>
+</head>
+<body>
+<div id="box1" class="box">box1</div>
+<div id="box2" class="box on c1 c2">box2</div>
+<div id="box3" class="box c1 c2">box3</div>
+<div id="box4" class="box orange">box4</div>
+
+<hr>
+
+<ul id="tabs">
+  <li class="active">공지사항</li>
+  <li>미디어</li>
+  <li>학술정보</li>
+  <li>교원채용</li>
+</ul>
+
+  <!-- CSS -->
+  <style>
+    .box {width: 300px;height: 200px;margin: 20px;border: 1px solid #999;}
+    .on {background: pink;}
+    .c1 {font-size: 30px;}
+    .c2 {border: 3px dashed green;}
+    .c3 {text-decoration: underline;}
+    .c4 {font-style: italic;}
+    .orange {background: orange;}
+    .green {background: yellowgreen;}
+
+
+    #tabs {
+      list-style: none;padding: 30px;font-size: 24px;
+      display: flex;gap: 40px;color: #AAA;font-weight: bold;
+    }
+    .active {
+      text-decoration: underline green 4px;
+      text-underline-offset: 10px;color: #333;
+    }
+    #tabs li {cursor: pointer;user-select: none;}
+  </style>
+
+  <!-- JS -->
+  <script>
+    const box1 =document.getElementById('box1')
+    const box2 =document.getElementById('box2')
+    //add()
+    box1.addEventListener('click', function() {
+      this.classList.add('on', 'c3')
+    })
+    //remove()
+    box2.addEventListener('click', function() {
+      this.classList.remove('on', 'c1')
+    })
+    //toggle() => add(), remove() 토글
+    box3.addEventListener('click', function() {
+      this.classList.toggle('c2')
+    })
+    //contains() => class 포함여부를 불리언타입(true, false)으로 반환
+    box2.innerHTML = box2.classList.contains('on')
+
+    //replace() => 변경
+    box2.classList.replace('on', 'orange')
+
+    //box4의 orange 클래스를 클릭할 때마다 green 클래스와 토글
+    //1. 클릭할 때 적용된 클래스이름은 무엇?
+    //2. orange와 green을 교체
+    //if, contains, replace
+    box4.addEventListener('click', function() {
+      if(box4.classList.contains('orange')) {
+        box4.classList.replace('orange', 'green')
+      } else {
+        box4.classList.replace('green', 'orange')
+      }
+    })
+
+    let ex1 = box3.classList
+    console.log(ex1); // DOMTokenList
+    box3.innerHTML = ex1
+
+    //length
+    box3.innerHTML += `<br> ${ex1.length} <br> ${ex1[1]} <br> ${ex1.item(0)}`
+    //item()
+
+    /* syntax sugar
+    function fn(p) {}
+    const fn = (p) => {}
+
+    function fn(p) {return p}
+    const fn = p => p
+
+    function(p) {return p}
+    p => p
+    */
+
+    const tabItem = document.querySelectorAll('#tabs li')
+    // tabItem.addEventListener('click', function() {
+    //   alert()
+    // })
+
+    let itemSelected = tabItem[0]; //클릭 객체 => 선택된 객체
+    tabItem.forEach(item => {
+      item.addEventListener('click', function() {
+        tabItem.forEach(otherItem => {
+          otherItem.classList.remove('active')
+        })
+        this.classList.add('active');
+        itemSelected = this
+      })
+      item.addEventListener('mouseover', function() {
+        this.classList.add('active')
+      })
+      item.addEventListener('mouseout', function() {
+        if(this !== itemSelected) this.classList.remove('active')
+      })
+    })
+
+  </script>
+</body>
+</html>

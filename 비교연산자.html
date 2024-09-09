@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>비교연산자</title>
+	<script>
+		let a = 10, b = 12, c =-30, d = 0, e = '10';
+
+		// 비교연산자
+		// 두 항을 비교하여 Boolean(true, false 값)타입의 값을 반환
+
+		console.log(a > b); // : a가 b보다 크다 (false)
+		console.log(a < b); // : a가 b보다 작다 (true)
+		console.log(a >= b); // : a가 b보다 크거나 같다 (false)
+		console.log(a <= b); // : a가 b보다 작거나 같다 (true)
+		console.log(b <= (a + 2)); // : b가 a에 2를 더한 값보다 작거나 같다 (true)    * 산술연산자가 비교연산자보다 우선 순위
+		console.log(a == b); // : a와 b가 같다 (false)
+		console.log(a == e); // 10 == '10' => 데이터타입은 무시, 값만 비교
+		console.log(a === e); // 10 === '10' => 값과 데이터타입도 비교
+
+		// * ! : not(부정의 뜻)
+		console.log(a != e); // a와 e는 같지 않다  값만 비교 (false)
+		console.log(a !== e); // a와 e는 같지 않다  데이터값 비교 (true)
+
+		console.log(typeof a);
+		console.log(typeof e);
+		console.log(typeof a == typeof e);
+		console.log('a' < 'g');
+	</script>
+</head>
+<body>
+
+</body>
+</html>

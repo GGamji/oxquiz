@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>조건문 if</title>
+	<script>
+		/*
+			1. 조건이 참이면 문장을 실행하고, 거짓이면 아무것도 하지 않음
+			if(condition) { //조건이 참일 때 실행할 문장 }
+
+			2. 조건이 참일 때 할 일과 거짓일 때 할 일이 있는 경우
+			if(조건) { //참일 때 할 일}
+			else { //거짓일 때 할 일}
+
+			3. 여러 개의 조건마다 할 일이 다를 때
+				(ex) '양수', '음수', 0  // 학점 A, B, C, D, F
+			if(조건1) {//조건1이 참일 때 실행할 문장}
+			else if(조건2) {//조건2가 참일 때 실행할 문장}
+			...
+			else if {조건n} {//조건n이 참일 때 실행할 문장}
+			else {//모든 조건에 해당하지 않을 때 실행할 문장}
+		*/
+		let a = 10;
+		if(a >= 10) {console.log(a);}
+
+		if(a > 10) {console.log('a는 10보다 크다');}
+		else {console.log('a는 10보다 크지 않다');}
+
+		// 입력 받은 숫자가 양수인지, 음수인지, 0인지
+		const num = prompt('숫자를 입력')
+		let n1;
+		if(num > 0) {
+			n1 = '양수'
+		} else if(num < 0) {
+			n1 = '음수'
+		} else {
+			n1 = '0'
+		}
+		console.log(`${num}은 ${n1}입니다`);
+
+
+		// 입력받은 숫자가 짝수인지, 홀수인지, 0인지
+
+		let n2;
+		// if(num % 2 == 0 && num != 0) {
+		// 	n2 = '짝수'
+		// } else if(num % 2 != 0) {
+		// 	n2 = '홀수'
+		// } else {
+		// 	n2 = '0'
+		// }
+
+		if(num != 0) {
+			if(num % 2 == 0) {
+				n2 = '짝수'
+			} else {
+				n2 = '홀수'
+			}
+		} else {n2 = 0}
+		console.log(`${num}은 ${n2}`);
+
+
+		// console.log(var + '는' + var + '변수다');
+		// console.log(`${var}는 ${var} 변수다`);
+
+		const score = prompt('점수를 입력')
+		// 입력받은 점수가 90점 이상이면 'A', 80점 이상이면 'B', 70점 이상이면 'C',
+		// 60점 이상이면 'D', 그 외는 'F'
+		let grade;
+		if(score >= 0 && score <= 100) {
+			if(score >= 90) {
+				grade = 'A'
+			} else if(score >= 80) {
+				grade = 'B'
+			} else if(score >= 70) {
+				grade = 'C'
+			} else if(score >= 60) {
+				grade = 'D'
+			} else {
+				grade = 'F'
+			}
+			console.log(`점수는 ${score}점이고 학점은 ${grade}`);
+		} else {
+			console.log('0~100 사이 숫자를 입력하세요');
+		}
+
+
+		// 입력 받을 나이가 1~5세면 '유아' 6~13세면 '어린이' 14~19면 '청소년',
+		// 35~50세면 '장년', 51~65세면 '중년', 66세 이상이면 '노년'
+		const age = Number(prompt('나이를 입력'));
+		let generate;
+
+		console.log('당신의 나이는 ${age}세이고 ${generate} 입니다.');
+
+		//시간을 입력 받아서 0~5시까지 '새벽', 5~12시까지 '오전', 12~17시까지 '오후',
+		// 17~21시까지 '저녁', 21~0시까지 '밤'
+		const hour = prompt('시간을 입력');
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>html 요소 추가 삭제</title>
+   <style>
+      body {margin-bottom: 300px;}
+      button {font-size: 20px;font-weight: bold;}
+      .ex1 {}
+      .ex1 .big {width: 500px;height: 400px;margin: auto;}
+      .ex1 .big img {width: 100%;height: 100%;object-fit: cover;}
+      .ex1 .thumb {display: flex;justify-content: center;align-items: flex-start;gap: 20px;}
+      .ex1 .thumb img {width: 100px;cursor: pointer;}
+
+      .ex2 {text-align: center;}
+      .ex2 .box {
+         width: 400px;min-height: 100px;margin:20px auto;
+         border: 1px solid #AAA;
+      }
+      .ex2 .box strong {
+         display: block;
+         font-size: 24px;font-weight: bold;
+         color: green;margin-bottom: 20px;
+      }
+      .ex2 .box img {width: 100%;}
+
+      .ex3 button {color: #FFF;}
+      .ex3 .btn1 {background: slateblue;}
+      .ex3 .btn2 {background: dodgerblue;}
+      .ex3 .btn3 {background: lightcoral;}
+
+      .ex4 .box {
+         width: 500px;margin: 30px;padding: 50px;
+         border: 1px solid #000;background: silver;
+      }
+   </style>
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+   <script>
+      $(function() {
+         //GEt / Set => html 요소가 포함하는 자손 컨텐츠, 속성, value 등
+
+         //Add / Remove => 요소 자체를 추가하거나 삭제
+         const animals = ['zebra', 'tiger', 'ram', 'rabbit', 'puppy', 'otter', 'hedgehog', 'cat']
+
+         //반복문 for ..of를 이용하여 8마리 썸네일 이미지 추가
+         // $('.ex1 .thumb').append(`<img src = "../img/${animals[2]}.jpg">`)
+         for(animal of animals) {
+            $('.ex1 .thumb').append(`<img src = "../img/${animal}.jpg">`);
+         }
+
+         //생성한 썸네일을 클릭하면 src를 get, .big의 img에 set
+         // console.log($('.ex1 .thumb img').attr('src'));
+         $('.ex1 .thumb img').on('click', function() {
+            let imgSrc = $(this).attr('src'); //get
+            $('.ex1 .big img').attr('src', imgSrc); //set
+         })
+
+
+         // ** 선택자의 자손요소로 추가
+         //append('element') => html요소, 텍스트 등을 선택자의 막내 자손 컨텐츠로 추가
+         //prepend('element') => 선택자의 첫째 자손 컨텐츠로 추가
+         let a = 0
+         $('.ex2 .btn1').on('click', () => {
+            $('.ex2 .box').append('<img src ="../img/char.jpg" alt ="" >')
+         })
+         $('.ex2 .btn2').on('click', function() {
+            a++;
+            $('.ex2 .box').prepend(`<strong>${a} strong</strong>`)
+         })
+
+
+         //elm.addEventListener(evt, func)
+         //$().on('evt', func)
+         //$().on({'evt' : function() {}, 'evt' : function() {} })
+         //$().hover()
+         //$(a).click(function() {})
+         //#(a).mouseenter(function() {})
+
+         //** 선택자의 형제요소로 추가(생성)
+         // - before('element') : 선택자요소의 형요소로 추가
+         // - after('element') : 선택자요소의 동생요소로 추가
+         $('.ex3 h2').before('<h1>ex3 h2의 형 h1</h1>')
+         $('.ex3 h2').after('<h3>ex3 h2의 동생 h3</h3>')
+
+         //ex3의 h3 동생으로 button을 3개 생성
+         //각각 클래스를 btn1~btn3
+         for(let b = 3; b >= 1; b--) {
+         $('.ex3 h3').after(`<button class="btn${b}">button ${b}</button>`);
+         }
+
+         //remove() : 선택자 요소 자체를 완전 삭제(메모리까지)
+         //empty() : 선택자 요소의 자손 요소를 삭제
+         //detach() : 선택자 요소 자체를 삭제, 메모리는 남음
+         //remove vs detach
+         // => remove는 복구불가, 새로 생성
+         // => detach는 저장해 둔 메모리로 요소 생성
+         $('.ex4 .btn1').on('click', function() {
+            $('.ex4 .box1').remove()
+         })
+         $('.ex4 .btn2').on('click', function() {
+            $('.ex4 .box2').empty()
+         })
+         $('.ex4 .btn3').on('click', function() {
+            $('.ex4 .box3').detach()
+         })
+      });
+   </script>
+</head>
+<body>
+   <div class="ex1">
+      <h2>get/set 연습</h2>
+      <div class="big">
+         <img src="../img/otter.jpg" alt="">
+      </div>
+      <div class="thumb"></div>
+   </div>
+   <div class="ex2">
+      <h2>요소 생성(Add)</h2>
+      <button class="btn1">이미지생성</button>
+      <button class="btn2">text생성</button>
+      <div class="box"></div>
+   </div>
+   <div class="ex3">
+      <h2>형제요소 추가</h2>
+   </div>
+   <div class="ex4">
+      <h2>요소 삭제</h2>
+      <button class="btn1">remove()</button>
+      <button class="btn2">empty()</button>
+      <button class="btn3">detach()</button>
+      <div class="box1 box">BOX - 1</div>
+      <div class="box2 box">BOX - 2</div>
+      <div class="box3 box">BOX - 3</div>
+   </div>
+   <div class="ex5">
+      <h2></h2>
+   </div>
+</body>
+</html>

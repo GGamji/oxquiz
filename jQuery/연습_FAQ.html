@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습_FAQ</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset.css@2.0.2/reset.min.css">
+  <style>
+    .ex1 {width: 800px;margin: 100px auto;}
+    .ex1 dl {border: 1px solid #CCC;}
+    .ex1 dt, .ex1 dd {
+      padding: 15px 20px;border-bottom: 1px solid #CCC;
+    }
+    .ex1 dt {background: #ededed;cursor: pointer;}
+    .ex1 dd {line-height: 1.5em;display: none;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(function() {
+      //dt를 클릭하면
+      //dd를 보이게(show() / slidDown())
+      // $('.ex1 dt').click(function() {
+      //   $('.ex1 dd').slideToggle()
+      // })
+      $('.ex1 dt').on({
+        'click' : function() {
+          $(this).next().slideToggle('slow')
+          $('.ex1 dd').not($(this).next()).slideUp('fast')
+        },
+        'mouseover' : function() {
+          $(this).css('background', '#DDD')
+        },
+        'mouseout' : function() {
+          $(this).css('background', '#EEE')
+        }
+      })
+    })
+  </script>
+</head>
+<body>
+  <h1>FAQ</h1>
+  <div class="ex1">
+    <dl>
+      <dt>Q1. 질문입니다</dt>
+      <dd>A1. 답변입니다 <br>
+        사법권은 법관으로 구성된 법원에 속한다. 평화통일정책의 수립에 관한 대통령의 자문에 응하기 위하여 민주평화통일자문회의를 둘 수 있다.
+      </dd>
+      <dt>Q2. 질문입니다</dt>
+      <dd>A2. 답변입니다 <br>
+        사법권은 법관으로 구성된 법원에 속한다. 평화통일정책의 수립에 관한 대통령의 자문에 응하기 위하여 민주평화통일자문회의를 둘 수 있다. 국무위원은 국무총리의 제청으로 대통령이 임명한다. 대법관은 대법원장의 제청으로 국회의 동의를 얻어 대통령이 임명한다. 국가안전보장회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.
+      </dd>
+      <dt>Q3. 질문입니다</dt>
+      <dd>A3. 답변입니다 <br>
+        사법권은 법관으로 구성된 법원에 속한다. 평화통일정책의 수립에 관한 대통령의 자문에 응하기 위하여 민주평화통일자문회의를 둘 수 있다. 국무위원은 국무총리의 제청으로 대통령이 임명한다.
+      </dd>
+      <dt>Q4. 질문입니다</dt>
+      <dd>A4. 답변입니다 <br>
+        사법권은 법관으로 구성된 법원에 속한다. 평화통일정책의 수립에 관한 대통령의 자문에 응하기 위하여 민주평화통일자문회의를 둘 수 있다. 국무위원은 국무총리의 제청으로 대통령이 임명한다. 대법관은 대법원장의 제청으로 국회의 동의를 얻어 대통령이 임명한다. 국가안전보장회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.
+      </dd>
+      <dt>Q5. 질문입니다</dt>
+      <dd>A5. 답변입니다 <br>
+        사법권은 법관으로 구성된 법원에 속한다. <br>평화통일정책의 수립에 관한 대통령의 자문에 응하기 위하여 민주평화통일자문회의를 둘 수 있다. <br> 국무위원은 국무총리의 제청으로 대통령이 임명한다. <br>대법관은 대법원장의 제청으로 국회의 동의를 얻어 대통령이 임명한다.<br> 국가안전보장회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.
+      </dd>
+    </dl>
+  </div>
+
+  <!-- 카이스트 모바일용 전체메뉴 =>
+  처음에는 1뎁스만 보이게, 1뎁스를 클릭하면 해당 2뎁스만 보이게,
+  2뎁스를 클릭하면 자손 3뎁스가 보이도록 수정 -->
+</body>
+</html>

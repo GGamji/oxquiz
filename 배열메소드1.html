@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열 메소드1</title>
+  <script>
+    const fruits = ['banana', 'mango', 'grape', 'apple', 'kiwi']
+    console.log(fruits); //array
+    document.write(fruits)
+
+    console.log(fruits[1]); //'mango'
+    document.write(fruits[2]) //'grape'
+
+    console.log(typeof fruits); //object
+
+    console.log(fruits.length); //5
+    fruits[5] = 'orange';
+    console.log(fruits.length);
+    console.log(fruits);
+
+    //join('문자') => 각 데이터를 '문자'로 연결해서 출력
+    console.log(fruits.join(' * ')); //banana * mango * grape * apple * kiwi * orange
+
+    //pop() => 배열의 가장 마지막 데이터를 삭제
+    console.log(fruits.pop()); //orange
+    console.log(fruits); //'banana', 'mango', 'grape', 'apple', 'kiwi'
+    console.log(fruits.pop()); //kiwi
+    // fruits.pop(fruits); //'banana', 'mango', 'grape', 'apple'
+
+    //push(data) => 배열의 맨 마지막에 data를 추가
+    fruits.push('cherry');
+    console.log(fruits); //'banana', 'mango', 'grape', 'apple', 'cherry'
+
+    const nation1 = ['영국', '독일', '핀란드', '프랑스'];
+    const nation2 = ['한국', '일본', '중국'];
+    const nation3 = ['멕시코', '쿠바', '아르헨티나'];
+
+    //concat(data) => 배열 뒤에 data를 추가
+    //array.concat(array) => 배열 병합
+    const nation = nation1.concat(nation2).concat(nation3).concat('호주')
+    // const nation = nation1.concat(nation1, nation2)
+
+    console.log(nation1.toString(), nation2.toString());
+    console.log(nation.toString());
+    console.log(nation.length); //11
+    console.log(nation[5]); //일본
+    console.log(nation[8]); //쿠바
+
+    //스프레드(전개 연산자), ...
+    console.log(fruits); //array
+    console.log(...fruits); //banana, mango, grape, apple
+
+    const global = [nation1, nation2];
+    //global = [['영국', '독일', '핀란드', '프랑스'], ['한국', '일본', '중국']]
+    console.log(global[5]); //undefined
+    console.log(global.length); //2
+
+    const world = [...nation1, ...nation2, ...nation3]
+    console.log(world.length); //10
+    console.log(world[4]); //한국
+
+    console.log(nation3); //'멕시코', '쿠바', '아르헨티나'
+    nation3.push('브라질', '페루')
+    console.log(nation3); //'멕시코', '쿠바', '아르헨티나', '브라질', '페루'
+    nation3.unshift('파라과이') //맨 앞으로 추가
+    console.log(nation3); //'파라과이', '멕시코', '쿠바', '아르헨티나', '브라질', '페루'
+
+    nation3.shift() //맨 앞 데이터 삭제
+    console.log(nation3); //'멕시코', '쿠바', '아르헨티나', '브라질', '페루'
+
+    //splice(index, count, item1, ...)
+    nation3.splice(2,1) //index 2붵 1개 삭제
+    console.log(nation3); //'멕시코', '쿠바', '브라질', '페루' (아르헨티나 삭제됨)
+
+    nation3.splice(1,1,'파라과이') //index 1에 item(파라과이) 덮어쓰기
+    console.log(nation3); //'멕시코', '파라과이', '브라질', '페루'
+
+    nation3.splice(2,0,'아르헨티나'); //'멕시코', '파라과이', '아르헨티나', '브라질', '페루'
+    console.log(nation3);
+
+    //fruits의 끝에서 2번째에 'lemon'
+    let n = fruits.length - 1
+    fruits.splice(n, 0, 'lemon')
+    console.log(fruits); //'banana', 'mango', 'grape', 'apple', 'cherry'
+
+    //fruits의 끝에서 2번째에 'melon', 'peach', 'tomato'를 추가
+    n = fruits.length - 1
+    fruits.splice(n, 0, 'melon', 'peach', 'tomato')
+    console.log(fruits);
+
+    /*
+      push()
+      pop()
+      shift()
+      unshift()
+      splice()
+    ==> 원래 배열의 데이터 변형
+
+      concat(), join() => 원형 보존하고 데이터, 문자를 추가
+    */
+
+    fruits.concat(nation1)
+    console.log(fruits);
+
+    fruits.pop()
+    console.log(fruits);
+  </script>
+</head>
+<body>
+
+</body>
+</html>

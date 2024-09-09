@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>양방향 스크롤 페이지</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset.css@2.0.2/reset.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui@1.14.0/themes/base/theme.min.css">
+  <style>
+    h1 {
+      position: fixed;left: 30px;top: 30px;
+      background: #fff;border-radius: 10px;font-size: 22px;font-weight: 600;
+      display: flex;justify-content: center;align-items: center;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);padding: 20px 30px;
+    }
+    nav {
+      position: fixed;right: 30px;top: 30px;
+      display: grid;grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 30px;gap: 10px 20px;
+    }
+    nav a {
+      text-decoration: none;color: #fff;
+    }
+    nav a.active {
+      text-decoration: underline 2px;
+      text-underline-offset: 6px;font-weight: 600;
+    }
+    main {display: flex;flex-wrap: wrap;width: 300vw;}
+    main section {
+      width: 100vw;height: 100vh;flex-shrink: 0;
+    }
+    main section h2 {
+      color: #fff;text-align: center;padding-top: 200px;
+      font-size: 50px;font-weight: bold;
+    }
+  </style>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      const colorName = ['lightblue', 'lightcoral', 'lightgoldenrodyellow', 'lightseagreen', 'lavender', 'slategrey'];
+      const sectionId = [];
+      let n = 0;
+
+      $('section').each(function() {
+        let n = $(this).index()
+        sectionId.push($(this).attr('id'))
+        $(this).append(`<h2>${sectionId[n]}</h2>`)
+        $(this).css({'background' : colorName[n]})
+      })
+
+      $('nav a').click(function() {
+        $('nav a').not(this).removeClass('active')
+        $(this).addClass('active')
+
+        let n =$(this).index()
+        $('html').animate({
+          scrollTop: $('section').eq(n).offset().top,
+          scrollLeft: $('section').eq(n).offset().left
+        })
+      })
+    })//ready()
+  </script>
+</head>
+<body>
+  <div id="wrap">
+    <header>
+      <h1>LOGO</h1>
+      <nav>
+        <a href="#" class="active">HOME</a>
+        <a href="#">ABOUT</a>
+        <a href="#">WORK</a>
+        <a href="#">CLASS</a>
+        <a href="#">TEAM</a>
+        <a href="#">CONTACT</a>
+      </nav>
+    </header>
+    <main>
+      <section id="home"></section>
+      <section id="about"></section>
+      <section id="work"></section>
+      <section id="class"></section>
+      <section id="team"></section>
+      <section id="contact"></section>
+    </main>
+  </div>
+</body>
+</html>

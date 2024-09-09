@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>화살표함수</title>
+  <script>
+    // 함수는 호출을 받아야만 동작한다.
+    // 실행결과를 호출한 객체에게 반환(return)
+    function expon(n1, n2) {
+      return n1 ** n2 //(3 ** 4 => 3*3*3*3 )
+    }
+
+    console.log(`3 ** 4 : ${expon(3, 4)}`);
+    console.log(`5 ** 3 : ${expon(5, 3)}`);
+
+
+    // 매개변수 => 매개변수 + 10
+    // (매개변수1, 매개변수2) => {매개변수1 + 10; 매개변수1 * 매개변수2}
+
+    // let arrowExpon = (n1, n2) => n1 ** n2 => {}와 return을 생략
+    let arrowExpon = (n1, n2) => {return n1 ** n2}
+
+    console.log(`3 ** 4 : ${arrowExpon(3, 4)}`);
+    console.log(`5 ** 3 : ${arrowExpon(5, 3)}`);
+
+    // function expon(n1, n2) {
+    //   return n1 ** n2 //(3 ** 4 => 3*3*3*3)
+    // }
+
+    //인치를 센티미터로 바꾸는 함수를 화살표함수로 구현하시오
+    // CM => inch * 2.54
+    let cm = (i) => i * 2.54
+    // function cm(i) i * 2.54
+    console.log(`3인치는 몇 cm? : ${cm(3)} cm`)
+
+    //화씨를 섭씨로 바꾸는 화살표함수
+    // C => (화씨온도 - 32) ÷ 1.8
+    let cel = f => (f - 32) / 1.8
+    console.log(`화씨 10도는 섭씨 ${cel(10)}도`);
+
+    const zodiacName = ['원숭이','닭','개','돼지','쥐','소','호랑이','토끼','용','뱀','말','양']
+    const twelve = (y) => zodiacName[y % 12]
+
+    console.log(`2025년은 ${twelve(2025)} 띠해입니다.`); //뱀
+
+    //prompt로 사용자 이름 입력받기
+    // 함수 내부에 콘솔 출력문장을 작성
+    // => 홍길동님. 최종접속시간 10:53:22
+    const now = new Date();
+    const username = prompt('이름을 입력')
+    //변수명을 함수내부에서 직접 사용하지 말것!!
+
+    let userInfo = (user, time) => {
+      let h = time.getHours()
+      let m = time.getMinutes()
+      let s = time.getSeconds();
+
+      return `${user}님. 최종접속시간 ${h} : ${m} : ${s}`
+      //홍길동님. 최종접속시간 10:53:22
+    }
+    console.log(userInfo(username, now));
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

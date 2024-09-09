@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마우스이벤트</title>
+  <style>
+    .wrap {display: flex;flex-wrap: wrap;width: 860px;margin: 50px auto;gap: 20px;}
+    .box {width: 200px;height: 200px;background: silver;cursor: pointer;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $('.b1').click(function() { //마우스를 눌렀다 떼는 것이 한 동작으로 인식
+        $(this).css('background', 'pink')
+      })
+      $('.b2').dblclick(function() {
+        $(this).css('background', 'lightblue')
+      })
+      $('.b3').mouseenter(function() {
+        $(this).css('background', 'lightyellow')
+      })
+      $('.b4').mouseleave(function() {
+        $(this).css('background', 'lightgreen')
+      })
+      $('.b5').mouseenter(function() {
+        $(this).css('background', 'darkblue')
+      })
+      $('.b5').mouseleave(function() {
+        $(this).css('background', 'darkgreen')
+      })
+      $('.b6').mouseover(function() {
+        $(this).css('background', 'lightsalmon')
+      })
+      //mouseenter와 mouseover => 이벤트 버블링(자손요소의 이벤트가 부모요소로 전파)이 발생 => mouseover
+      $('.b7').mousedown(function() { //마우스를 누르면 바로 변경
+        $(this).css('background', 'slateblue')
+      })
+      $('.b8').mouseup(function() {
+        $(this).css('background', 'skyblue')
+      })
+      $('.b9').mousemove(function() {
+        $(this).css('background', 'lightcoral')
+      })
+    })
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="box b1">click</div>
+    <div class="box b2">double click (dblclick)</div>
+    <div class="box b3">mouseenter</div>
+    <div class="box b4">mouseleave</div>
+    <div class="box b5">mouseenter / mouseleave</div>
+    <div class="box b6">mouseover</div>
+    <div class="box b7">mousedown</div>
+    <div class="box b8">mouseup</div>
+    <div class="box b9">mousemove</div>
+    <div class="box b10"></div>
+  </div>
+</body>
+</html>

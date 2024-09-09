@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>변수</title>
+  <style>
+    h1 {color: red;}
+  </style>
+  <script>
+    //키워드와 숫자 데이터, 변수는 따옴표 없이, 문자나 이름(태그이름, 클래스이름)은 따옴표 사용
+    //object.method(parameter)
+
+    document.write('<h1>변수</h1>');
+    console.log(5 + 6); //11
+    console.log('hello'); //hellow
+    console.log('5 + 6') //5 + 6
+
+    //변수는 선언을 하고 사용하여야 함
+    let a;
+    console.log(a); //undefined (데이터 타입)
+    console.log(typeof a); //undefined
+
+    let b;
+    //저장공간인 변수에 값을 할당
+    b = 10;
+    console.log(b); //10
+    console.log(typeof b); //number
+
+    //변수 선언과 값 할당(초기화)
+    let c = 100;
+    console.log(c) ;
+
+    let d, e, f;
+    console.log(e); //undefined
+
+    let x = 5, y = 22, z = 0.5;
+    console.log(y); //22
+
+    d = 'hello~~!!';
+    console.log(d);
+    console.log(typeof d); //string
+
+    e = 10 + 120;
+    console.log(e); //130
+    console.log(typeof e); //number
+
+    console.log(x, y, z); //5 22 0.5
+
+    console.log(a + b); //NaN : Not a Number
+    console.log(b + c); //110
+
+    b = 200; //이전 값에 덮어쓰기
+    console.log(b + c); //300
+
+    //숫자데이터와 문자데이터를 + 기호로 연결하면 하나의 단어로 나열
+    console.log(c + d); //100hello~~!!
+
+    f = c + d
+    console.log(typeof f); //string
+
+    console.log(typeof '5'); //string(문자열)
+
+    console.log('5' + c); //55
+    console.log(b + '5'); //55
+    console.log(5 + 5 + '5'); //105
+    console.log('5' + 5 + 5); //555
+    console.log(5 + '5' + 5); //555
+
+    // let a = 20; //let 키워드로 선언하는 것은 한번만 가능
+    a = 17, //값을 할당
+    b = 20; //재할당
+
+    var i = 1;
+    var j = 2;
+    var k = 3;
+    l = 4; //키워드 없이 변수선언 => var 방식
+    var i = 5; // 중복 선언 가능
+
+    // var 키워드는 ES6 이전 버전에서 사용,
+    // 중복 선언이 가능하고, 데이터의 교환이 자유로움 => 단점
+    // 사용을 권장하지 않음
+
+
+    // greet1, greet2 변수에 각각 인사말을 작성하여 콘솔에 한줄로 출력
+    let greet1 = 'Merry Chrismas!';
+    let greet2 = 'Happy New Year~';
+    console.log(greet1, greet2); // Merry Chrismas! Happy New Year~
+
+    // username 변수와 age 변수에 각각 '홍길동', 19 값 할당
+    let username = '홍길동';
+    let age = 19;
+
+    console.log(username + '님의 나이는 ' + age + '세 입니다.');
+    //홍길동님의 나이는 19세 입니다.
+
+    const apple = 10;
+    console.log(apple)
+
+    // const 변수의 재할당 불가
+    // apple = 20;
+    // console.log(apple) //20
+
+    // const 변수는 선언할 때 초기값을 할당
+    // const banana;
+    // banana = 30;
+    // console.log(banana) //20
+
+  </script>
+</head>
+<body>
+  <h2>변수란?</h2>
+  <p>- 임의의 데이터를 저장하는 공간</p>
+
+  <h2>변수 네이밍 규칙</h2>
+  <ul>
+    <li>한글, 한자, 아랍어 등 모든 언어가 가능하지만, 영문자나 영단어만 사용</li>
+    <li>대소문자는 구분해서 사용</li>
+    <li>띄어쓰기 불가</li>
+    <li>2개 이상의 단어를 조합하여 만드는 경우 '_'를 이용하거나 두번째단어부터 첫글자를 대문자로 </li>
+    <li>'_'(언더바)를 제외한 특수 기호는 사용하지 않는다.</li>
+    <li>숫자 사용 가능하지만, 숫자만 사용하거나 첫글자로 사용하지 않는다.</li>
+    <li>자바스크립트 키워드, 예역어 사용금지</li>
+    <li>사용목적을 알수 있는 단어를 사용</li>
+  </ul>
+
+  <h2>변수 키워드</h2>
+  <p>변수를 사용하려면 선언부터 한다. 선언할 때 사용되는 키워드</p>
+  <dl>
+    <dt>var</dt>
+    <dd>- ES6이전 방식으로 사용하지 말 것</dd>
+    <dt>let</dt>
+    <dd>- 처음 선언할 때 한 번만 사용</dd>
+    <dd>- 값을 재할당할 때는 키워드는 생략</dd>
+    <dd>- 같은 이름의 변수는 사용할 수 없음</dd>
+    <dd></dd>
+    <dt>const</dt>
+    <dd>- 선언하면서 초기값 할당</dd>
+    <dd>- 값의 재할당 불가</dd>
+    <dd>- 값이 변경되는 데이터에서 사용할 수 없다.</dd>
+  </dl>
+</body>
+</html>

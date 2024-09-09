@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>조건문 if</title>
+  <script>
+    /*
+      1. 조건이 참이면 문장을 실행하고, 거짓이면 아무것도 하지 않음
+      if(condition) { //조건이 참일 때 실행할 문장 }
+
+      2. 조건이 참일 때 할일과 거짓일 때 할일이 있는 경우
+      if(조건) {//참일 때 할 일}
+      else {//거짓일 때 할 일}
+
+      3. 여러개의 조건마다 할 일이 다를 때
+        (ex) '양수', '음수', 0  // 학점 A, B, C, D, F
+      if(조건1) {//조건1이 참일 때 실행할 문장}
+      else if(조건2) {//조건2이 참일 때 실행할 문장}
+      ...
+      else if(조건n) {//조건n이 참일 때 실행할 문장}
+      else {//모든 조건에 해당하지 않을 때 실행할 문장}
+    */
+    let a = 10;
+    if(a >= 10) {console.log(a);}
+
+    if(a > 10) {console.log('a는 10보다 크다');}
+    else {console.log('a는 10보다 크지 않다');}
+
+    const num = prompt('숫자를 입력')
+    let n1;
+    // 입력받은 숫자가 양수인지, 음수인지, 0인지
+    if(num > 0) { //-10
+      n1 = '양수'
+    } else if(num < 0) { //-10
+      n1 = '음수'
+    } else {
+      n1 = 0
+    }
+    console.log(`${num}은 ${n1}입니다.`);
+
+    // 입력받은 숫자가 짝수인지, 홀수인지, 0인지
+    let n2;
+    // if(num % 2 == 0 && num != 0) {
+    //   n2 = '짝수'
+    // } else if(num % 2 == 1) {
+    //   n2 = '홀수'
+    // } else {
+    //   n2 = 0
+    // }
+    if(num != 0) {
+      if(num % 2 == 0) {
+        n2 ='짝수'
+      } else {
+        n2 = '홀수'
+      }
+    } else {
+      n2 = 0
+    }
+    console.log(`${num}은 ${n2}`);
+
+    const  score = prompt('점수를 입력')
+    //입력받은 점수가 90점 이상이면 'A', 80점 이상이면 'B', 70점 이상 'C', 60점 이상 'D', 그외는 'F'
+    let grade;
+    if(score >= 0 && score <= 100) {
+      if(score >= 90) {
+        grade = 'A'
+      } else if(score >= 80) {
+        grade = 'B'
+      } else if(score >= 70) {
+        grade = 'C'
+      } else if(score >= 60) {
+        grade = 'D'
+      } else {
+        grade = 'F'
+      }
+      console.log(`점수는 ${score}점이고 학점은 ${grade}`);
+    } else {
+      console.log('0~100 사이 숫자를 입력하세요');
+
+    }
+
+
+
+
+    // console.log(var + '는' + var + '변수다');
+    // console.log(`${var}는 ${var} 변수다`);
+  </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>대입(할당)연산자</title>
+  <script>
+    // a = b; => 우변(b)의 데이터를 좌변(a)에 대입하라
+
+    let a = 0;
+    console.log(a); //0
+    //변수 a의 데이터 타입은? => 숫자(number)
+    console.log(typeof a); //number
+
+    a = 'hello';
+    console.log(a); //hello
+    console.log(typeof a); //string
+
+    a = 10;
+    a = a + 10;
+    console.log(a); //20
+    a = a + 10;
+    console.log(a); //30
+
+    a += 10; // a = a + 10
+    console.log(a); //40
+
+    a -= 5; //a = a - 5;
+    console.log(a); //35
+
+    a *= 2; // a = a * 2;
+    console.log(a); //70
+
+    a /= 5; // a = a / 4;
+    console.log(a); //14
+
+    a %= 6; // a = a % 6;
+    console.log(a); //2
+
+    a **= 2; // a = a ** 2;
+    console.log(a); //4
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

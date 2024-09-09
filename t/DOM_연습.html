@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스티커 메모</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/memo.css">
+
+  <!-- JS -->
+  <script defer src="js/memo.js"></script>
+</head>
+<body>
+  <div id="wrap">
+    <div id="addMemo">
+      <button id="btnAddBoard"><i class="ri-edit-line"></i></button>
+      <div class="addBoard">
+        <textarea name="memoInput" id="memoInput" cols="50" rows="3" placeholder="메모를 입력하세요"></textarea>
+        <button id="btnAddMemo">추가</button>
+      </div>
+    </div>
+    <div id="memoList">
+      <ul></ul>
+      <!-- <label for="">2024.08.22</label>
+      <ul>
+        <li>sldkjflskjflskdjflskdjfsdlfkjsdlkfjlsdkjsdkfjsldkfjd</li>
+      </ul> -->
+    </div>
+    <div id="memoContainer">
+      <!-- <div class="sticker">
+        <div class="memoHeader">
+          <div class="colorList">
+            <span class="color"></span>
+            <span class="color"></span>
+            <span class="color"></span>
+          </div>
+          <div class="btns">
+            <button class="hideMemo"><i class="bar"></i></button>
+            <button class="removeMemo"><i class="ri-delete-bin-line"></i></button>
+          </div>
+        </div>
+        <div class="memoOuput">dflsdjflk</div>
+      </div> -->
+    </div>
+  </div>
+<!--
+1. 메모 입력 폼 => 전송
+2. 입력된 내용이 작성된 포스트 생성
+3. 생성된 포스트잇은 보드(칠판) 안에서 draggable
+4. 포스트잇 UI안에 삭제 아이콘
+***
+- 포스트잇 컬러변경
+- 텍스트 변경(수정)
+- 포스트 리사이징
+- 메모 리스트(포스트잇 최소화)
+-->
+</body>
+</html>

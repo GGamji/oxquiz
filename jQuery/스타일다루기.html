@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>스타일다루기</title>
+   <style>
+      .box1 {
+         width: 600px;height: 300px;
+         background: #CCC;margin: 50px 100px;
+      }
+      .box2 {
+         width: 600px;height: 300px;
+         background: #CCC;margin: 50px 100px;
+      }
+      .demo {
+         background: lightcoral;font-size: 80px;
+         display: flex;justify-content: center;align-items: center;
+      }
+      .box3 {
+         width: 600px;height: 300px;
+         margin: 100px;padding: 50px;
+         background: #CCC;border: 10px solid #000;
+      }
+      .box4 {
+         width: 600px;height: 300px;
+         margin: 100px;padding: 50px;
+         background: #CCC;border: 10px solid #000;
+         box-sizing: border-box;
+      }
+   </style>
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+   <script>
+      $(function() {
+         //addClass('클래스명'), removeClass('클래스명'), toggleClass('클래스명')
+         $('.btn1').click(function() {
+            $('.box1').addClass('demo')
+         })
+         $('.btn2').click(function() {
+            $('.box1').removeClass('demo')
+         })
+         $('.btn3').click(function() {
+            $('.box1').toggleClass('demo')
+         })
+
+         let style3;
+         style3 = $('.box2').css('width') //get
+         $('.box2').before(`<h3>${style3}</h3>`)
+
+         $('.btn4').on('click', function() {
+            $('.box2').css('background-color', 'lightblue')
+         })
+         $('.btn5').on('click', function() {
+            // $('.box2').css('font-size', '80px'); //set
+            $('.box2').css({'font-size': '80px', 'color' : 'red'});
+         })
+         $('.btn6').on('click', function() {
+            $('.box2').css('width', '400px')
+            style3 = $('.box2').css('width');
+            $('h3').text(style3);
+         })
+
+         let w3, w4, h3, h4, iw3, iw4, ih3, ih4, ow3, ow4, oh3, oh4, tw3, tw4, th3, th4;
+         w3 = $('.box3').width(); //실제 가로크기(패딩, 보더 제외)
+         w4 = $('.box4').width();
+
+         h3 = $('.box3').height();
+         h4 = $('.box4').height();
+
+         iw3 = $('.box3').innerWidth(); // 패딩을 포함한 가로크기
+         iw4 = $('.box4').innerWidth();
+
+         ih3 = $('.box3').innerHeight();
+         ih4 = $('.box4').innerHeight();
+
+         ow3 = $('.box3').outerWidth(); // 보더를 포함한 가로크기
+         ow4 = $('.box4').outerWidth();
+
+         oh3 = $('.box3').outerHeight(); // 보더를 포함한 가로크기
+         oh4 = $('.box4').outerHeight();
+
+         tw3 = $('.box3').outerWidth(true);
+         tw4 = $('.box4').outerWidth(true);
+
+         th3 = $('.box3').outerHeight(true);
+         th4 = $('.box4').outerHeight(true);
+
+         $('.box3').html(`
+            width: ${w3}px <br> height: ${h3}px <br>
+            innerWidth: ${iw3}px <br> innerHeight: ${ih3}px <br>
+            outerWidth: ${ow3}px <br> outerHeight: ${oh3}px <br>
+            outerWidth(true): ${tw3}px <br> outerHeight(true): ${th3}px
+         `)
+         $('.box4').html(`
+            width: ${w4}px <br> height: ${h4}px <br>
+            innerWidth: ${iw4}px <br> innerHeight: ${ih4}px <br>
+            outerWidth: ${ow4}px <br> outerHeight: ${oh4}px <br>
+            outerWidth(true): ${tw4} <br> outerHeight(true): ${th4}
+         `)
+
+         $('.btn7').text('width')
+         $('.btn7').on('click', function() {
+            $(this).width(300).height(200)
+         })
+
+         $(window).resize(function() {
+            let w = $(window).width()
+            $('h1').text(w)
+         })
+
+
+      })//ready()
+   </script>
+</head>
+<body>
+   <h1>제이쿼리 스타일 다루기</h1>
+   <h2>클래스 다루기</h2>
+   <button class="btn1">addClass</button>
+   <button class="btn2">removeClass</button>
+   <button class="btn3">toggleClass</button>
+   <div class="box1">box1</div>
+
+   <h2>스타일 추가 및 변경</h2>
+   <button class="btn4">배경색</button>
+   <button class="btn5">글자 크기</button>
+   <button class="btn6">가로 크기</button>
+   <div class="box2">box2</div>
+
+   <h2>박스 속성</h2>
+   <button class="btn7"></button>
+   <button class="btn8"></button>
+   <button class="btn9"></button>
+   <button class="btn10"></button>
+   <div class="box3">box3</div>
+   <div class="box4">box4</div>
+</body>
+</html>

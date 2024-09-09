@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM_1</title>
+  <style>
+    .p1 {font-size: 30px;color: slateblue;}
+    .p2 {font-weight: bold;color: dodgerblue;}
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      //요소 생성 => html 문서 안에 생성
+      const p1 = document.createElement('p');
+
+      //텍스트를 추가
+      p1.innerText = 'hello~';
+      const txt1 = document.createTextNode(' world');
+      p1.appendChild(txt1);
+
+      //클래스이름 적용 => addClass()
+      p1.classList.add('p1');
+
+      //클래스이름 삭제 => removeClass()
+      setTimeout(function() {
+        p1.classList.remove('p1')
+      },1000)
+
+      //자손요소로 만들기
+      document.body.innerHTML += '<h1>html 요소 다루기</h1>'
+      //위에 썼었던 텍스트도 같이 작성하려면 => '+=' 작성
+      document.body.appendChild(p1);
+
+      //** h2 요소를 메소드로 생성, body의 막내로 추가
+      //** 텍스트노드('아무거나') 생성, h2 자손으로
+      //** h2 요소에 p2 클래스 적용
+
+      const h2 = document.createElement('h2');
+      const txt2 = document.createTextNode('아무거나');
+      h2.appendChild(txt2); //막내요소로 추가
+      h2.classList.add('p2');
+
+      document.body.appendChild(h2);
+      //innerHTML, innerText => 덮어쓰기 됨
+
+      //removeChild(elm)
+      const h6 = document.querySelector('h6');
+      h6.classList.add('p1');
+      // document.body.removeChild(h6);
+
+      //element.remove() => 부모와 상관없이 삭제
+      h6.remove();
+
+      const h3 = document.createElement('h3');
+      const ex1 = document.createElement('div');
+      const btns1 = document.createElement('div');
+      const ex1_ul = document.createElement('ul');
+
+      h3.innerText = '연습-1'
+      ex1.classList.add('ex1');
+      btns1.classList.add('btns');
+      btns1.innerHTML =
+      `<button onclick="animals('add')">동물추가</button>
+      <button onclick="animals('remove')">동물삭제</button>`
+
+      document.body.appendChild(ex1);
+      ex1.appendChild(btns1);
+      ex1.appendChild(ex1_ul);
+
+
+      //parentElment.replaceChild(new, old);
+      document.body.replaceChild(h3, h2);
+      // document.body.appendChild(h6); //=> h6(remove)
+      // document.body.appendChild(h2); //=> h2(replace)
+
+      //insertBefore();
+
+    }) //load
+    function animals(s) {
+        // switch(s) {
+        //   case 'add' :
+        //     console.log('동물추가');
+        //     break;
+        //   case 'remove' :
+        //     console.log('동물삭제');
+        //   break;
+        // }
+        if(s === 'add') {console.log('동물추가');}
+        else if(s === 'remove') {console.log('동물삭제');}
+        else {console.log('값이 다름');}
+      }
+  </script>
+</head>
+<body>
+  <h6>html - h6</h6>
+</body>
+</html>

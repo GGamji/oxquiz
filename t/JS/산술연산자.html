@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>산술연산자</title>
+  <script>
+    console.log(5 + 6); //11 덧셈 연산자
+    console.log(5 - 6); //-1 뺄셈 연산자
+    console.log(5 * 6); //30 곱셈 연산자
+    console.log(10 / 3); //5 나눗셈 연산자
+    console.log(10 % 4); //2 나머지 연산자
+    console.log('---------------------');
+
+    //증감연산자
+    let num;
+    num = 0;
+    console.log(num); //0
+
+    num = num + 1;
+    console.log(num) //1
+
+    num = num + 1
+    console.log(num) //2
+
+    num = num + 1
+    console.log(num) //3
+
+    num++
+    console.log(num) //4
+
+    num++ //num = num + 1
+    console.log(num) //5
+
+  </script>
+</head>
+<body>
+  <div class="info_wrap">
+    <div class="info_text_wrap">
+      <div class="text_content"><strong>dd</strong></div>
+    </div>
+  </div>
+  <h1>0</h1>
+  <button class="increase">+1</button>
+  <button class="decrease">-1</button>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    let count = 0;
+
+    //증가 버튼을 클릭하면
+    $('.increase').click(function() {
+      //count 변수의 수를 1씩 증가
+      count++; //count = count + 1
+      //h1에 text 컨텐츠를 변경된 count 값으로 출력
+      $('h1').text(count);
+    })
+
+    $('.decrease').click(function() {
+      count--;
+      $('h1').text(count);
+    })
+
+    //증감연산자는 대표적인 단항 연산자 중 하나
+
+    count = count + 10;
+    console.log(count); //10
+
+    count++; //count = count + 1
+    console.log(count);//11
+
+    let a = 0, b = 0;
+    console.log(a, b); //0 0
+
+    a++;
+    console.log(a); //1
+
+    b = a;
+    console.log(b); //1
+
+    a++;
+    console.log(a); //2
+
+    b = a
+    console.log(b); //2
+
+    a++;
+    console.log(a); //3
+    b = a;
+    console.log(b); //3
+
+    a++; //a: 4
+    b = a; // b: 4
+
+    a++; //a : 5
+    b = a; //b: 5
+
+
+    // 선증가(++a)와 후증가(a++)
+    // 대입연산자와 함께 연산될 경우 선증가는 먼저 증가하고 나중에 대입
+    b = ++a; //a: 6, b: 6
+
+    //후증가는 대입을 먼저하고 증가를 나중에 함
+    b = a++; //a: 7, b: 6
+    console.log(b); //6
+
+    b = a++; //a: 8
+    console.log(b); //7
+
+    b = ++a; //a: 9
+    console.log(b); //9
+
+    b = a++ //a: 10
+    console.log(b); //9
+
+    b = ++a; //a : 11
+    console.log(b); //11
+
+    b = a++; //a: 12
+    console.log(b); //11
+
+    b = ++a; //a: 13
+    console.log(b); //13
+
+    b = a++; //a : 14
+    console.log(b); //13
+
+    //누승법, 제곱수??
+    console.log(2 * 3) //6
+    console.log(2 ** 3) //8 => 2 * 2 * 2
+
+    console.log(3 * 4) //12
+    console.log(3 ** 4) //81 => 3 * 3 * 3 * 3
+
+
+  </script>
+</body>
+</html>

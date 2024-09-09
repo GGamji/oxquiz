@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반복문while</title>
+  <script>
+    //for(초기값;조건범위;증감값) {}
+    //while(조건) {//조건이 참인 동안 실행문}
+
+    let n = 0;
+    while(n <= 10) {
+      console.log(n);
+      n++;
+    }
+
+    const animals = ['cat', 'dog', 'duck', 'horse', 'cow']
+    let i = 0;
+    while(i < animals.length) {
+      console.log(animals[i])
+      i++
+    }
+
+    //
+    let a = false;
+    // while(a == true) {
+    //   console.log('true인가요?')
+    // }
+    do {
+      console.log('true인가요?')
+    } while(a == true)
+
+    let b = 1;
+    do { //false여도 한번은 실행
+      console.log(b);
+      b++;
+    } while(b <= 5);
+
+    //1~10까지 홀수만 출력
+    let c = 1;
+    while(c <= 10) {
+      console.log(c);
+      c+=2;
+    }
+
+    //1~10까지 총합 //55
+    let d = 1, sum = 0;
+    while(d <= 10) {
+      sum += d
+      d++; //false
+    }
+    console.log(`1~10까지 합: ${sum}`);
+
+    let guess = 103;
+    let answer;
+    while(guess != answer) {
+      answer = prompt('숫자 맞추기')
+      if(guess < answer) {
+        console.log('Down');
+      }
+      else if(guess > answer) {
+        console.log('Up');
+      }
+      else {
+        console.log('정답!!!');
+      }
+    }
+
+    // 배열에 강아지, 딸기, 책상
+    // prompt로  셋 중에 하나 입력 받음
+    // 변수에 하나를 정해서(예: 강아지)
+    // 다른 값을 입력하면 힌트주고 다시 prompt 열리게
+    let quiz = "딸기";
+    let qAnswer;
+    while(quiz != qAnswer) {
+      qAnswer = prompt('강아지, 딸기, 책상 중에 하나를 입력');
+      if(qAnswer == quiz) {
+        console.log('동물 맞추기 정답');
+      }
+      else if(qAnswer != "강아지") {
+        console.log("힌트 : 동물입니다.")
+      }
+      else if(qAnswer != "딸기") {
+        console.log("힌트 : 과일입니다.");
+      }
+      else if(qAnswer != "책상") {
+        console.log("힌트 : 가구입니다");
+      }
+      else {
+        console.log('강아지, 딸기, 책상 중에 하나를 입력');
+      }
+    }
+
+    // let number = 123;
+    // let str = '123';
+    // console.log(str); //123
+    // console.log(number); //123
+    // console.log(str[2]); //1
+
+
+
+  </script>
+</head>
+<body>
+  <h1>반복문 while</h1>
+</body>
+</html>

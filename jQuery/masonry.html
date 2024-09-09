@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>masonry</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset.css@2.0.2/reset.min.css">
+  <style>
+    img {width: 100%;display: block;}
+    .item {border: 1px solid #000;width: 300px;}
+  </style>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <!-- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script> -->
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script>
+    $(function() {
+      $('.ex1').isotope({
+        // options
+        itemSelector: '.item'
+      });
+      $('.button-group button').click(function() {
+        let filter = $(this).attr('data-filter')
+        $('.ex1').isotope({filter: filter})
+      })
+    })
+  </script>
+</head>
+<body>
+  <div class="button-group" data-filter-group="color">
+    <button data-filter="*">All</button>
+    <button data-filter=".food">food</button>
+    <button data-filter=".animal">animal</button>
+    <button data-filter=".etc">etc</button>
+  </div>
+  <div class="ex1">
+    <div class="item etc"><img src="../img/banner_1.jpg" alt=""></div>
+    <div class="item etc"><img src="../img/char.jpg" alt=""></div>
+    <div class="item food"><img src="../img/food_1.png" alt=""></div>
+    <div class="item animal"><img src="../img/otter.jpg" alt=""></div>
+    <div class="item food"><img src="../img/p12.jpg" alt=""></div>
+    <div class="item food"><img src="../img/food_2.png" alt=""></div>
+    <div class="item animal"><img src="../img/rabbit.jpg" alt=""></div>
+    <div class="item etc"><img src="../img/snowman.jpeg" alt=""></div>
+    <div class="item food"><img src="../img/food_3.png" alt=""></div>
+    <div class="item etc"><img src="../img/starbucks.png" alt=""></div>
+    <div class="item etc"><img src="../img/Picanto_Green_00000.jpg" alt=""></div>
+    <div class="item etc"><img src="../img/popup.jpg" alt=""></div>
+    <div class="item food"><img src="../img/mango.jfif" alt=""></div>
+    <div class="item etc"><img src="../img/bg2.jpg" alt=""></div>
+  </div>
+</body>
+</html>

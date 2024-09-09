@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+/* Reset */
+:root {
+  --main-color: dodgerblue;
+}
+body {
+  font-family: 'Pretendard', MalgunGothic, sans-serif;
+  font-size: 16px;color: #333;
+}
+button {
+  margin: 0;padding: 0;background: none;border: none;
+  font:inherit; color: inherit; cursor: pointer;
+}
+
+#addMemo {position: fixed;right: 50px;bottom: 50px;}
+#btnAddBoard {
+  font-size: 30px;padding: 15px;border-radius: 50%;
+  background: #333;color: #FFF;
+}
+.addBoard {
+  display: flex;gap: 20px;align-items: center;display: none;
+}
+.addBoard textarea {
+  width: 500px;height: 100px;padding: 10px;
+  font: inherit;border: 1px solid #999;border-radius: 5px;
+}
+#btnAddMemo {
+  font-size: 18px;font-weight: 500;background: var(--main-color);
+  color: #FFF;padding: 10px 14px;border-radius: 5px;
+}
+
+#memoList {
+  width: 200px;padding: 40px 20px;
+  position: fixed;left: 0;top: 0;bottom: 0;overflow: auto;
+  background: pink;
+}
+
+#memoList::-webkit-scrollbar {width: 4px;}/* width */
+#memoList::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;border-radius: 10px;
+}/* Track */
+#memoList::-webkit-scrollbar-thumb {
+  background: #000;border-radius: 10px;
+}/* Handle */
+#memoList li {
+  padding: 10px 15px;margin: 15px 0;white-space: nowrap;
+  overflow: hidden;text-overflow: ellipsis;
+  background: #FFF;cursor: pointer;user-select: none;
+}
+
+#memoContainer {
+  display: flex;gap: 20px;flex-wrap: wrap;
+  padding: 40px 60px 40px 280px;
+}
+.sticker {
+  width: 300px;min-height: 350px;background: lightblue;
+  border: 1px solid #AAA;box-shadow: 5px 5px 10px rgba(0,0,0,.2);
+}
+.memoHeader {
+  display: flex;justify-content: space-between;
+  padding: 10px;background: rgba(0,0,0,.1);
+  font-size: 20px;
+}
+.colorList {display: flex;gap: 6px;}
+.colorList .color {
+  width: 20px;height: 20px;cursor: pointer;border-radius: 50%;
+  border: 1px solid #777;
+}
+.memoHeader .btns {display: flex;align-items: center;gap: 4px;}
+.memoHeader .hideMemo {
+  display: flex;align-items: center;justify-content: center;
+  width: 20px;height: 20px;
+}
+.memoHeader .hideMemo .bar {
+  width: 16px;height: 3px;background: #444;
+}
+.memoOuput {padding: 14px;}

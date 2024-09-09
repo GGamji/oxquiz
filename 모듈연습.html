@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>모듈연습</title>
+  <script type="module">
+    import name, {add} from './js/exMod1.js';
+    import User from './js/exMod2.js';
+    import * as animals from './js/exMod3.js';
+    import {msg} from './js/exMod4.js';
+
+    const user1 = new User('Alice', 'female')
+    const user2 = new User('Bob', 'male')
+
+    console.log(`Hello~ My name is ${name}!`);
+    console.log(`5 + 6 => ${add(5, 6)}`);
+    console.log(user1.info()); //name: Alice, gender: female
+    console.log(user2.info()); //name: Bob, gender: male
+    console.group('** 동물 이름 10개 출력하기 **');
+    for(let key in animals) {console.log(animals[key]);}
+    console.groupEnd();
+    console.log(msg); //Have a nice Day~~
+  </script>
+</head>
+<body>
+
+</body>
+</html>

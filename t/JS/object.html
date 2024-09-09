@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>object(객체)</title>
+  <script>
+    // 배열과 오브젝트(객체)는 const 키워드
+    let n = 10.48543542; //=>초기값 10이고, 재할당 가능
+    const arr1 = [n, 'hi'] //Array => 객체에 포함되는 개념
+    const arr2 = new Array() //=> 객체 생성 키워드 new
+
+    console.log(n.toFixed(3));
+    console.log(typeof n); //number
+
+    console.log(typeof arr1); //object
+    console.log(typeof arr2); //object
+    console.log(arr1[1]); //object
+
+    console.log('------------');
+
+    const obj1 = {}
+    console.log(typeof obj1); //object
+    console.log(obj1); //{}
+
+
+    //회원가입 => 이름, 거주지, 직업, 전화번호, 이메일
+    const member = {
+      name : '홍길동',
+      birthDate : 1443,
+      job : '의적',
+      '거주지' : '충청도 일대',
+      'e-mail' : 'hong1443@naver.com'
+    } //=> 초기값
+
+    console.log(member);
+    console.log(member.name); //홍길동
+    console.log(member.birthDate); //1443
+    console.log(member.job); //의적
+    console.log(member['거주지']); //충청도일대
+    console.log(member['e-mail']); //'hong1443@naver.com'
+
+    const report = {
+      name: 'James',
+      korScore: 77,
+      engScore: 80,
+      mathScore: 40
+    }
+    //평균점수(합격), 과락(평균 60점이상, 각 과목 개별 점수 40점 이상), 등급(합격)
+
+    // function scoreSheat(name, kor, eng, math) {
+    //   //평균 점수
+    //   let avg = (kor + eng + math) / 3;
+    //   avg = avg.toFixed(1)
+    //   //과락 => 합격 or 불합격 => 조건문
+    //   //평균 60점이상, 각 과목 개별 점수 40점 이상
+    //   let pass = (avg >= 60 && kor >= 40 && eng >= 40 && math >= 40) ? '합격' : '불합격';
+    //   //등급
+    //   let grade;
+    //   if(pass == '합격') {
+    //     if(avg >= 90) {grade = 'A'}
+    //     else if(avg >= 80) {grade = 'B'}
+    //     else if(avg >= 70) {grade = 'C'}
+    //     else if(avg >= 60) {grade = 'D'}
+    //   }
+    //   else {
+    //     grade = 'F'
+    //   }
+
+    //   return `${name} 님, \n*평균점수:${avg}, *이수여부:${pass}, *등급:${grade}`
+    // }
+    const scoreSheat = (name, kor, eng, math) => {
+      //평균 점수
+      let avg = (kor + eng + math) / 3;
+      // 반올림 Math.round(avg) => 정수
+      // 소수점 n번째 avg.toFixed(n);
+      avg = avg.toFixed(2)
+
+      //과락 => 합격 or 불합격 => 조건문
+      //평균 60점이상, 각 과목 개별 점수 40점 이상
+      let pass = (avg >= 60 && kor >= 40 && eng >= 40 && math >= 40) ? '합격' : '불합격';
+
+      //등급
+      let grade;
+      if(pass == '합격') {
+        if(avg >= 90) {grade = 'A'}
+        else if(avg >= 80) {grade = 'B'}
+        else if(avg >= 70) {grade = 'C'}
+        else if(avg >= 60) {grade = 'D'}
+      }
+      else {
+        grade = 'F'
+      }
+
+      return `${name} 님, \n*평균점수:${avg}, *이수여부:${pass}, *등급:${grade}`
+    }
+
+    // console.log(scoreSheat('홍길동',90,80,38));
+    console.log(scoreSheat(
+      report.name,
+      report.korScore,
+      report.engScore,
+      report.mathScore
+    ));
+
+    // console.log(`학생명 : ${}`);
+    // console.log(`평균점수 : ${}`);
+    // console.log(`이수 여부 : ${}`);
+    // console.log(`등급 : ${}`);
+
+    //
+    const person = {
+      name: '이순신',
+      birthDate: 1884,
+      gender: 9, //2000년이후 출생한 한국인 여성
+      liveLoc: '충청도'
+    }
+    const personReport = (name, bYear, gen) => {
+      let age = new Date().getFullYear() - bYear;
+      let m = (bYear < 2000) ? '이전' : '이후';
+      let n, g;
+
+      if(gen % 2 == 0) { //여성
+        switch(gen) {
+          case 2 :
+          case 4 : n = '한국인'; break;
+          case 6 :
+          case 8 : n = '외국인'; break;
+          case 0 : n = '1900년 이전 출생'
+        }
+        g = '여성'
+      }
+      else { //남성
+        switch(gen) {
+          case 1 :
+          case 3 : n = '한국인'; break;
+          case 5 :
+          case 7 : n = '외국인'; break;
+          case 9 : n = '1900년 이전 출생'
+        }
+        g = '남성'
+      }
+
+      return `${name}님은 2000년 ${m} 출생한 ${age}세 ${n} ${g}`
+    }
+    console.log(
+      personReport(person.name, person.birthDate, person.gender)
+    );
+    //"이순신"님은 2000년 이후 출생한 23세 한국인 여성으로 경인지역에 거주
+
+    //(서울시, 경기도, 인천시) => 경인지역
+    //(충청도, 전라도, 제주도) => 서남지역
+    //(경상도) => 동남지역  //(강원도) => 동북지역
+
+    const product1 = {
+      name : 'Strawberry',
+      category: 'Fruits',
+      price : '10000'
+    }
+    const product2 = {
+      name : 'Banana',
+      category: 'Fruits',
+      price : '4000'
+    }
+    const product3 = {
+      name : '양배추',
+      category: '채소',
+      price : '2000'
+    }
+
+    const productInfo = (product) => {
+      // let name = product.name
+      // let price = product.price;
+      // let category = product.category;
+      let {name, category, price, sale} = product;
+      sale = price * 0.9;
+
+      return `${name}는 ${category}이고 정가는 ${price}, 세일가는 ${sale}`
+    }
+    console.log(productInfo(product1))
+    console.log(productInfo(product2))
+    console.log(productInfo(product3))
+
+    // for(let i = 1; i <= 20; i++) {
+    //   console.log(productInfo(product1))
+    // }
+
+    const movie1 = {
+      title: '기생충',
+      genre: '드라마',
+      release: 2019,
+      director: '봉준호'
+    }
+    const movie2 = {
+      title: '터미네이터',
+      genre: 'SF',
+      release: 1984,
+      director: 'James Cameron'
+    }
+    const movie3 = {
+      title: '파일럿',
+      genre: '코미디',
+      release: 2024,
+      director: '김한결'
+    }
+    const currentYear = new Date().getFullYear();
+    const movieInfo = movie => {
+      let {title, genre, release, director, year} = movie;
+
+      year = (currentYear == release) ? '올해' : `${currentYear - release}년 전`
+      return `${director} 감독의 영화 ${title}(${release}년 작)은 ${year}에 개봉`
+    }
+
+    console.log(movieInfo(movie1))
+    // 봉준호 감독의 영화 기생충(2019년 작)은 5년 전에 개봉
+    console.log(movieInfo(movie2))
+    console.log(movieInfo(movie3))// **0년이면 '올해'라고 출력
+
+
+    //위의 예제 성적표와 person 예제를 구조분해할당 문법으로 변경
+
+    const scoreInfo = score => { //scoreSheat 함수 변경
+      const {name, korScore, engScore, mathScore} = score
+      let avg, pass, grade;
+      avg = (korScore + engScore + mathScore) / 3;
+      avg = avg.toFixed(2)
+
+      pass = (avg >= 60 && korScore >= 40 && engScore >= 40 && mathScore >= 40) ? '합격' : '불합격';
+
+      if(pass == '합격') {
+        if(avg >= 90) {grade = 'A'}
+        else if(avg >= 80) {grade = 'B'}
+        else if(avg >= 70) {grade = 'C'}
+        else if(avg >= 60) {grade = 'D'}
+      }
+      else {
+        grade = 'F'
+      }
+
+      return `${name} 님, \n*평균점수:${avg}, *이수여부:${pass}, *등급:${grade}`
+    }
+    console.log(scoreInfo(report));
+    // console.log(scoreInfo(report1));
+
+    const personInfo = person => { //personReport 함수를 변경
+      let {name, birthDate, gender, liveLoc} = person;
+      let nationality, genderType, location, millenial, age;
+      age = currentYear - birthDate
+      millenial = (birthDate < 2000) ? '이전' : '이후'
+
+      if(gender % 2 == 0) {
+        switch(gender) {
+          case 0 : nationality = '1900년 이전 출생한'; break;
+          case 2 :
+          case 4 : nationality = '한국인'; break;
+          case 6 :
+          case 8 : nationality = '외국인'; break;
+        }
+        genderType = '여성'
+      } else {
+        switch(gender) {
+          case 9 : nationality = '1900년 이전 출생한'; break;
+          case 1 :
+          case 3 : nationality = '한국인'; break;
+          case 5 :
+          case 6 : nationality = '외국인'; break;
+        }
+        genderType = '남성'
+      }
+
+      if(liveLoc == '서울시' || liveLoc == '경기도' || liveLoc == '인천시') {
+        location = '경인지역'
+      } else if(liveLoc == '충청도' || liveLoc == '전라도' || liveLoc == '제주도') {
+        location = '서남지역'
+      } else if(liveLoc == '경상도') {
+        location = '동남지역'
+      } else if(liveLoc == '강원도') {
+        location = '동북지역'
+      } else {
+        location = '정보없음'
+      }
+
+      return `${name}님은 2000년 ${millenial} 출생한 ${age}세 ${nationality} ${genderType}이고 ${location}에 거주`
+      //이순신님은 2000년 이전 출생한 25세 한국인 여성이고 경인지역에 거주
+    }
+    console.log(personInfo(person));
+
+    const person2 = {
+      name: '조정석',
+      birthDate: 1980,
+      gender: 1,
+      liveLoc: '서울시'
+    }
+    console.log(personInfo(person2));
+
+    const person3 = {
+      name: '민지',
+      birthDate: 2004,
+      gender: 4,
+      liveLoc: '강원도'
+    }
+    console.log(personInfo(person3));
+  </script>
+</head>
+<body>
+
+</body>
+</html>

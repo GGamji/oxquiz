@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문자열 메소드</title>
+  <script>
+    //문자열(String)을 다루는 메소드
+    //한번에 다 외울수 없으니, 필기(정리)를 잘해놓고 찾아봄
+    let str = "Hello~ World~~ Welcome to JS Class JS!"
+    console.log(str.length); //35
+    console.log(str[5]); //~
+
+    //indexOf('string') => 'string'의 첫글자의 index 번호 반환
+    //indexOf('문자열', 검색위치번호) => 검색위치번호에서부터 탐색
+    console.log(str.indexOf('World', 0)) //7
+    console.log('0부터 탐색 : ' + str.indexOf('W')) //7
+    console.log('8부터 탐색 : ' + str.indexOf('W', 8)) //15
+    console.log('부터 탐색 : ' + str.indexOf('W', -1)) //7
+    console.log('world : ' + str.indexOf('world')) //-1
+
+    //lastIndexOf('string') => 오른쪽에서부터 탐색해서 처음 찾은'string'의 인덱스 번호를 반환
+    console.log(str.lastIndexOf('W')); //15
+
+    //search('string') => 'string'의 첫글자의 index 번호 반환
+    console.log(str.search('World')); //7
+    console.log(str.search('W', 8)); //7
+    console.log('world : ' + str.search(/world/i));
+    // console.log('world : ' + str.search('world'));
+
+    //indexOf()와 search()는 같지 않다.
+    //탐색시작위치 설정 => indexOf() : 가능, search() : 불가능
+    //정규표현식(RegExp) 활용 => indexOf() : 불가능, search() : 가능
+
+    //match()
+    let txt1;
+    console.log(str.match('~'));
+
+
+    //includes('문자열') => 문자열 포함 여부에 따라 boolean 값 반환
+    console.log(str.includes('World')) //true
+    console.log(str.includes('W', 20)) //false
+
+    //slice(start, end) => start 인덱스 문자부터 end 인덱스 전까지 추출
+    let a = str.indexOf('JS'); //26
+    console.log(str.slice(a)); //JS Class!
+    console.log(str.slice(a, a+2)); //JS C
+
+    //substring(start, end)
+    console.log(str.substring(15, 20)); //Welco
+
+    //** slice와 substring() 같지 않음
+    //음수를 사용하면 오른쪽에서부터 탐색 =>slice()만 가능
+    console.log('slice() : ' + str.slice(7, -10))
+    console.log('substring() : ' + str.substring(7, -10));
+
+    //시작수가 끝수보다 크면 두 값을 뒤바꿔서 추출 => substring()
+    console.log('slice() : ' + str.slice(10, 7))
+    console.log('substring() : ' + str.substring(10, 7));
+
+    console.log('slice() : ' + str.slice(-6))
+    console.log('substring() : ' + str.substring(-6));
+
+    //substr(start, length) => start 인덱스문자부터 length개의 문자를 추출
+    console.log(str.substr(15, 7)); //Welcome
+    console.log(str.substr(a, 2)); //JS
+
+    let hello = str.slice(0, str.indexOf('~'));
+    let clas = str.substring(str.indexOf('C'));
+    console.log(hello, clas); //Hello Class!
+
+    //concat('text') => 문자열 마지막에 'text'를 추가
+    console.log(str.concat('!!!!'))//
+
+    //trim() => 공백 삭제
+    let txt2 = "        Hello~        World!!         "
+    console.log(txt2);
+    console.log(txt2.trim());
+    console.log(txt2.trimStart());
+    console.log(txt2.trimEnd());
+
+    let t1 = txt2.trimStart().substr(0,6)
+    let t2 = txt2.trimEnd().slice(-7)
+    let t3 = t1 + ' ' + t2
+    console.log(t3);
+
+    //repeat()
+    console.log(t1.repeat(3));
+
+    //replace('찾을문자', '바꿀문자')
+    console.log(str.replace('JS', 'JavaScript'));
+    console.log(str.replaceAll('~', '!'));
+
+    //padStart(전체글자갯수, '문자열')
+    const nowTime = new Date().getHours();
+    console.log(nowTime);
+
+    let txt3 = 'hello';
+    console.log(txt3.padStart(7,'*'));
+
+    //padEnd(전체글자갯수, '문자열')
+    console.log(txt3.padEnd(10, '-*'));
+
+    //split('문자') : 문자를 기준으로 문자열을 나눠서 새로운 배열로 생성
+    let strArr = str.split(' ') //length:6
+    console.log(strArr[3]);
+
+    console.log(str.split('~')[3]); //4
+    console.log(str.split('W')); //4
+
+    console.log(str.indexOf('JS')); //26
+
+    //string(문자열), charactor(문자)
+    console.log(str.charAt(15)); //15번째 문자를 반환(W)
+    console.log(str.charCodeAt(15)); //15번째 문자의 아스키코드값을 반환(W : 87)
+
+    console.log('-----------');
+    console.log(str); //Hello~ World~~ Welcome to JS Class JS!
+    console.log(str.replace('World', 'Class')); //Hello~ Class~~ Welcome to JS Class JS!
+
+    str = str.replace('World', 'Class')
+    console.log(str);
+  </script>
+</head>
+<body>
+
+</body>
+</html>

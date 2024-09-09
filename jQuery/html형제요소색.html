@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>html 형제요소 탐색</title>
+   <style>
+      * {margin: 10px;}
+   </style>
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+   <script>
+      $(function() {
+         //siblings() => 선택자 요소의 모든 형제(부모가 같은) 요소
+         $('img').siblings().css('background', '#ededed')
+         //siblings('elm') => 형제 요소 중 'elm' 요소
+         $('img').siblings('article').css('border', '2px solid lightcoral')
+
+         //next() => 바로 다음 동생 요소
+         $('img').next().css('border', '2px solid green')
+         $('img').next('header').css('border', '2px solid red')
+
+         //nextAll() => 모든 동생 요소
+         //nextAll('elm') => 동생 요소 중 'elm' 요소만
+         $('img').nextAll('header').css('border', '2px dashed darkblue')
+         $('img').nextAll().css('background', 'lightyellow')
+         $('img').nextAll().css('font-style', 'italic')
+
+         //nextUntil() => 모든 동생 요소
+         //nextUntil('elm') => 동생 요소 중 'elm' 요소 전까지
+         $('img').nextUntil('aside').css('text-align', 'right')
+
+         //prev(), prevAll(), prevUntil() => 형 방향으로 next()와 비슷
+         $('img').prev().css('font-size', '50px')
+      })
+   </script>
+</head>
+<body>
+   <h1>heading-1</h1>
+   <h2>heading-2</h2>
+   <h3>heading-3</h3>
+   <h4>heading-4</h4>
+   <h5>heading-5</h5>
+   <article>article</article>
+   <h6>heading-6</h6>
+   <img src="../img/char.jpg" alt="" width="100">
+   <div>division</div>
+   <section>section</section>
+   <article>article</article>
+   <aside>aside</aside>
+   <header>header</header>
+</body>
+</html>

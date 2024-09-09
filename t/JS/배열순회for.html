@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열순회for</title>
+  <script>
+    const animals = ['강아지', '고양이', '햄스터', '거위', '기니피그', '알파카', '펭귄', '기린'];
+
+    // //animals 배열 순서대로 번호와 동물이름을 콘솔에 출력
+    // for(let i = 0; i < animals.length; i++) {
+    //   console.log(`${i+1}. ${animals[i]}`)
+    //}
+
+    //for...of
+    for(animal of animals) {
+      console.log(animal);
+    }
+    console.log('---------');
+
+    let n = 1;
+    for(animal of animals) {
+      console.log(`${n}. ${animal}`);
+      n++;
+    }
+
+    //numbers의 모든 수를 합치기
+    let sum = 0;
+    const numbers = [54, 66, 83, 9, 12, 23]
+
+    for(number of numbers) {
+      sum += number
+    }
+    console.log(`numbers 합: ${sum}`)//247
+
+    //*** Object {p:v, p:v}
+    const obj1 = {
+      name: '고길동',
+      age: 47,
+      gender: '남성',
+      city: '서울'
+    }
+    for(key in obj1) {
+      console.log(obj1[key]);
+    }
+    // console.log(obj1[city]);//서울
+
+    const menu = {name: '짜장면',price: '5,500원',category: '중식'}
+    // name: '짜장면', price: '5,500원', category: '중식'
+    for(key in menu) {
+      console.log(`${key} : ${menu[key]}`);
+    }
+    // name => 이름, price => 가격, category => 분류
+    let prop;
+    for(key in menu) {
+      switch(key) {
+        case 'name' : prop = '이름'; break;
+        case 'price' : prop = '가격'; break;
+        case 'category' : prop = '분류'; break;
+      }
+      console.log(`${prop} : ${menu[key]}`);
+    }
+
+    //10~1역순으로 출력=> 그냥 for
+    for(let i = 10; i >= 1; i--) {
+      console.log(i);
+    }
+
+    const persons = [
+      {
+        name: '유재석',
+        gender: '남성',
+        age: '52',
+        job: '연예인'
+      },
+      {
+        name: '손흥민',
+        gender: '남성',
+        age: '32',
+        job: '운동선수'
+      },
+      {
+        name: '김연아',
+        gender: '여성',
+        age: '34',
+        job: '운동선수'
+      }
+    ]
+
+    //person 객체(배열) 순회
+    for(person of persons) {
+      // console.log(person); //person => object
+      for(key in person) {
+        console.log(`${key} : ${person[key]}`);
+      }
+    }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

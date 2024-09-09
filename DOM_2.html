@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM_2</title>
+  <style>
+    #ex2 {
+      margin: 30px;padding: 30px;
+      border: 1px solid #666;list-style: none;
+      display: flex;justify-content: center;gap: 10px;
+    }
+    #ex2 li {
+      width: 130px;line-height: 80px;background: #ededed;
+      text-align: center;flex-shrink: 0;
+    }
+    #ex3 {width: 500px;border: 1px solid #CCC;}
+    #ex3 dt {
+      background: #dedede;font-weight: bold;
+      padding: 15px 20px;border-bottom: 1px solid #CCC;
+      cursor: pointer;
+    }
+    #ex3 dd {
+      display: none;
+      min-height: 150px;padding: 15px 20px;margin: 0;
+    }
+    .bg {background: gold !important;}
+    .show {display: block !important;}
+
+    .anomals {width: 300px;}
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h2>연습 1</h2>
+    <div class="ex1">
+      <button onclick="animalAdd()">동물추가</button>
+      <button onclick="animalRemove()">동물삭제</button>
+      <ul id="ex1"></ul>
+    </div>
+  </div>
+  <div class="wrapper">
+    <h2>연습</h2>
+    <div class="ex2">
+      <button onclick="colorChg()">배경색 적용</button>
+      <ul id="ex2">
+        <li>lightcoral</li>
+        <li>yellowgreen</li>
+        <li>lightblue</li>
+        <li>slateblue</li>
+        <li>salmon</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrapper">
+    <dl id="ex3">
+      <dt>Question</dt>
+      <dd class="bg">Answer</dd>
+    </dl>
+  </div>
+  <hr>
+  <img id="ex4" src="img/char.jpg" alt="보노보노" width="300">
+
+  <img src="img/rabbit.jpg" alt="토끼" class="animals">
+  <img src="img/puppy.jpg" alt="강아지" class="animals">
+  <img src="img/zebra.jpg" alt="얼룩말" class="animals">
+  <img src="img/tiger.jpg" alt="호랑이" class="animals">
+  <div class="ex5">
+    동물 이름 : <strong></strong>
+  </div>
+  <script>
+    const animalName = ['수달', '얼룩말', '호랑이', '고양이', '양', '토끼', '코끼리', '기린', '오리', '사자'];
+    let n = 0;
+    const animalAdd = () => { //변수 이름처럼 선언했지만 함수임
+      //li를 생성
+      const liElm = document.createElement('li');
+      //ul의 자손으로
+      const ulElm = document.getElementById('ex1');
+      ulElm.appendChild(liElm);
+      //li에 텍스트 필요
+      const liTxt = document.createTextNode(animalName[n]);
+      if(n >= animalName.length - 1) {
+        alert('Stop!!!!')
+        n = animalName.length - 1
+      } else {n++}
+      liElm.appendChild(liTxt);
+    }
+    const animalRemove = () => {
+      const liElm = document.querySelectorAll('#ex1 li');
+      n = liElm.length
+      if(n <= 0) {n = 0}
+      else {n--}
+      liElm[n].remove()
+
+      // const liRem = document.getElementsByTagName('li')
+      // if(n > animalName) {}
+    }
+
+    const colorName = []
+    const colorChg = () => {
+      //** 버튼을 클릭하면 li의 텍스트 컬러이름을 배경색으로
+      //여러 li들을 배열로 처리
+      const liElm = document.querySelectorAll('#ex2 li');
+      //li의 텍스트 get => innerText(textContent())
+      // console.log(liElm[2].innerText);
+
+      // 여러 li에게 각각 스타일 적용
+      // liElm[0].style.background = liElm[0].innerText
+      // for(let i = 0; i <= 4; i++) {
+          //liElm[i].style.background = liElm[i].innerText
+          //colorName[i] = liElm[i].innerText
+      // }
+      for(item of liElm) {
+        item.style.background = item.innerText
+        colorName.push(item.innerText)
+      }
+
+      //innerText를 배열에 전달
+      colorName[0] = liElm[0].innerText
+      console.log(colorName);
+    }
+
+    const dlElm = document.getElementById('ex3');
+    const dtElm = dlElm.children[0]
+    const ddElm = dlElm.children[1]
+
+    dtElm.addEventListener('click', showDd)
+
+    let isShow = false;
+    //dt를 클릭했을 때 해야 할 코드가 재사용 되어야 하는 코드라면 빼서 사용
+    function showDd() {
+      /*** isShow 변수 활용
+      if(isShow) {
+        ddElm.style.display = 'none'
+        isShow = false
+      } else {
+        ddElm.style.display = 'block'
+        isShow = true
+      }*/
+      // console.log(ddElm.classList.value === ''); //class 속성
+      console.log(dlElm.getAttribute('class')); //태그 속성 (attribute)
+
+
+      // if(ddElm.classList('class') === '') {
+      // if(ddElm.getAttribute('class') === null) {
+      //   ddElm.setAttribute('class', 'show')
+      // }
+      // else {
+      //   ddElm.removeAttribute('class')
+      // }
+
+      if(ddElm.classList.contains('show')) {
+        ddElm.classList.remove('show')
+      } else {
+        ddElm.classList.add('show')
+      }
+    }
+
+    //dt에 마우스오버 => bg클래스를 적용
+    dtElm.addEventListener('mouseover', function() {
+      dtElm.classList.add('bg')
+    })
+    //마우스아웃 => bg클래스 삭제
+    dtElm.addEventListener('mouseout', function() {
+      dtElm.classList.remove('bg')
+    })
+
+    //ex4 이미지를 클릭하면 수달 이미지로 변경
+    const img = document.getElementById('ex4')
+    img.addEventListener('click', function() {
+      this.setAttribute('src', "img/otter.jpg")
+      this.setAttribute('alt', '수달')
+    })
+
+    //과제
+    //1. ex5의 strong 텍스트(innerText)
+    //2. animals 이미지들의 alt 속성 => 텍스트
+    //   이미지들 => 콜렉션, alt 속성 get
+  </script>
+</body>
+</html>

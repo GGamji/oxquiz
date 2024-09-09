@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슬라이드 연습 1</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset.css@2.0.2/reset.min.css">
+  <style>
+    h2 {text-align: center;font-size: 30px;margin: 30px 0;}
+    button {background: none;border: none;line-height: 1em;margin: 0;padding: 0;cursor: pointer;}
+    .ex1_wrap {}
+    .ex1_wrap .sliderEx1 {width: 1200px;height: 200px;margin: auto;position: relative;}
+    .ex1_wrap .slider_wrap {overflow: hidden;border: 1px solid #000;}
+    .ex1_wrap ul {display: flex;width: 2400px;}
+    .ex1_wrap li {
+      width: 1200px;height: 200px;flex-shrink: 0;
+      margin-right: 20px;
+      display: flex;justify-content: center;align-items: center;
+      box-sizing: border-box;border: 1px solid #CCC;
+      font-size: 50px;color: #fff;
+    }
+    .ex1_wrap .pagination {
+      display: flex;gap: 10px;justify-content: center;
+      padding: 15px 0;
+    }
+    .ex1_wrap .pagination button {
+      width: 15px;height: 15px;cursor: pointer;
+      background: silver;border-radius: 10px;border: none;
+      transition: all 0.3s;
+    }
+    .ex1_wrap .pagination button.active {
+      width: 50px;background: dodgerblue;
+    }
+    .ex1_wrap .btns button {
+      position: absolute;top: 50%;transform: translateY(-50%);
+    }
+    .ex1_wrap .btns .prev {left: -40px;}
+    .ex1_wrap .btns .next {right: -40px;}
+
+    /* Ex2 */
+    .ex2_wrap .sliderEx2 {width: 1200px;height: 200px;margin: auto;position: relative;}
+    .ex2_wrap .slider_wrap {overflow: hidden;border: 1px solid #000;}
+    .ex2_wrap ul {display: flex;width: 2400px;}
+    .ex2_wrap li {
+      width: 590px;height: 200px;flex-shrink: 0;
+      margin-right: 20px;
+      display: flex;justify-content: center;align-items: center;
+      box-sizing: border-box;border: 1px solid #CCC;
+      font-size: 50px;color: #fff;
+    }
+    .ex2_wrap .pagination {
+      display: flex;gap: 10px;justify-content: center;
+      padding: 15px 0;
+    }
+    .ex2_wrap .pagination button {
+      width: 15px;height: 15px;cursor: pointer;
+      background: silver;border-radius: 10px;border: none;
+
+    }
+    .ex2_wrap .pagination button.active {
+      width: 50px;background: dodgerblue;
+    }
+    .ex2_wrap .btns button {
+      position: absolute;top: 50%;transform: translateY(-50%);
+    }
+    .ex2_wrap .btns .prev {left: -40px;}
+    .ex2_wrap .btns .next {right: -40px;}
+
+  </style>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(function() {
+      const colorNames = ['pink', 'orange', 'yellowgreen', 'lightblue', 'tomato', 'slateblue', 'dodgerblue', 'gold'];
+      // $('.slider_wrap li').css('background', colorNames[0])
+      // for(color of colorNames) {
+      //   $('.slider_wrap li').css('background', color)
+      // }
+      // each(function() {}) => jQuery 메소드
+      $('.ex1_wrap .slider_wrap li').each(function(index) {
+        $(this).css('background', colorNames[index]).text(colorNames[index])
+      })
+      const btnCnt = $('.ex1_wrap .slider_wrap li').length
+      for(let i = 0; i < btnCnt; i++) {
+        $('.ex1_wrap .pagination').append('<button></button>')
+      }
+      $('.ex1_wrap .pagination button').first().addClass('active');
+
+      //위치 : position, translate, margin
+      // $('.slider_wrap ul').animate({'margin-left' : '-610px'})
+      // let ex1W = -$('.slider_wrap li').outerWidth(true);
+      // let posX = -(ex1W + 20);
+      let posX = $('.ex1_wrap .slider_wrap li').outerWidth(true);
+      let i = 0;
+      let viwe = $('.ex1_wrap .sliderEx1').width() / $('.ex1_wrap .slider_wrap li').width();
+      // let posEnd = $('.ex1_wrap .slider_wrap li').length - viwe;
+      let posEnd = $('.ex1_wrap .slider_wrap li').length - 3;
+
+      $('.ex1_wrap .prev').click(function() {
+        if(i >= posEnd) {i = posEnd}
+        else {i++}
+        $('.ex1_wrap .slider_wrap ul').animate({'margin-left' : `${-posX * i}px`})
+        })
+      $('.ex1_wrap .next').click(function() {
+        if(i <= 0) {i = 0}
+        else {i--}
+        $('.ex1_wrap .slider_wrap ul').animate({'margin-left' : `${-posX * i}px`})
+      })
+
+
+      // Ex2
+      const colorNames2 = ['pink', 'orange', 'yellowgreen', 'lightblue', 'tomato', 'slateblue', 'dodgerblue', 'gold'];
+
+      $('.ex2_wrap .slider_wrap li').each(function(index) {
+        $(this).css('background', colorNames2[index]).text(colorNames2[index])
+      })
+      const btnCnt2 = $('.ex2_wrap .slider_wrap li').length
+      for(let n = 0; n < btnCnt2; n++) {
+        $('.ex2_wrap .pagination').append('<button></button>')
+      }
+      $('.ex2_wrap .pagination button').first().addClass('active');
+
+      let posX2 = $('.ex2_wrap .slider_wrap li').outerWidth(true);
+      let n = 0;
+      let viwe2 = $('.ex2_wrap .sliderEx2').width() / $('.ex2_wrap .slider_wrap li').width();
+      let posEnd2 = $('.ex2_wrap .slider_wrap li').length - viwe2;
+
+      $('.ex2_wrap .prev').click(function() {
+        if(n >= posEnd2) {n = posEnd2}
+        else {n = (n + 2)}
+        $('.ex2_wrap .slider_wrap ul').animate({'margin-left' : `${-posX2 * n}px`})
+        })
+      $('.ex2_wrap .next').click(function() {
+        if(n <= 0) {n = 0}
+        else {n = (n - 2)}
+        $('.ex2_wrap .slider_wrap ul').animate({'margin-left' : `${-posX2 * n}px`})
+      })
+
+      // *** Ex1의 페이지네이션
+      $('.ex1_wrap .pagination button').click(function() {
+        $(this).addClass('active');
+        $('.ex1_wrap .pagination button').not(this).removeClass('active');
+        i = $(this).index()
+        $('.ex1_wrap .slider_wrap ul').animate({'margin-left' : `${-posX * i}px`})
+      })
+
+      // Ex2의 페이지네이션
+      $('.ex2_wrap .pagination button').click(function() {
+        $(this).addClass('active');
+        $('.ex2_wrap .pagination button').not(this).removeClass('active');
+        n = $(this).index()
+        $('.ex2_wrap .slider_wrap ul').animate({'margin-left' : `${-posX2 * n}px`})
+      })
+    })//ready()
+  </script>
+</head>
+<body>
+  <div class="ex1_wrap">
+    <h2>Ex1</h2>
+    <div class="sliderEx1">
+      <div class="slider_wrap">
+        <ul>
+          <li class="slide1"></li>
+          <li class="slide2"></li>
+          <li class="slide3"></li>
+          <li class="slide4"></li>
+          <li class="slide5"></li>
+          <li class="slide6"></li>
+          <li class="slide7"></li>
+          <li class="slide8"></li>
+        </ul>
+      </div>
+      <div class="pagination"></div>
+      <div class="btns">
+        <button class="prev"><img src="../img/prev_coupon.png" alt=""></button>
+        <button class="next"><img src="../img/next_coupon.png" alt=""></button>
+      </div>
+    </div>
+  </div>
+  <div class="ex2_wrap">
+    <h2>Ex2</h2>
+    <p>왼쪽 버튼을 클릭하면 슬라이드 오른쪽 이동, 한번에 2개의 슬라이드가 이동</p>
+    <div class="sliderEx2">
+      <div class="slider_wrap">
+        <ul>
+          <li class="slide1"></li>
+          <li class="slide2"></li>
+          <li class="slide3"></li>
+          <li class="slide4"></li>
+          <li class="slide5"></li>
+          <li class="slide6"></li>
+          <li class="slide7"></li>
+          <li class="slide8"></li>
+        </ul>
+      </div>
+      <div class="pagination"></div>
+      <div class="btns">
+        <button class="prev"><img src="../img/prev_coupon.png" alt=""></button>
+        <button class="next"><img src="../img/next_coupon.png" alt=""></button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

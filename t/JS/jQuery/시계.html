@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제이쿼리 시계</title>
+  <style>
+    @font-face {
+      font-family: 'ds-digi';
+      src: url('../DS-DIGIB.TTF');
+      font-weight: 700;
+    }
+    .digital {
+      width: 500px;height: 500px;
+      background: url(../img/digital.png);
+      font-family: 'ds-digi', monospace;font-weight: 700;color: #FFF;
+      font-size: 40px;
+      border: 1px solid #000;
+    }
+    .dtime {
+      width: 350px;height: 165px;
+      position: relative;left: 53px;top: 115px;
+      transform: skew(3deg, 6deg);
+      display: flex;justify-content: center;align-items: center;
+      gap: 15px;
+    }
+    .dh, .dm {font-size: 90px;}
+
+    .analog {
+      width: 600px;height: 600px;position: relative;
+      background-image: url(../img/clock_panel.png);
+    }
+    .analog img {position: absolute;left: 0;top: 0;}
+    .analog .center {
+      width: 30px;height: 30px;background: #000;
+      border-radius: 50%;position: absolute;left: 50%;top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(function() {
+      time();
+
+      setInterval(time, 1000)
+
+      function time() {
+        let now = new Date();
+        let h = now.getHours();
+        let m = now.getMinutes();
+        let s = now.getSeconds();
+
+        //1. 24시간 표시를 12시간 표시
+        if(h > 12) h -= 12
+        //2. 분과 초를 1단위에서 앞에 0 추가 3 : 09. 03
+        m = chk(m)
+        s = chk(s)
+
+        //digital
+        $('.dh').text(h)
+        $('.dm').text(m)
+        $('.ds').text(s);
+
+        //analog
+        let ah, am, as;
+        ah = h * (360 / 12)
+        am = m * (360 / 60)
+        as = s * (360 / 60)
+        $('.ah').css({'transform' : `rotate(${ah}deg)`})
+        $('.am').css({'transform' : `rotate(${am}deg)`})
+        $('.as').css({'transform' : `rotate(${as}deg)`})
+      }
+      function chk(i) {
+        if(i < 10) i = '0' + i;
+        return i
+      }
+
+      // $('.ah').css({'transform' : 'rotate(30deg)'})
+    })
+  </script>
+</head>
+<body>
+  <h1>시계</h1>
+  <h2>디지털 시계</h2>
+  <div class="digital">
+    <div class="dtime">
+      <span class="dh">00</span> :
+      <span class="dm">00</span> .
+      <span class="ds">00</span>
+    </div>
+  </div>
+  <h2>아날로그 시계</h2>
+  <div class="analog">
+    <img src="../img/second_hand.png" alt="" class="as">
+    <img src="../img/minute_hand.png" alt="" class="am">
+    <img src="../img/hour_hand.png" alt="" class="ah">
+    <span class="center"></span>
+  </div>
+</body>
+</html>

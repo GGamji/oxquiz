@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>html 요소 메소드</title>
+   <style>
+      body {
+         background: url(../img/grid.gif);
+      }
+      .dark {
+         background: #333;color: #CCC;
+      }
+      .box1 {
+         background: lightcoral;
+      }
+   </style>
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+   <script>
+      $(function() {
+         //clone() => 선택자 요소를 복제
+         $('h1').click(function() {
+            // let a = $(this).clone()
+            // $('body').append(a)
+            $(this).clone().appendTo('body')
+         })
+
+         //hasClass('class name') => 선택자 요소에 클래스 사용여부를 boolean 값으로 반환
+         let isDark = $('h1').hasClass('dark');
+         if(!isDark) {
+            $('h1').addClass('dark')
+         }
+         console.log($('h1').hasClass('on'));
+
+
+         //after()
+         $('h1').after($('h2')) //=> h2가 h1 다음
+         // $('h1').insertAfter($('h2')) //=> h1이 h2 다음
+
+         //insertAfter()
+         $('h3').insertAfter($('button')) //=> h3가 button 다음
+
+         //insertBefore()
+         $('<p>자바스크립트에서 만든 p태그</p>').insertBefore('h2')
+
+         let b = $('.box1').offset().top
+         let c = $('.box1').offset().left
+         $('.box1').text(`top : ${b}, left : ${c}`)
+      })
+   </script>
+</head>
+<body>
+   <h2>첫째였던 h2</h2>
+   <h1>htm, css - manipulation</h1>
+   <h3>셋째였던 h3</h3>
+   <button>넷째</button>
+
+   <div class="box1">box1</div>
+</body>
+</html>

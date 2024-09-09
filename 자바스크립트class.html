@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트 Class</title>
+  <script>
+    //- 객체(object)를 생성하기 위한 템플릿
+    //- 객체의 속성과 메소드를 정의(하나로 패키징) => 캡슐화
+    //- class 키워드를 이용
+    //- 코드의 가독성, 유지보수성 향상
+    //- 확장성(속성 추가), 재사용성, 안전성이 확보
+
+    //let sum = 0;
+    //const obj1
+    /* function User(name, age) {
+        this.name = name;
+        this.age = age;
+        this.greet = function() {
+          return 'hi'
+        }
+      }*/
+    class User {
+      // constructor() 메소드: 객체를 생성할 때 인스턴스 초기화하는 역할
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      greet() {
+        return `Hello~ ${this.name}! age is ${this.age}`
+      }
+    }
+    const user1 = new User('James', 30)
+    const user2 = new User('Alice', 38)
+
+    // console.log(user1.name);
+    console.log(`user1.name: ${user1.name}`);
+    console.log(`user2.age: ${user2.age}`);
+    console.log(`user1.greet: ${user1.greet()}`);
+    console.log(`user2.greet: ${user2.greet()}`);
+
+// ----------------------------------------------------------------------
+
+    //Car 객체 생성 => class 이용
+    // - 차의 나이 계산
+
+    class Car {
+      constructor(name, year) {
+        this.name = name;
+        this.year = year;
+      }
+      age() {
+        let toDay = new Date().getFullYear()
+        return toDay - this.year
+      }
+    }
+    const car1 = new Car('아반떼', 2015)
+    const car2 = new Car('아이오닉', 2021)
+
+    console.log(`${car1.name}는 ${car1.year}년 출시로 ${car1.age()}년 됨`);
+    console.log(`${car2.name}는 ${car2.year}년 출시로 ${car2.age()}년 됨`);
+
+
+    // function BankAccount(bankName, amount = 0) {}
+    //통장
+    class Account {
+      constructor(bankName, amount = 0) {
+        this.bankName = bankName;
+        this.amount = amount;
+      }
+      deposit(n) {
+        return `${this.bankName}은행, 입금 ${n}, 잔고 ${this.amount += n}`
+      }
+      withdrawal(n) {
+        if(n > this.amount) {
+          return `${this.bankName}은행, 잔액이 부족합니다.`
+        }
+        else {
+          return `${this.bankName}은행, 출금 ${n}, 잔고 ${this.amount -= n}`
+        }
+
+      }
+    }
+    const account1 = new Account('신한', 10000)
+    const account2 = new Account('KB')
+
+    console.log(account1.deposit(5000));
+    //신한은행, 입금5000, 잔고 15000
+    console.log(account1.withdrawal(7000));
+    //신한은행, 출금 7000, 잔고 8000
+    console.log(account2.deposit(5000));
+    console.log(account2.withdrawal(7000));
+
+// ----------------------------------------------------------------------
+
+    //확장, 상속
+    //User 객체 => 부모 클래스 / Student 객체 => 자손 클래스
+    //부모 클래스의 내용을 상속 받고,다른 요소 추가, 변형
+    class Student extends User {
+      constructor(name, age, grade) {
+        //부모 클래스 constructor 메소드의 속성과 메소드를 사용,
+        super(name, age) //부모 클래스에 접근할 수 있도록 만들어주는 메소드
+        this.grade = grade; //보모 클래스에 없는 속성은 작성
+      }
+      study() {
+        return `${this.name}은 학생입니다.`
+      }
+    }
+    const student1 = new Student('홍길동', 20, 'A')
+    const student2 = new Student('고길동', 43, 'B')
+
+    console.log(student1.name, student1.grade, student1.age);
+    console.log(student1.greet());
+
+    class Worker extends User{
+      constructor(name, age, job) {
+        super(name, age)
+        this.job = job;
+      }
+      work() {
+        return `${this.name}은 직장인입니다.`
+      }
+    }
+
+    const worker1 = new Worker('강감찬', 32, '군인')
+    const worker2 = new Worker('유관순', 18, '독립투사')
+
+    console.log(worker1.name, worker1.job, worker1.greet());
+    console.log(worker2.name, worker2.job);
+    console.log(worker2.greet(), worker2.work());
+
+    //Car 객체 Brand 자손 객체
+    class Brand extends Car {
+      constructor(brand, name) {
+        super(name)
+        this.brand = brand;
+      }
+      show() {
+        return `내 차는 ${this.name}이고 브랜드는 ${this.brand}입니다.`
+      }
+    }
+    const myCar1 = new Brand('현대', '아반떼')
+    const myCar2 = new Brand('kia', '쏘렌토')
+    console.log(myCar1.name); //아반떼
+    console.log(myCar1.show()); //내 차는 아반떼이고 브랜드는 현대입니다.
+
+
+    class Animal {
+      constructor(name, type) {
+        this.name = name;
+        this.type = type;
+      }
+      title() {
+        return `${this.name} : ${this.type}`
+      }
+    }
+    class Cat extends Animal {
+      constructor(name, breed) {
+        super(name)
+        this.breed = breed;
+      }
+      sleep() {
+        return `고양이는 최소 16시간을 잠을 자요`
+      }
+    }
+    const animal1 = new Animal('하늘이', '강아지')
+    const animal2 = new Animal('호빵이', '토끼')
+    console.log(animal1.title());
+    console.log(animal2.title());
+
+    const cat1 = new Cat('루이', '코숏')
+    const cat2 = new Cat('깜지', '러시안블루')
+    console.log(`${cat1.name}, ${cat1.breed}, ${cat1.title()}`);
+    console.log(`${cat2.name}, ${cat2.breed}, ${cat2.sleep()}`);
+
+    class Dog extends Animal {
+      constructor(name, breed) {
+        super(name)
+        this.breed = breed;
+      }
+      play() {
+        return `${this.name}와 산책을 해요.`
+      }
+      title() {
+        return `${this.name} : ${this.breed}`
+      } //부모 클래스에 있던 메소드를 변형할 수 있음.
+    }
+
+    const dog1 = new Dog('인절미', '골든리트리버')
+    const dog2 = new Dog('백설기', '말티즈')
+    console.log(dog1.play()); //인절미와 산책을 해요.
+    console.log(dog1.title()); //인절미 : 골든리트리버
+
+    class Engine {
+      constructor(horsepower) {
+        this.horsepower = horsepower;
+      }
+      start() {
+        return `${this.horsepower} 마력의 엔진으로 시동을 겁니다.`
+      }
+    }
+    class Vehicle {
+      constructor(engine) {
+        this.engine = engine
+      }
+      start() {
+        return this.engine.start()
+      }
+    }
+
+    const engine1 = new Engine(400)
+    const vehicle1 = new Vehicle(engine1)
+    console.log(vehicle1.start()); // 400마력의 엔진으로 시동을 겁니다.
+  </script>
+</head>
+<body>
+
+</body>
+</html>

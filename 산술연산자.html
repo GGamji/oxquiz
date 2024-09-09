@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>산술연산자</title>
+	<script>
+		console.log(5 + 6); //11 뎃셈 연산자
+		console.log(5 - 6); //-1 ㅂ밸셈 연산자
+		console.log(5 * 6); //30 곱셈 연산자
+		console.log(10 / 2); // 5 나눗셈 연잔자
+		console.log (10 % 4); //2 나머지 연산자
+		console.log()
+
+		//증감 연산자
+		let num = 0;
+		console.log(num); // 0
+
+		num = num + 1;
+	   console.log(num); //1
+
+		num = num + 1;
+		console.log(num); //2
+
+		num = num + 1;
+		console.log(num); //3
+
+		num++
+		console.log(num);
+
+		num++
+		console.log(num);
+
+		num--
+		console.log(num);
+
+		num--
+		console.log(num);
+
+
+
+
+
+	</script>
+</head>
+<body>
+	<h1>0</h1>
+	<button class="increase">+1</button>
+	<button class="decrease">-1</button>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+		let count = 0;
+		$('h1').text(count);
+		// 증가 버튼을 클릭하면 count 변수의 수를 1씩 증가
+		// h1에 text 컨텐츠를 변경된 count 값으로 다시 출력
+
+		$('.increase').click(function() {
+			count++;
+			$('h1').text(count);
+		});
+
+		$('.decrease').click(function() {
+				count--;
+				$('h1').text(count);
+		});
+
+		//증감연산자는 대표적인 단항 연산자 중 하나
+
+		count = count + 10;
+		console.log(count);
+
+		count++;
+		console.log(count);
+
+		let a = 0, b = 0;
+		console.log(a, b);
+
+		a++;
+		console.log(a);
+
+		b = a;
+		console.log(b);
+		a++;
+		console.log(a);
+		a++;
+		console.log(a);
+		a++;
+		console.log(a);
+		a++;
+		console.log(a);
+
+		// 선증가(++a)와 후증가(a++)
+
+		// 대입연산자와 함게 연산될 경우 선증가는 먼저 증가하고 나중에 대입
+		b = ++a; // a: 6, b: 6
+
+		// 후증가는 대입을 먼저하고 증가를 나중에 함
+		b = a++; //a: 7, b: 6
+		console.log(b);
+
+		b = ++a; // 8
+		console.log(b); //8
+
+		b = a++; //9
+		console.log(b); //8
+		console.log(a); //9
+
+		b = ++a; //10
+		console.log(b) // 10
+
+		//
+		console.log(2 * 3) // 6
+		console.log(2 ** 3) // 8 => 2 * 2 * 2
+
+		console.log(3 * 4) // 12
+		console.log(3 ** 4) // 81 => 3 * 3 * 3 * 3
+
+	</script>
+
+</body>
+</html>

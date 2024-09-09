@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오브젝트2</title>
+  <script>
+    // Array (object에 포함)
+    // [a, 100, 'string', [], {}, function() {}]
+    // const arr = []
+    // arr[0] = 'cat';
+    // console.log(arr[0]);
+    // const arr2 = new Array()
+
+    // Object
+    // {prop: val, prop, val}
+    // const obj1 = {}
+    // const obj2 = new Object()
+
+    const obj1 = {}
+    obj1.color = 'yellow';
+    obj1.name = 'banana';
+    console.log(obj1);
+
+    const obj2 = new Object();
+    obj2.firstName = 'John';
+    obj2.lastName = 'Doe';
+    obj2.city = 'New York';
+
+    console.log(`${obj2.firstName} ${obj2.lastName}씨는 ${obj2.city}에 거주합니다.`);
+
+    obj2.city = 'Seoul';
+
+    console.log(`${obj2.firstName} ${obj2.lastName}씨는 ${obj2.city}에 거주합니다.`);
+
+    // const sname = prompt('학생이름 입력')
+    // const kor = Number(prompt('국어점수를 입력'))
+    // const eng = Number(prompt('영어점수를 입력'))
+    // const math = Number(prompt('수학점수를 입력'))
+    // const tel = prompt('연락처를 입력');
+    // const snum = prompt('번호를 입력')
+    const sname = '홍길동'
+    const kor = 80
+    const eng = 90
+    const math = 100
+    const tel = '010-3333-4444'
+    const snum = 1
+    const student = {
+      no: snum,
+      name: sname,
+      tel: tel,
+      // score: [kor, eng, math]
+      score: {
+        korScore: kor,
+        engScore: eng,
+        mathScore: math
+      }
+    }
+
+    console.log(`번호 : ${student.no}`);
+    console.log(`학생명 : ${student.name}`);
+    // console.log(`국어점수 : ${student.score[0]}`);
+    // console.log(`영어점수 : ${student.score[1]}`);
+    // console.log(`수학점수 : ${student.score[2]}`);
+    console.log(`국어점수 : ${student.score.korScore}`);
+    console.log(`영어점수 : ${student.score.engScore}`);
+    console.log(`수학점수 : ${student.score.mathScore}`);
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

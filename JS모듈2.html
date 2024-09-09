@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS모듈2</title>
+  <script type="module">
+    import age from './js/module1.js';
+    import message from './js/module5.js';
+    import {job, gd} from './js/module2.js';
+    // import {fruits, notice, color} from './js/module4.js';
+    import * as mo4 from './js/module4.js'; //=>모듈 파일에 있는 모든 요소를 하나의 객체(mo4)로 가져오기
+    import {colorBlue as blue, colorRed as red} from './js/module2.js'; //=>모든 파일 요소이름(colorBlue)을 변경(blue)해서 가져옴
+
+
+    console.log(mo4.notice());
+    console.log(mo4.fruits[1]);
+    console.log(age);
+    console.log(message('hello'), job, gd);
+    // console.log(fruits[2]);
+    console.log(blue, red);
+  </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>나머지 탐색 방법</title>
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+   <script>
+      $(function() {
+         //first() => DOM 구조와 상관없이 문서 전체의 첫 번째 요소
+         //last() => DOM 구조와 상관없이 문서 전체의 마지막 번째 요소
+         //eq(index) => DOM 구조와 상관없이 문서 전체에서 index에 해당하는 선택자 요소
+         //filter() =>
+
+         $('li:first-child').css('font-weight', 'bold')
+         $('.btn1').click(function() {
+            $('li').first().css('background', 'lightblue')
+         })
+         $('.btn2').click(function() {
+            $('p').last().css('background', 'lightcoral')
+         })
+         $('.btn3').click(function() {
+            $('li').eq(3).css('text-decoration', 'underline')
+         })
+         $('.btn4').click(function() {
+            $('li').css('background', 'green')
+            .filter('.c3').css('color', 'red')
+         })
+         $('.btn5').click(function() {
+            $('li').filter(function(i) {
+               return i % 2 === 0
+            }).css('color', 'pink')
+         })
+         $('.btn6').click(function() {
+            $('h1').has('em').css('color', 'slateblue')
+         })
+         $('.btn7').click(function() {
+            if($('h1').children().is('em')) {
+               $('h1').children().css('background', 'gold')
+            } else {
+               $('h1').css('background', 'lightblue')
+            }
+         })
+         $('li').click(function() {
+            if($(this).is('.c1')) {
+               $(this).css('background', 'lightcoral')
+            }
+         })
+         $('p').not('.c4').css('color', 'blue')
+         $('p').not(':last-of-type').css('font-weight', 'bold')
+
+         //slice() => string 메소드 slice()와 다름
+         $('li').slice(2, 5).css('text-align', 'right')
+      })//ready
+   </script>
+</head>
+<body>
+   <h1>Filtering <em>Traversing Method</em></h1>
+   <button class="btn1">first()</button>
+   <button class="btn2">last()</button>
+   <button class="btn3">eq(3)</button>
+   <button class="btn4">filter()</button>
+   <button class="btn5">filter(function() {})</button>
+   <button class="btn6">has()</button>
+   <button class="btn7">is()</button>
+   <hr>
+   <p class="c1">This is paragraph</p>
+   <p class="c2">This is paragraph</p>
+   <p class="c3">This is paragraph</p>
+   <ul>
+      <li class="c1">List Item-1</li>
+      <li class="c2">List Item-2</li>
+      <li class="c3">List Item-3</li>
+      <li class="c4">List Item-4</li>
+      <li class="c5">List Item-5</li>
+      <li class="c6">List Item-6</li>
+      <li class="c7">List Item-7</li>
+   </ul>
+   <div>
+      <p class="c4">This is paragraph</p>
+      <p class="c5">This is paragraph</p>
+   </div>
+   <ol>
+      <li class="c1">List Item-1</li>
+      <li class="c2">List Item-2</li>
+      <li class="c3">List Item-3</li>
+      <li class="c4">List Item-4</li>
+      <li class="c5">List Item-5</li>
+      <li class="c6">List Item-6</li>
+      <li class="c7">List Item-7</li>
+   </ol>
+</body>
+</html>

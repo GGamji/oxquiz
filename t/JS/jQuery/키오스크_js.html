@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>키오스크 결제 시스템</title>
+  <style>
+    * {margin: 0;padding: 0;list-style: none;}
+    body {text-align: center;}
+    h1 {margin: 50px 0 30px;}
+    h2 {margin-bottom: 20px;}
+    #wrap {width: 1360px;margin: auto;}
+    #menu {background: #AAA;padding: 20px;float: left;margin-bottom: 500px;}
+    #menu ul {overflow: hidden;width: 780px;}
+    #menu li {width: 150px;margin: 3px;float: left;background: #FFF;cursor: pointer;}
+    #menu img {width: 100%;}
+    #menu span {display: block;margin: 5px 0;}
+    #menu .p_name {font-weight: bold;font-size: 14px;}
+    #menu .p_price {font-size: 20px;margin-bottom: 15px;}
+
+    #order {float: right;background: gold;width: 500px;}
+    #order table {width: 90%;background: #FFF;margin: 20px auto;border-collapse: collapse;}
+    #order #list tr {border-bottom: 1px solid #CCC;}
+    #order th {background: #000;color: #FFF;font-size: 14px;font-weight: bold;}
+    #order #list th {padding: 5px 0;}
+    #order #list td {padding: 6px 12px;height: 15px;}
+    #order #list td:nth-child(2n) {background: #ededed;}
+    #order .o_no {width: 40px;}
+    #order .o_name {width: ;text-align: left;text-indent: 20px;}
+    #order .o_cnt {width: 40px;}
+    #order .o_price {width: 100px;text-align: right;}
+
+    #order #pay {border: 1px solid #AAA;margin-top: 30px;}
+    #order #pay tr {border-bottom: 1px solid #CCC;}
+    #order #pay th {border-right: 1px solid #CCC;width: 80px;}
+    #order #pay td {padding: 10px;height: 20px;}
+    #order #pay button {border: none;background: green;color: #FFF;padding: 5px;border-radius: 5px}
+    #order #pay button:last-child {display: block;margin: 15px auto 0 auto;}
+  </style>
+  <!-- <script src="kiosk.js" defer></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(function() {
+      const orderList = [];
+      let i = 0;
+      $('#menu li').click(function() {
+        let pname = $(this).find('.p_name').text()
+        let pprice = $(this).find('.p_price').text().replace(',','');
+        pprice = Number(pprice)
+        const choice = {
+          no: i++,name: pname, price: pprice, cnt: 1
+        }
+        orderList.push(choice)
+        printBill();
+        console.log(orderList);
+      })
+      function printBill() {
+        const printItem = orderList[orderList.length - 1];
+        $('#list').append(`<tr>
+          <td class="o_no">${printItem.no + 1}</td>
+          <td class="o_name">${printItem.name}</td>
+          <td class="o_cnt">${printItem.cnt}</td>
+          <td class="o_price">${printItem.price}</td>
+        </tr>`)
+
+      }
+    })//ready()
+  </script>
+</head>
+<body>
+  <div id="wrap">
+    <h1>결제 시스템</h1>
+    <div id="menu">
+      <h2>메뉴</h2>
+      <ul>
+        <li>
+          <img src="../img/p1.jpg" alt="">
+          <span class="p_name">순대</span>
+          <span class="p_price">3,500</span>
+        </li>
+        <li><img src="../img/p2.jpg" alt=""><span class="p_name">비빔국수</span><span class="p_price">4,500</span></li>
+        <li><img src="../img/p3.jpg" alt=""><span class="p_name">김밥</span><span class="p_price">2,800</span></li>
+        <li><img src="../img/p4.jpg" alt=""><span class="p_name">잔치국수</span><span class="p_price">4,200</span></li>
+        <li><img src="../img/p5.jpg" alt=""><span class="p_name">튀김</span><span class="p_price">2,000</span></li>
+        <li><img src="../img/p6.jpg" alt=""><span class="p_name">야채죽</span><span class="p_price">5,000</span></li>
+        <li><img src="../img/p7.jpg" alt=""><span class="p_name">돈까스</span><span class="p_price">6,500</span></li>
+        <li><img src="../img/p8.jpg" alt=""><span class="p_name">비빔밥</span><span class="p_price">5,500</span></li>
+        <li><img src="../img/p9.jpg" alt=""><span class="p_name">군만두</span><span class="p_price">2,400</span></li>
+        <li><img src="../img/p10.jpg" alt=""><span class="p_name">육개장</span><span class="p_price">7,000</span></li>
+        <li><img src="../img/p11.jpg" alt=""><span class="p_name">라면</span><span class="p_price">2,500</span></li>
+        <li><img src="../img/p12.jpg" alt=""><span class="p_name">떡볶이</span><span class="p_price">3,000</span></li>
+        <li><img src="../img/p13.jpg" alt=""><span class="p_name">우동</span><span class="p_price">4,000</span></li>
+        <li><img src="../img/p14.jpg" alt=""><span class="p_name">피자</span><span class="p_price">12,900</span></li>
+        <li><img src="../img/p15.jpg" alt=""><span class="p_name">어묵</span><span class="p_price">2,000</span></li>
+      </ul>
+    </div>
+    <div id="order">
+      <h2>계산서</h2>
+      <table id="list">
+        <tr>
+          <th>No</th>
+          <th>품명</th>
+          <th>수량</th>
+          <th>단가</th>
+        </tr>
+        <tr class="blank">
+          <td class="o_no"></td>
+          <td class="o_name"></td>
+          <td class="o_cnt"></td>
+          <td class="o_price"></td>
+        </tr>
+      </table>
+      <table id="pay">
+        <tr>
+          <th>총 금액</th>
+          <td id="pay_sum"></td>
+        </tr>
+        <tr>
+          <th rowspan="2">받은 돈</th>
+          <td id="input_sum"></td>
+        </tr>
+        <tr>
+          <td>
+            <button class="cash">100원</button>
+            <button class="cash">500원</button>
+            <button class="cash">1,000원</button>
+            <button class="cash">10,000원</button>
+            <button class="cash">50,000원</button>
+            <button class="payment">계산하기</button>
+          </td>
+        </tr>
+        <tr>
+          <th>거스름돈</th>
+          <td id="change"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
+<!--
+1. #menu의 li 요소를 변수에 저장하고 li를 클릭하면 함수(orederList) 호출
+2. orderList 함수에 각 리스트 상품명과 금액을 받아와 변수에 저장
+3. printBill 함수를 만들어서 orderList 함수 안에서 호출
+4. printBill 함수에서 tr 생성
+5. paySum 변수를 만들고 총금액에 합계 입력
+6. 숫자를 천단위 표시하는 thousand 함수 만들어서 호출
+7. printBill 함수에서 blank 삭제
+8. 계산하기는 고민해 볼 것
+-->

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>객체 메소드 연습</title>
+   <script>
+      window.addEventListener('DOMContentLoaded', function() {
+         // $('.btn_submit').on('click', function() {
+         //    $('.list_member').append('<li>list</li>')
+         // }) //제이쿼리로 쓸 때
+         const btnSubmit = document.querySelector('.btn_submit');
+         const memberList = document.querySelector('.list_member');
+         const inputName = document.querySelector('.input_name');
+         const inputAge = document.querySelector('.input_age');
+         const members = [];
+         const member = {
+            id: 1,
+            name: 'Guest',
+            // age: 0,
+            addMember: function(mname, mage) {
+               if(mname === '') { //|| mage === ''
+                  mname = this.name
+                  // mage = this.age
+               }
+               if(mage === '' || mage === 0) mage = "모름"
+               members.push({id: this.id, name: mname, age: mage})
+               this.id++
+            }
+         }
+         const admins = [];
+         const admin = {
+            adminId: 'admin12',
+            adminPw: '1234',
+            greeting: function() {
+               //아이디와 비밀번호를 체크해서 둘 다 맞으면 환영메세지
+               //관리자님 환영합니다
+               //그렇지 않으면 경고메세지
+               //아이디와 패스워드를 확인하세요
+            }
+         }//과제 admin
+
+         btnSubmit.addEventListener('click', function() {
+            const addName = inputName.value;
+            const addAge = inputAge.value;
+            member.addMember(addName, addAge);
+
+            const lastMember = members[members.length - 1]
+
+            // 배열 데이터로 li추가
+            const memberItem = document.createElement('li');
+            // const memberText = document.createTextNode(lastMember.name); //배열 members의 이름 데이터
+            // const memberText2 = document.createTextNode(lastMember.age);
+            // memberItem.appendChild(memberText);
+            // memberItem.appendChild(memberText2);
+            memberItem.innerHTML
+            = `${lastMember.id}.
+            <strong>이름</strong> : ${lastMember.name},
+            <strong>나이</strong> : ${lastMember.age}
+            `
+            memberList.appendChild(memberItem);
+            // console.log(document.createElement('li'));
+
+
+            inputName.value = '';
+            inputName.focus();
+            inputAge.value = '';
+
+            //input의 value
+            // inputName.value; => 입력받은 value가 "test"텍스트 대신 출력
+            console.log(lastMember);
+         })//button.click
+
+
+
+      })//load
+   </script>
+</head>
+<body>
+   <h1>객체 메소드 연습</h1>
+   <!--
+      * 여러 가지 방법을 연습(객체메소드를 이용)
+      1. input에 입력 받음 => value
+      2. 버튼을 클릭하면
+      2-1. 입력값을 배열에 추가(push)
+      2-2. 배열의 값을 리스트의 li로 추가
+   -->
+   <h2>회원등록</h2>
+   <label>이름 : <input type="text" class="input_name"></label><br>
+   <label>나이 : <input type="number" class="input_age"></label>
+   <button class="btn_submit">등록</button>
+   <h2>회원리스트</h2>
+   <ul class="list_member"></ul>
+   <!-- 이름과 나이가 출력
+      1.<li><strong>이름</strong><span></span></li>
+      2.<tr><td class="name"></td></tr>
+      3.<dt></dt><dd></dd>
+   -->
+
+   <hr>
+   <h2>관리자 로그인</h2>
+   <label>ID <input type="text" class="uid"></label><br>
+   <label>PW <input type="password" class="upw"></label>
+   <button class="btn_login">LogIn</button>
+   <p class="message">
+      <!-- 관리자님 환영합니다 || 아이디와 패스워드를 확인하세요 -->
+   </p>
+</body>
+</html>

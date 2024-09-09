@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사용자정의함수</title>
+  <style>
+    ul,li {list-style: none; margin: 0;padding: 0;}
+    .ex1 {width: 800px;margin: auto;}
+    .ex1 .color_box {height: 400px;margin: 30px 0;background: silver;}
+    .ex1 .color_list {display: flex;gap: 20px;}
+    .ex1 .color_list li {
+      text-align: center;line-height: 80px;
+      flex-grow: 1;background: silver;
+      color: #FFF;cursor: pointer;user-select: none;
+    }
+    .ex2 {width: 800px;margin: auto;}
+    .ex2 .big_img {margin-bottom: 20px;}
+    .ex2 .food_thumb {display: flex;}
+    .ex2 .food_thumb img {width: 90px;margin: 0 5px;cursor: pointer;}
+  </style>
+  <script>
+    // object.method()
+    // $(selector).next().action()
+    // object.property
+    // $(object).event(function() {}) => $().click(function() {})
+    // object.onevent = function() {}
+
+    //메소드() => 함수
+    //사용자가 정의한 함수를 필요할 때 호출하여 사용
+
+    function fn1() { //함수 선언
+      console.log('fn1 함수 호출됨');
+    }
+
+    fn1(); //함수호출
+
+    function fn2() {
+      let a = 10, b = 15;
+      return a + b; //함수를 호출한 곳에 return 값을 반환
+    }
+
+    console.log(fn2()); //25
+
+    //1 inch == 2.54cm
+    let inch = 5;
+    function cm() {
+      return inch * 2.54
+    }
+    console.log(`${inch}인치 :  ${cm()} 센티미터`)
+
+    //1 mile == 1.609344 km
+    let mile = 1;
+    function km() {
+      return mile * 1.609344
+    }
+    console.log(`${mile} 마일 : ${km()} 킬로미터`);
+
+    //화씨를 섭씨로 변환하는 함수
+    //과제
+
+    // let num1 = Number(prompt('1번째 숫자를 입력', '0'))
+    // let num2 = Number(prompt('2번째 숫자를 입력', '0'))
+    // let op = prompt('사칙연산을 고르세요. +, -, *, /')
+    // let result;
+
+    // function cal() {
+    //   switch(op) {
+    //     case '+' : result = num1 + num2; break;
+    //     case '-' : result = num1 - num2; break;
+    //     case '*' : result = num1 * num2; break;
+    //     case '/' : result = num1 / num2; break;
+    //     default : result = '사칙연산이 아님'
+    //   }
+    //   return result;
+    // }
+
+    // console.log(`${num1} ${op} ${num2} = ${cal()}`);
+
+    //태어난 년도를 입력받아서 12간지 띠를 알려줌
+    //년도 % 12 => 결과값 0 ~ 11
+    // let birth = Number(prompt('태어난년도를 입력'))//2023
+    // let zodiac, res;
+
+    // let zodiacName = ['원숭이','닭','개','돼지','쥐','소','호랑이','토끼','용','뱀','말','양']
+
+    // function twelve() {
+    //   zodiac = birth % 12;
+    //   // switch(zodiac) {
+    //   //   case 0 : res = '원숭이'; break;
+    //   //   case 1 : res = '닭'; break;
+    //   //   case 2 : res = '개'; break;
+    //   //   case 3 : res = '돼지'; break;
+    //   //   case 4 : res = '쥐'; break;
+    //   //   case 5 : res = '소'; break;
+    //   //   case 6 : res = '호랑이'; break;
+    //   //   case 7 : res = '토끼'; break;
+    //   //   case 8 : res = '용'; break;
+    //   //   case 9 : res = '뱀'; break;
+    //   //   case 10 : res = '말'; break;
+    //   //   case 11 : res = '양'; break;
+    //   // }
+    //   // return res
+    //   return zodiacName[zodiac]
+    // }
+
+    // console.log(`${birth}년생인 당신의 띠는 ${twelve()}`) // 2023년, 토끼
+
+  </script>
+</head>
+<body>
+  <button class="btn1">click</button>
+  <p class="txt1" style="display: none;">버튼을 누르면 안보여요.</p>
+  <button class="btn2">click</button>
+
+
+  <hr>
+
+  <button class="btn_kr" onclick="greeting('kr')">한국어</button>
+  <button class="btn_en" onclick="greeting('en')">English</button>
+  <h1>버튼을 클릭하세요.</h1>
+
+  <hr>
+  <button class="btn_add" onclick="elmLi('add')">추가</button>
+  <button class="btn_remove" onclick="elmLi('remv')">삭제</button>
+
+  <ul class="list_wrap"></ul>
+
+
+  <hr>
+
+  <div class="ex1">
+    <div class="color_box"></div>
+    <ul class="color_list">
+      <li class="pink">Pink</li>
+      <li class="gold">Gold</li>
+      <li class="tomato">Tomato</li>
+      <li class="dodgerblue">Dodgerblue</li>
+      <li class="green">Green</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="ex2">
+    <img src="/img/food_1.png" alt="" class="big_img">
+    <div class="food_thumb">
+      <img src="/img/food_1.png" alt="">
+      <img src="/img/food_2.png" alt="">
+      <img src="/img/food_3.png" alt="">
+      <img src="/img/food_4.png" alt="">
+      <img src="/img/food_5.png" alt="">
+      <img src="/img/food_6.png" alt="">
+      <img src="/img/food_7.png" alt="">
+      <img src="/img/food_8.png" alt="">
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    function chgColor(name) {
+      $('.color_box').css({'background-color' : name})
+    }
+    $('.color_list li').click(function() {
+      let cname = $(this).attr('class')
+      chgColor(cname)
+    })
+
+
+    function chgImg(iname) {
+      $('.big_img').attr({'src' : iname})
+    }
+    $('.food_thumb img').click(function() {
+      let iname = $(this).attr('src')
+      chgImg(iname)
+    })
+
+
+    function greeting(a) {
+      //매개변수 a가 받아온 값이 kr이면 "안녕하세요",
+      //en이면 "hello"
+      let word = (a == 'kr') ? '안녕하세요' : 'Hello'
+      //한국어는 "안녕하세요", English는 "Hello"
+      $('h1').text(word)
+    }
+
+    // $('.list_wrap').append('<li>list</li>')
+    // $('.btn_add').remove()
+
+    let n = 0;
+    function elmLi(a) {
+      //추가버튼을 누르면 li를 추가 //append('<li>list</li>')
+      //삭제버튼은 li 삭제 //.remove()
+      if(a == 'add') {
+        n++;
+        $('.list_wrap').append(`<li>list${n}</li>`)
+      } else {
+        n--;
+        //삭제 했다가 다시 추가할 때 번호가 연결이 되어야 해요!!!!
+        $('li:last-child').remove()
+      }
+    }
+
+
+
+    //object.method() => 이미 만들어진 함수
+    //$jQuery.hide() => 함수 <<여러 css 속성값을 조절하는 실행문>>
+
+    // $(document).ready(function() { => js문법 head 안에서 사용해야할 때
+
+    $(document).ready(function() {
+      $('.btn1').click(function() { //익명함수
+        $('.txt1').toggle()
+      })
+
+      //함수를 선언하고 직접 정의하는 사용자 함수
+      //사용자가 필요할 때 호출을 이용해 사용함
+      function aa() {
+        $('.txt1').text('함수 aa가 바꾼 텍스트')
+      }
+
+
+      $('.txt1').text('자바스크립트에서 바꾼 텍스트')
+
+      $('.btn2').click(function() {
+        aa
+      })
+
+    })//ready()
+  </script>
+</body>
+</html>

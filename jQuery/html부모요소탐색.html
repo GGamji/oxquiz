@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>html 부모 요소 탐색</title>
+   <style>
+      div, div * {
+         padding: 20px;border: 1px solid #AAA;
+         background: #fff;
+      }
+      span, em {padding: 0;}
+      .wrapper {position: relative;}
+      .inner {position: relative;}
+   </style>
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+   <script>
+      $(function() {
+         $('.btn1').click(function() {
+            //parent() => 선택자요소의 부모요소탐색
+            $('h2').parent().css('background', 'pink')
+         })
+         $('.btn2').click(function() {
+            //parents() => 선택자요소의 부모를 포함한 모든 조상요소
+            $('h2').parents().css('border', '2px dashed green')
+         })
+         $('.btn3').click(function() {
+            //parents('elm') => 조상요소 중 'elm'요소를 탐색
+            $('h2').parents('.wrapper').css('border', '2px solid red')
+         })
+         $('.btn4').click(function() {
+            //parentsUntil() => 모든 조상요소
+            $('h2').parentsUntil().css('border', '2px dotted black')
+         })
+         $('.btn5').click(function() {
+            //parentsUntil('elm') => 조상요소 중 작성한 'elm' 직전까지
+            $('h2').parentsUntil('.inner').css('border', '2px solid orange')
+         })
+         $('.btn6').click(function() {
+            //.offsetParent() => 포지션 속성이 사용된 가장 가까운 부모요소
+            $('em').offsetParent().css('border', '2px solid lightcoral')
+         })
+      })
+   </script>
+</head>
+<body>
+   <h1>부모요소 탐색</h1>
+   <button class="btn1">parent()</button>
+   <button class="btn2">parent()</button>
+   <button class="btn3">parents('.wrapper')</button>
+   <button class="btn4">parentsUntil()</button>
+   <button class="btn5">parentsUntil('.inner')</button>
+   <button class="btn6">offsetParent()</button>
+
+   <hr>
+   <div class="wrapper">
+      <div class="inner">
+         <div class="box">
+            <h2><span>조상 요소</span><em>탐색</em></h2>
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>

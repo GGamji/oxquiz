@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슬라이드 무한반복</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset.css@2.0.2/reset.min.css">
+  <style>
+    img {display: block;}
+    button {background: none;border: none;margin: 0;padding: 0;line-height: 1em;cursor: pointer;}
+    .ex_wrap_1 {
+      padding: 80px 0;background: #CCC;
+    }
+    .slider1 {position: relative;}
+    .slider1 .slider_wrap {
+      overflow: hidden;
+      width: 1200px;margin: auto;
+    }
+    .slider1 ul {display: flex;}
+    .slider1 li {
+      flex-shrink: 0;width: 590px;height: 200px;
+      margin-right: 20px;
+    }
+    .slider1 li.slide1 {background: url(../img/banner_1.jpg);}
+    .slider1 li.slide2 {background: url(../img/banner_2.jpg);}
+    .slider1 li.slide3 {background: url(../img/banner_3.jpg);}
+    .slider1 li.slide4 {background: url(../img/banner_4.jpg);}
+    .slider1 li.slide5 {background: url(../img/banner_5.jpg);}
+    .slider1 .btns button {
+      position: absolute;top: 50%;background: lightcoral;
+    }
+    .slider1 .btns .prev {left: calc(50% - 650px);}
+    .slider1 .btns .next {right: calc(50% - 650px);}
+
+
+    .slider2 {position: relative;}
+    .slider2 .slider2_wrap {overflow: hidden;}
+    .slider2 ul {display: flex;}
+    .slider2 li {
+      width: 1920px;height: 550px;
+      flex-shrink: 0;
+    }
+    .slider2 li.slide6 {background: url(../img/bg_cookieF.jpg);}
+    .slider2 li.slide7 {background: url(../img/bg_groupSale2.jpg);}
+    .slider2 li.slide8 {background: url(../img/bg_mainCoffee.jpg);}
+    .slider2 li.slide9 {background: url(../img/bg_originalF.jpg);}
+    .slider2 li.slide10 {background: url(../img/bg_prettyM.jpg);}
+    .slider2 .btn  button {position: absolute;top: 50%;transform: translateY(-50%);}
+    .slider2 .btn .prev2 {left: calc(50% - 960px);}
+    .slider2 .btn .next2 {right: calc(50% - 960px);}
+  </style>
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $('.slider1 .prev').click(function() {
+        $('.slider1 ul').css('margin-left', -610)
+        //막내 요소를 첫째의 앞에 배치
+        $('.slider1 li:last-child').insertBefore($('.slider1 li:first-child'))
+        $('.slider1 ul').animate({'margin-left' : 0})
+      })
+
+      $('.slider1 .next').click(function() {
+        $('.slider1 ul').animate({'margin-left' : -590},function() {
+          $('.slider1 ul').css('margin-left', 0)
+          $('.slider1 li:first-child').insertAfter($('.slider1 li:last-child'))
+        })
+      })
+    })
+  </script>
+</head>
+<body>
+  <div class="ex_wrap_1">
+    <div class="slider1">
+      <div class="slider_wrap">
+        <ul>
+          <li class="slide1">slide1</li>
+          <li class="slide2"></li>
+          <li class="slide3"></li>
+          <li class="slide4"></li>
+          <li class="slide5">slide5</li>
+        </ul>
+      </div>
+      <div class="btns">
+        <button class="prev"><img src="../img/prev_coupon.png" alt=""></button>
+        <button class="next"><img src="../img/next_coupon.png" alt=""></button>
+      </div>
+    </div>
+  </div>
+  <div class="ex_wrap_2">
+    <div class="slider2">
+      <div class="slider2_wrap">
+        <ul>
+          <li class="slide6"></li>
+          <li class="slide7"></li>
+          <li class="slide8"></li>
+          <li class="slide9"></li>
+          <li class="slide10"></li>
+        </ul>
+      </div>
+    </div>
+    <div class="btn">
+      <button class="prev2"><img src="../img/prev_coupon.png" alt=""></button>
+      <button class="next2"><img src="../img/next_coupon.png" alt=""></button>
+    </div>
+  </div>
+</body>
+</html>

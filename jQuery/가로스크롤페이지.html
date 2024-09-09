@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가로스크롤 페이지</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset.css@2.0.2/reset.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui@1.14.0/themes/base/theme.min.css">
+  <style>
+    html {overflow-y: hidden;overflow-x: hidden;}
+    h1 {
+      position: fixed;left: 30px;top: 30px;
+      background: #fff;border-radius: 10px;font-size: 22px;font-weight: 600;
+      display: flex;justify-content: center;align-items: center;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);padding: 20px 30px;
+    }
+    nav {
+      position: fixed;right: 30px;top: 30px;
+      display: flex;gap: 30px;height: 60px;align-items: center;
+    }
+    nav a {
+      text-decoration: none;color: #fff;
+    }
+    nav a.active {
+      text-decoration: underline 2px;
+      text-underline-offset: 6px;font-weight: 600;
+    }
+    main {display: flex;}
+    main section {
+      width: 100vw;height: 100vh;flex-shrink: 0;
+    }
+    main section h2 {
+      color: #fff;text-align: center;padding-top: 200px;
+      font-size: 50px;font-weight: bold;
+    }
+    #slider {
+      width: 600px;height: 4px;
+      margin: auto;background: #ededed;
+      position: fixed;left: 50%;top: 50%;transform: translate(-50%, -50%);
+    }
+    #slider span {
+      display: block;width: 30px;height: 20px;background: yellowgreen;
+      position: fixed;left: 50%;top: 50%;transform: translate(-50%, -50%);border: none;
+    }
+  </style>
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-ui@1.14.0/dist/jquery-ui.min.js"></script>
+  <script>
+    $(function() {
+      //**** h2 생성, 아이디를 텍스트로
+      //1. 섹션의 아이디를 받아오기 => attr()
+      // const id1 = $('section').eq(0).attr('id')
+      // const id2 = $('section').eq(1).attr('id')
+      // const id3 = $('section').eq(2).attr('id')
+
+      // console.log(id1);
+      // console.log(id2);
+      // console.log(id3);
+      const sectionId = [];
+      const colorName = ['dodgerblue', 'lightcoral', 'slateblue', 'coral', 'yellowgreen']
+
+      $('section').each(function() {
+        let n = $(this).index();
+
+        sectionId.push($(this).attr('id'))
+        $(this).css({'background' : colorName[n]})
+        $(this).append(`<h2>${sectionId[n]}</h2>`)
+
+        console.log($(this).offset().left);
+      })
+      $('nav a').click(function() {
+        $('nav a').not(this).removeClass('active')
+        $(this).addClass('active')
+
+        //Move
+        let n = $(this).index()
+        $('html').animate({
+          scrollLeft : $('section').eq(n).offset().left
+        })
+        // alert($('section').eq(0).attr('class'))
+      })
+      //2. 섹션에 자손 h2 생성하기 => append()
+      // $('section').append('<h2></h2>')
+      //3. h2에 섹션의 아이디를 텍스트로 => text()
+      //4. 아이디를 저장하기 위해 배열, 여러 섹션에 반복적인 동작 for
+
+      //**** 배경색 서로 다른 컬러
+      //1. 배경색을 배열로 저장
+      //2. 각 섹션에 배경색 스타일 => css()
+
+
+      $('#slider').slider({
+        main: 0, max: $('section').width() * 5,
+        change: function(event, ui) {
+          $(window).scrollLeft(ui.value)
+        }
+      })
+
+      //마우스휠 이벤트
+      $('html').on('wheel DOMMouseScroll', function(e) {
+        let d = e.originalEvent.deltaY; //100
+
+        //현재의 스크롤레프트 값을 가져와서
+        let currentLeft = $(this).scrollLeft();
+
+        //델타의 100을 합침
+        $(this).scrollLeft(currentLeft + d);
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="wrap">
+    <header>
+      <h1>LOGO</h1>
+      <nav>
+        <a href="#" class="active">HOME</a>
+        <a href="#">ABOUT</a>
+        <a href="#">WORK</a>
+        <a href="#">CLASS</a>
+        <a href="#">CONTACT</a>
+      </nav>
+    </header>
+    <main>
+      <section id="home"></section>
+      <section id="about"></section>
+      <section id="work"></section>
+      <section id="class"></section>
+      <section id="contact"></section>
+    </main>
+    <div id="slider"></div>
+  </div>
+</body>
+</html>

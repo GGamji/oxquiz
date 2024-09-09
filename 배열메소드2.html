@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열 메소드2</title>
+  <script>
+    const fruits = ['banana', 'mango', 'grape', 'apple', 'kiwi']
+
+    //indexOf('data') => data의 index 번호를 반환
+    console.log(fruits.indexOf('grape')); //2
+    console.log(fruits.indexOf('cherry')); //-1
+
+    // let fruitName = prompt('과일을 선택')
+    let fruitName = 'melon'
+    if(fruits.indexOf(fruitName) >= 0) {
+      console.log('보유중입니다.');
+    } else {
+      console.log('취급하지 않음');
+    }
+    fruits.push('banana')
+    fruits.unshift('grape')
+    console.log(fruits);
+    console.log(fruits.indexOf('grape'));
+    console.log(fruits.lastIndexOf('grape'));
+
+    if(fruits.includes(fruitName)) { //true
+      console.log('기존 상품입니다.');
+    } else {
+      console.log('상품 추가하세요');
+    }
+
+    // let a = 5
+    // a= a + 5;
+    // console.log(a); //10
+    // console.log(a + 5); //15
+    // console.log(a); //10
+
+    const arr1 = [35, 12, 8, 44]
+    arr1.push(10) //추가
+    console.log(arr1); //[34, 12, 8, 44, 10]
+    // arr1.find(function(item) {})
+    // b + 5 //실제 연산 실행
+
+    //find(callback) => callback을 실행해서 조건에 만족하는 "첫번째" 요소를 반환
+    let a1 = arr1.find(item => item > 10)
+
+    console.log(arr1.find(item => item < 10)); //8
+    console.log(a1); //35
+
+    // arr1의 데이터 중 짝수인 첫번째 데이터
+    const a2 = arr1.find(item => item % 2 === 0)
+    console.log(a2); //12
+
+    const a3 = arr1.find(function(item) {return item < 0})
+    console.log(a3);
+
+    function f1(n) {
+      return n * 2;
+    }
+
+    const f2 = n => n * 3
+
+    console.log(f1(50)); //100
+    console.log(f2(10)); //30
+
+    // const users = [{
+    //   name: '홍길동',
+    //   age: 20,
+    //   gender: '남성'
+    // }, {}, {}]
+    //객체를 생성하기 위한 함수
+
+    function User(name, age, gender) { //생성자 함수
+      this.name = name;
+      this.age = age;
+      this.gender = gender;
+    }
+    const user1 = new User('홍길동', 20, '남성')
+    const user2 = new User('또치', 5, '여성')
+    const user3 = new User('황희찬', 29, '남성')
+
+    const users = [user1, user2, user3]
+    console.log(typeof fruits[0]); //string
+    console.log(typeof arr1[0]); //number
+    console.log(typeof users[0]); //object
+    console.log(users[0]); //{name:'홍길동', age:20, gender: '남성'}
+    console.log(users[0].age);
+    console.log(users[2].name);
+
+    //find()를 이용해서 황희찬 성별 출력
+    const findUser = users.find(item => item.name === '황희찬')
+    console.log(findUser.gender);
+
+    //forEach() => 배열을 순회하면서 콜백함수에 작성된 코드를 실행
+    console.log(arr1);//[35, 12, 8, 44, 10]
+    let arr2 = []; //[70, 24, 16, 88, 20]
+    arr1.forEach(function(item) {
+      arr2.push(item * 2)
+      // arr2.push(item > 10)
+    })
+    console.log(arr2);
+
+    fruits.forEach((item, index) => {
+      console.log(`${index + 1}. ${item}`);
+    })
+
+    //user에서 번호와 이름
+    users.forEach((user, index) => {
+      console.log(`${index + 1}. ${user.name}`);
+    })
+
+    //user들의 나이의 합 //81
+    //차례대로 더해서 누적할 변수 sum
+    let sum = 0;
+    users.forEach((user, index) => {
+      console.log(`${index + 1}. ${user.name}님, ${user.age}세`);
+      sum += user.age;
+    })
+    console.log(`user들의 나이는 총 ${sum}세입니다.`);
+
+    //map(callback) => 배열을 순회하면서 주어진 조건에 따라 새로운 배열을 반환
+    // arr1.map(function(item) {})
+    let arr3 = arr1.map(item => item * 2);
+    arr3 = arr1.map(item => item * 3);
+    console.log(arr3);
+    // let arr4 = arr1.forEach(item => item * 2);
+    // console.log(arr4);
+
+    //arr3의 10% 값을 새로운 배열(arr4)로 출력
+    let arr4 = arr3.map(item => (item * 0.1).toFixed(1)); //toFixed(1) => 소숫점 첫 번째 자리까지만 표기 단, 문자열로 표기됨
+    console.log(arr4);
+
+    //users의 이름만 배열(userName)로
+    let userName = users.map(item => item.name);
+    console.log(userName);
+
+    //fruits2에서 글자갯수가 5글자 이상인 과일만 새로운 배열로(fruits3)로 출력
+    const fruits2 = ['apple', 'kiwi', 'watermelon', 'strawberry', 'avocado', 'lime'];
+    let fruits3 = fruits2.map(item => item.length >= 5);
+    console.log(fruits3);
+
+
+    //filter()
+    let fruits4 = fruits2.filter(item => item.length >= 5);
+    console.log(fruits4);
+
+    //user의 나이가 성인인 user만 추출한 배열
+    let adultUser = users.filter(item => item.age >= 20);
+    let adultUserName = adultUser.map(item => item.name);
+    console.log(adultUserName); //['홍길동', '황희찬']
+
+    let txt = 'Hello World'
+    console.log(txt.toUpperCase()); //전부 대문자
+    console.log(txt.includes('w')); //false
+    console.log(txt.startsWith('He')); //true
+    console.log(txt.startsWith('Wo')); //false
+    console.log(txt.startsWith('Wo', 6)); //true
+
+    //1. 과일(fruits2) 이름을 전부 대문자로
+    console.log(fruits2.map(item => item.toUpperCase()));
+    //2. 과일 이름 중 a로 시작하는 과일만
+    console.log(fruits2.filter(item => item.startsWith('a')));
+    //3. 과일 이름 중 i를 포함한 과일만
+    console.log(fruits2.filter(item => item.includes('i')));
+
+
+    //HTMLCollection에게 이벤트리스터 추가
+    window.addEventListener('DOMContentLoaded', function() {
+      const button = document.querySelector('button')
+      button.addEventListener('click', function() {
+        console.log(this.innerText);
+      })
+
+      const btns = document.querySelectorAll('button')
+      btns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          console.log(this.innerText);
+        })
+      })
+    })
+
+    /*
+      forEach(callback) => 배열의 각 요소에 실행 코드
+      map(callback) => 배열의 각 요소에 주어진 조건으로 새 배열
+      filter(callback) => 배열의 각 요소 중 주어진 조건에 만족하는 새 배열
+
+      find(callback) => 주어진 조건에 만족하는 첫번째 데이터
+      includes('조건') => 조건이 배열에 포함되어 있다면 true
+
+    */
+  </script>
+</head>
+<body>
+  <button>puppy</button>
+  <button>cat</button>
+  <button>rabit</button>
+</body>
+</html>

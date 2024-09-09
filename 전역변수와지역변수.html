@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>전역변수와 지역변수</title>
+   <script>
+
+      //전역(Global)으로 사용 변수
+      //문서 내의 모든 곳에서 사용됨
+      let g1 = 100;
+      let l2;
+
+      consolelog(g1); //100
+
+      //지역(Local)으로 사용 변수
+      //=> 함수 내부에서 선언되었을 때 함수에서만 사용 가능
+      //=> 함수가 종료되면 변수도 소멸
+      function fn1() {
+         let l1 = 5;
+         console.log('** fn1() **');
+
+         l1 += 10;
+         console.log(`l1(fn1) : ${l1}`); //5
+
+         g1 += 100;
+         console.log(`g1(fn1) : ${g1}`); //120
+      } //fn1()
+      function fn2() {
+         let n = 0; //지역변수 (함수 호출될 때마다 계속 초기화)
+         
+         l2++ //전역변수
+         console.log(l2);
+
+         n++
+         console.log(n);
+
+         console.log(`g1(fn2) : ${g1}`);  
+      }
+      
+      g1+= 20;
+      console.log(`g1(g) : ${g1}`); //120
+
+      console,log(l2);
+   </script>
+   <!-- <script src="script.js"></script> -->
+</head>
+<body>
+   <button onclick="fn1()">fn1()</button>
+   <button onclick="fn2()">fn2()</button>
+</body>
+</html>

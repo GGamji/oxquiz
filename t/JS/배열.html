@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열(Array)</title>
+  <script>
+    // * 배열
+    // - 하나의 변수 이름에 여러 데이터를 저장
+    // - const 키워드 사용을 권장
+    const a = [2, 5, 'hi', 'dog', (10 / 3)]; //literal
+
+    console.log(a); //2, 5, 'hi', 'dog', (10 / 3)
+    console.log(a[1]); //5
+    console.log(a[3]); //dog
+
+    const fruits = new Array('orange', 'banana', 'kiwi');
+    console.log(fruits[2]);
+    //literal 방식을 더 권장
+
+    //a 변수의 첫번째 방의 값에 숫자 2를 더한 결과값을 콘솔에 출력
+    console.log(a[0] + 2); //4
+    console.log(a[0 + 2]); //hi
+
+    console.log(fruits); //'orange', 'banana', 'kiwi'
+
+    fruits[3] = 'mango'
+    console.log(fruits); //'orange', 'banana', 'kiwi', 'mango'
+
+    fruits[4] = 'cherry'
+    console.log(fruits); //'orange', 'banana', 'kiwi', 'mango', 'cherry'
+
+    let n = fruits.length;
+    fruits[n] = 'apple'
+    console.log(fruits); //'orange', 'banana', 'kiwi', 'mango', 'cherry', 'apple'
+
+    n = fruits.length;
+    fruits[n] = 'plum'
+    console.log(fruits); //'orange', 'banana', 'kiwi', 'mango', 'cherry', 'apple', 'plum'
+
+
+    console.log(fruits);//'orange', 'banana', 'pineapple', 'mango', 'cherry', 'apple', 'plum'
+
+    // console.log(typeof a) //데이터타입
+
+    const animals = [];
+
+    console.log(animals); //[]
+
+    animals.push('cat')
+    console.log(animals); //[cat]
+
+    animals[1] = "puppy";
+    console.log(animals); //[cat, puppy]
+
+    // animals 배열 : cat, dog, pig, cow, rabbit
+
+    const arr1 = [
+      [1, 2, 3, 4],
+      ['가', '나', '다', '라'],
+      [(5 > 10), (5 / 2), (5 % 2), (5 !== '5')],
+      [a, fruits, n]
+    ]
+    console.log(arr1);
+
+    console.log(arr1[1][2]); //'다'
+    console.log(arr1[2][2]); // 5 % 2의 결과값
+    console.log(arr1[3][1]); //과일품목
+    console.log(arr1[3][1][2]); //과일품목 중 'kiwi'(3번째)
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

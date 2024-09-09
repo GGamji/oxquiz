@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>퍼즐</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui@1.14.0/themes/base/theme.min.css">
+  <style>
+    * {margin: 0;padding: 0;}
+    body {background: #444;}
+    img {display: block;}
+    .pieces_wrap {width: 400px;height: 400px;border: 1px solid green;}
+    .draggable {position: absolute;z-index: 100;left: 400px;}
+    .gallery {
+      position: absolute;left: 500px;top: 100px;
+      display: flex;flex-wrap: wrap;align-content: flex-start;
+      width: 282px;height: 282px;
+    }
+    .gallery>div {margin: 1px;opacity: 0.5;}
+    #start {position: absolute;left: 500px;top: 100px;}
+    #finish_msg {
+      display: none;
+      position: absolute;left: 500px;top: 400px;
+    }
+  </style>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-ui@1.14.0/dist/jquery-ui.min.js"></script>
+  <script>
+    $(function() {
+      const $pieces = $('.draggable');
+      const $galleryPiece = $('.gallery > div')
+      let cnt = 0;
+      // const p = document.querySelectorAll('.draggable')
+      // p.forEach(function() {})
+      gameStart()
+
+      $pieces.each(function() { //jQuery forEach
+        //위치의 랜덤값(left: 300, top: 300)
+        let posX = parseInt(Math.random() * 300);
+        let posY = parseInt(Math.random() * 300);
+        $(this).css({left: posX, top: posY})
+      })
+      let startX, startY;
+      $pieces.draggable({
+        start: function() {//drag 시작하자마자 함수 실행
+          startX = $(this).offset().left;
+          startY = $(this).offset().top;
+        },
+        stop: function() { //drag가 멈추면 함수 실행
+          // 조각 자신의 인덱스와 갤러리 조각의 인덱스
+          let id = $(this).index()
+          let $target = $galleryPiece.eq(id)
+
+          // 자신의 좌표값과 갤러리 조각의 위치값
+          let stopX = $(this).offset().left
+          let stopY = $(this).offset().top;
+
+          let targetX = $target.offset().left
+          let targetY = $target.offset().top
+
+          let minLeft = targetX - $(this).width() / 2
+          let maxLeft = targetX + $(this).width() / 2
+          let minTop = targetY - $(this).height() / 2
+          let maxTop = targetY + $(this).height() / 2
+
+          // 갤러리 조각의 위치값의 1/2 값의 범위
+          // console.log($galleryPiece.eq(0).offset().left);
+          // 범위안에서 stop이 되면 갤러리 위치에 정확히 배치
+          // 범위 밖에서 stop이 되면 원래 자리로(start 메소드에 원래 값 저장)
+          if(stopX > minLeft && stopX < maxLeft && stopY > minTop && stopY < maxTop) {
+            $(this).draggable('destroy')
+            $(this).animate({left: targetX, top: targetY}, 300, 'easeInOutBack', function() {
+              cnt++
+              if(cnt >= 9) {
+                console.log('finish');
+                $pieces.hide();
+                $galleryPiece.animate({margin: 0, opacity: 1}, function() {
+                  $('#finish_msg').show()
+                })
+              }
+            })
+          } else {
+            $(this).css({left: startX, top: startY})
+          }
+        }
+      })
+      $('#btn_reset').click(gameStart)
+
+      function gameStart() {
+        $pieces.each(function() { //jQuery forEach
+          //위치의 랜덤값(left: 300, top: 300)
+          let posX = parseInt(Math.random() * 300);
+          let posY = parseInt(Math.random() * 300);
+          $(this).css({left: posX, top: posY})
+          $pieces.show();
+          $galleryPiece.css({margin: 1, opacity: 0.5})
+        })
+      }
+    })
+  </script>
+</head>
+<body>
+  <div class="pieces_wrap">
+    <div class="draggable"><img src="../img/puzzle0.jpg" alt=""></div>
+    <div class="draggable"><img src="../img/puzzle1.jpg" alt=""></div>
+    <div class="draggable"><img src="../img/puzzle2.jpg" alt=""></div>
+    <div class="draggable"><img src="../img/puzzle3.jpg" alt=""></div>
+    <div class="draggable"><img src="../img/puzzle4.jpg" alt=""></div>
+    <div class="draggable"><img src="../img/puzzle5.jpg" alt=""></div>
+    <div class="draggable"><img src="../img/puzzle6.jpg" alt=""></div>
+    <div class="draggable"><img src="../img/puzzle7.jpg" alt=""></div>
+    <div class="draggable"><img src="../img/puzzle8.jpg" alt=""></div>
+  </div>
+
+  <div class="gallery">
+    <div><img src="../img/puzzle0.jpg" alt=""></div>
+    <div><img src="../img/puzzle1.jpg" alt=""></div>
+    <div><img src="../img/puzzle2.jpg" alt=""></div>
+    <div><img src="../img/puzzle3.jpg" alt=""></div>
+    <div><img src="../img/puzzle4.jpg" alt=""></div>
+    <div><img src="../img/puzzle5.jpg" alt=""></div>
+    <div><img src="../img/puzzle6.jpg" alt=""></div>
+    <div><img src="../img/puzzle7.jpg" alt=""></div>
+    <div><img src="../img/puzzle8.jpg" alt=""></div>
+  </div>
+
+  <div id="finish_msg">
+    <button id="start">시작하기</button>
+    <button id="btn_reset">다시하기</button>
+  </div>
+</body>
+</html>

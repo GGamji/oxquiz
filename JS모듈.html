@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS모듈</title>
+  <!-- <script src="js/module1.js" defer></script> 모듈로 사용되는 파일은 src로 연결하지 말 것 -->
+</head>
+<body>
+
+<script type="module">
+  //module
+  //import(수입), export(수출)
+  import age from './js/module1.js';
+  import {gender, job} from './js/module2.js';
+  import message from './js/module3.js';
+
+  const name = 'Tom'
+  document.body.innerHTML = `<h1>${job}</h1>`
+  document.body.innerHTML += `<h2>${age}</h2>`
+  document.body.innerHTML += `<h3>${message(name, age)}</h3>`
+
+</script>
+</body>
+</html>

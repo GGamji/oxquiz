@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map</title>
+  <script>
+    //Map : 객체 타입의 Set
+    // - 객체(object)처럼 key와 value를 한 세트로 데이터 저장
+    // -
+
+    const set = new Set([1,2,3]);
+    const testMap = new Map();
+    console.log(testMap);
+
+    const myMap = new Map([['apple', 5000], ['orange', 3000]]);
+    console.log(myMap);
+
+// ----------------------------------------------------------------------
+    //요소 추가 => set(key, value)
+    const usersMap = new Map();
+    usersMap.set('id', 1).set('name', '황희찬').set('age', 29)
+
+    console.log(usersMap);
+
+// ----------------------------------------------------------------------
+    //값 가져오기 => get(key)
+    console.log(usersMap.get('name'));
+    console.log(usersMap.get('age'));
+
+    usersMap.set('gender', 'male');
+    console.log(usersMap);
+
+// ----------------------------------------------------------------------
+    //요소 삭제 => delete(key)
+    usersMap.delete('age')
+    console.log(usersMap);
+
+// ----------------------------------------------------------------------
+    //포함 여부 : has(key) => Boolean 값 반환
+    console.log(usersMap.has('gender')); //true
+    console.log(usersMap.has('age')); //false
+
+// ----------------------------------------------------------------------
+    //keys() => 요소의 key의 이름을 반환
+    console.log(usersMap.keys()); //{'id', 'name', 'gender'}
+
+
+    //values() => key의 값들만 반환
+    let val = usersMap.values();
+    console.log(val);
+    console.log(typeof val); //object, 배열
+    // console.log(val[1]);
+
+
+    //entries() => key와  value를 차례대로 반환
+    let ent = usersMap.entries();
+    console.log(ent);
+    document.write(ent)
+
+// ----------------------------------------------------------------------
+    //clear()
+    usersMap.clear()
+    console.log(usersMap);
+    console.log(usersMap.size);
+
+// ----------------------------------------------------------------------
+    //fruitsMap 객체를 생성하고, set()를 이용하여 과일 이름과 가격을 3개 추가
+    const fruitsMap = new Map();
+    fruitsMap.set('apples', 500).set('bananas', 300).set('oranges', 200);
+    console.log(fruitsMap);
+
+    fruitsMap.set('mangos', 5000)
+    //key는 바뀌지 않고, value를 덮어쓰기
+    fruitsMap.set('apples', 5000)
+    console.log(fruitsMap);
+
+    //forEach(function(value, key) {})
+    fruitsMap.forEach((value, key) => {
+      console.log(`${key}: ${value}원`);
+    })
+
+// ----------------------------------------------------------------------
+    const animalsMap = new Map()
+    let cat = {name: 'cat'}
+    animalsMap.set(cat, {sound: 'Meow', kind: 'pet'})
+    animalsMap.set('dog', {sound: 'Bark', kind: 'pet'})
+    animalsMap.set('pig', {sound: 'Oink', kind: '가축'})
+    console.log(animalsMap);
+    console.log(animalsMap.get(cat).sound);
+    console.log(animalsMap.get('dog').kind);
+    console.log(animalsMap.get('pig').sound);
+    console.log(animalsMap.get('pig').kind);
+
+    animalsMap.forEach((value, key) => {
+      console.log(`이름: ${key}, 울음소리: ${value.sound}, 종류: ${value.kind}`);
+    })
+
+    console.log(fruitsMap.get('bananas'));
+
+    for(let [name, price] of fruitsMap) {
+      console.log(`${name} : ${price}`);
+    }
+
+    for(fruit of fruitsMap) {
+      console.log(fruit);
+    }
+
+// ----------------------------------------------------------------------
+    //장바구니 구현
+// ----------------------------------------------------------------------
+
+    window.addEventListener('DOMContentLoaded', function() {
+      document.body.innerHTML = '<ul></ul>'
+      const elmUl = document.querySelector('ul')
+      //for .. of
+      for(let [name, value] of fruitsMap.entries()) {
+        // console.log(f[0], f[1]);
+        elmUl.innerHTML += `<li>${name} : ${value}</li>`
+      }
+    })
+  </script>
+</head>
+<body>
+
+</body>
+</html>

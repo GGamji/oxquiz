@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습4</title>
+  <!-- CSS -->
+  <style>
+    ul, li {list-style: none;margin: 0;padding: 0;}
+    header {
+      background: url(../img/bg2.jpg) 0 -500px;
+      height: calc(100vh - 70px);
+    }
+    nav {
+      /* position: static;top: 0; */
+      display: grid;grid-template-columns: repeat(5, 1fr);gap: 1px;
+    }
+    nav a {
+      padding: 20px 0;text-align: center;font-size: 22px;
+      text-decoration: none;color: inherit;text-transform: uppercase;
+      background: silver;
+    }
+    nav .active {background: #000;color: #fff;}
+    section {height: 100vh;min-height: 600px;}
+    section h2 {margin: 0;padding-top: 200px; line-height: 200px;text-align: center;font-size: 40px;}
+    .sec1 {background: rgb(185, 177, 238);}
+    .sec2 {background: rgb(158, 146, 238);}
+    .sec3 {background: rgb(135, 119, 238);}
+    .sec4 {background: rgb(109, 90, 238);}
+    .sec5 {background: rgb(87, 64, 238);}
+  </style>
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      //DOM => offset().top
+      //scroll => scrollTop
+
+      $('header').click(function() {
+        $(window).scrollTop(400) //set
+        // $('html').animate({scrollTop : 300})
+      })
+      //sticky
+      let navTop = $('nav').offset().top;
+      let winTop;
+
+      $(window).scroll(function() {
+        winTop = $(window).scrollTop();
+        if(winTop >= navTop) {
+          $('nav').css({
+            'position' : 'fixed', 'left' : 0,
+            'top' : 0, 'right' : 0
+          })
+        } else {
+          $('nav').css({'position' : 'static'})
+        }
+
+        //nav .active
+        for(let i = 0; i < 5; i++) {
+          if(winTop >= $(`.sec${i + 1}`).offset().top) {
+            $('nav a').removeClass('active')
+            $('nav a').eq(i). addClass('active')
+          }
+        }
+      })//scroll()
+
+      //nav a => click
+      $('nav a').click(function() {
+        $('nav a').not(this).removeClass('active')
+        $(this).addClass('active')
+
+        //Move
+        let n = $(this).index()
+        $('html').animate({
+          scrollTop : $('section').eq(n).offset().top
+        })
+        // alert($('section').eq(0).attr('class'))
+      })
+
+    })//ready
+  </script>
+</head>
+<body>
+  <div id="wrap">
+    <header>header</header>
+    <nav>
+      <a href="#" class="active">sec-1</a>
+      <a href="#">sec-2</a>
+      <a href="#">sec-3</a>
+      <a href="#">sec-4</a>
+      <a href="#">sec-5</a>
+    </nav>
+    <section class="sec1">
+      <h2>Section - 1</h2>
+    </section>
+    <section class="sec2">
+      <h2>Section - 2</h2>
+    </section>
+    <section class="sec3">
+      <h2>Section - 3</h2>
+    </section>
+    <section class="sec4">
+      <h2>Section - 4</h2>
+    </section>
+    <section class="sec5">
+      <h2>Section - 5</h2>
+    </section>
+  </div>
+</body>
+</html>

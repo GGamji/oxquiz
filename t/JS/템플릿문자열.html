@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>템플릿문자열</title>
+  <script>
+    let a = 'hello';
+    console.log(a); //hello
+    console.log(typeof a); //string
+
+    let b = "world"
+    console.log(b); //world
+    console.log(typeof b); //string
+
+    console.log(a, b) //hello world
+    console.log(a + b) //hello world
+
+    // let c = 'My name is "Tomas"';
+    let c = "My name is 'Tomas'";
+    console.log(c); //My name is 'Tomas'
+
+    let d = `My name is "Monica"`;
+    console.log(d);
+
+    let username = '홍길동';
+    let userage = 2024 - 2008;
+    let greet1 = username + '님은 ' + userage + '세'
+
+    console.log(greet1); //홍길동님은 16세
+
+    let greet2 = `${username}님은 ${userage}세`;
+    console.log(greet2); //홍길동님은 16세
+
+    let now = new Date()
+
+    let y = now.getFullYear()
+    let m = now.getMonth()
+    let da = now.getDate()
+
+    console.log(`${y}년 ${m + 1}월 ${da}일`); //2024년 7월 29일
+
+    // console.log(y + '년 ' + (m + 1) + '월 ' + d + '일 ')
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

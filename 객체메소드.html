@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>객체 메소드</title>
+   <script>
+      //객체.메소드() => window.close()
+      // 쉽게말해 메소드()란 이미 만들어 놓은 함수
+
+      // function f1() {
+      //    console.log('');
+      // }
+      // f1()
+
+      //객체 메소드 (Object Method)
+      // - 객체 내부에서 함수 선언
+      // - 객체에 특정 동작을 수행하거나 상태를 변경
+      // - 객체를 캡슐화하고, 코드를 조직화, 유지보수 수월
+
+      const obj1 = {
+         name: 'James',
+         age: 25,
+         greet: function() {
+            console.log(`Wellcome! ${this.name}~`); // Welcome! James~
+         }
+      }
+      obj1.greet();
+
+      const obj2 = {
+         buy: 'Milk',
+         memo: function () {
+            console.log(`구입하신 물건은 ${this.buy}`);
+         }
+      }
+      obj2.memo(); //구입하신 물건은 Milk
+
+      const obj3 = {
+         score: function(s) {
+            console.log(`점수는 ${s}점 입니다.`);
+         }
+      }
+      obj3.score(100)
+      obj3.score(40)
+
+      const obj4 = {
+         sum: function(a, b) {
+            console.log(a + b);
+         }
+      }
+      obj4.sum(5, 10) //15
+      obj4.sum(7, 9) //16
+
+      const obj5 = {
+         multiply: (a, b) => a * b
+      }
+      // obj5.multiply(5, 6)
+      console.log(obj5.multiply(5, 6));
+
+      const calc = {
+         add: (a, b) => a + b,
+         subtract: (a, b) => a - b,
+         multiply: (a, b) => a * b,
+         divide: (a, b) => a / b
+      }
+
+      console.group('--* 계산기 객체');
+      console.log(`덧셈 : ${calc.add(10, 3)}`);
+      console.log(`뺄셈 : ${calc.subtract(10, 3)}`);
+      console.log(`곱셈 : ${calc.multiply(10, 3)}`);
+      console.log(`나눗셈 : ${calc.divide(10, 3)}`);
+      console.groupEnd();
+
+
+      const member = {
+         id: 'Admin',
+         //isAdmin: true, (this.id == 'Admin') ? true : false
+         isAdmin: this.id == 'Admin',
+         permission: function() {
+            // 관리자가 맞으면 콘솔에 '환영합니다요 관리자님!', 그렇지 않으면 콘솔에 '죄송합니다 관리자 전용입니다.'
+            if(this.isAdmin) {
+               console.log('환영합니다요 관리자님!');
+            } else {
+               console.log('죄송합니다 관리자 전용입니다.');
+            }
+         }
+         // console.log();
+      }
+      member.permission()
+      console.log(member.isAdmin);
+      console.log(member.id);
+
+      const users = {
+         id: 0,
+         names: [],
+         ages: [],
+         addName: function(uname, uage) {
+            this.id += 1;
+            this.names.push(uname);
+            this.ages.push(uage);
+            return `${this.names[this.id - 1]} age: ${this.ages[this.id - 1]}세`
+         }
+      }
+      console.log(users.addName('Alice', 25));
+      console.log(users.addName('Tom', 30));
+      console.log(users.addName('Jihn', 32));
+      // console.log(users.names);
+      // users.addName('Alice');
+      // console.log(users.names);
+      // users.addName('Tom');
+      // console.log(users.names);
+      // users.addName('James');
+      // console.log(users.names);
+
+      // window.onload = function() {}
+      window.addEventListener('load', ()=> {
+         const customers = [];
+         const customer = {
+            id: 1,
+            name: '',
+            age: 0,
+            gender: '',
+            addCustomer: function(cname,cgender,cage) {
+               // this.id = this.id + 1;
+               // this.name = cname;
+               // this.age = cage;
+               // this.gender = cgender;
+               customers.push({
+                  id: this.id,
+                  name: cname,
+                  age: cage,
+                  gender: cgender
+               })
+               this.id++ // this.id = this.id + 1; // this.id += 1
+            }
+         }
+
+         console.log(customers); //[]
+         console.log(customer.addCustomer('Alice', 'female', 25));
+         console.log(customers); //[{'Alice'}]
+         console.log(customer.addCustomer('Tom', 'male', 30));
+         console.log(customers); //[{'Alice'}, {'Tom'}]
+         console.log(customer.addCustomer('Bob', 'male', 50));
+         console.log(customers); //[{'Alice'}, {'Tom'}, {'Bob'}]
+      })
+   </script>
+</head>
+<body>
+   <input type="text" class="mname">
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html요소다루기</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script>
+    $(function() {
+      //*** get : html요소의 **을 가져옴
+      // - text() : 텍스트 요소
+      // - html() : 태그 요소까지
+      // - attr('속성명') : 태그의 속성 값
+      // - val() : form 요소의 value 속성 값
+
+      //*** set : html 요소의 **을 설정
+      // - html('값') : 태그요소를 태그로 구현
+      // - text('값') : 태그도 텍스트로 구현
+      // - attr('속성명', '속성값') : 해당 속성명의 속성값을 변경(구현)
+      // - val('값') : form 요소의 value의 값을 저장
+
+      //text()
+      let txt1 = $('h1').text(); //get
+      let a = 5 + 6;
+      console.log(txt1); //html요소 다루기
+      $('.t1').text(txt1) //set
+
+      let txt2 = $('h2').html() //get
+
+      $('.t2').text('<em>tag</em> text') //set
+      $('.t3').html(txt2) //set
+
+      console.log(txt2);
+      let txt3 = $('.char').attr('alt') //get
+      $('.t4').text(txt3)
+
+      //.char 요소에게 title 속성을 추가하고 말풍선의 텍스트는 alt의 내용이 들어가도록
+      $('a').attr('target','_blank') //set
+      $('.char').attr('title', txt3)
+
+      //.char 요소 클릭하면 수달이미지로 바뀌게
+      $('.char').click(function() {
+        $(this).attr({
+          'src':'../img/otter.jpg',
+          'alt':'수달',
+          title: 'otter'
+        })
+      })
+    })//ready()
+  </script>
+</head>
+<body>
+
+  <h1 title="모든 태그에 사용 가능한 말풍선">html요소 다루기</h1>
+  <p class="t1"></p>
+
+  <h2><em>html 요소</em> 다루기</h2>
+  <p class="t2"></p>
+  <p class="t3"></p>
+
+  <a href="http://www.naver.com">Naver</a>
+  <img src="../img/char.jpg" alt="보노보노! 다이어트 필요해~" class="char">
+  <p class="t4"></p>
+
+
+</body>
+</html>

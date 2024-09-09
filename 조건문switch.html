@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>조건문switch</title>
+	<script>
+		/*
+			- 비교값을 case의 값과 비교해서 true인 case 뒤 문장을 실행
+			switch(비교값) {}
+				case 값1 : //비교값이 값1과 같으면 실행할 문장;
+				case 값2 : //비교값이 값2와 같다면 실행할 문장;
+				...
+				case 값n : //비교값이 값n과 같다면 실행할 문장;
+				default : //비교값이 모두 해당하지 않을 때;
+		*/
+		const now = new Date();
+		let day = now.getDay();
+		let korName, engName;
+
+		switch(day) {
+			case 0 :
+				korName = '일'; engName = 'Sun';
+			break;
+			case 1 :
+				korName = '월'; engName = 'Mon';
+				break;
+			case 2 :
+				korName = '화'; engName = 'Tue';
+				break;
+			case 3 :
+				korName = '수'; engName = 'Wed';
+				break;
+			case 4 :
+				korName = '목'; engName = 'Thu';
+				break;
+			case 3 :
+				korName = '금'; engName = 'Fri';
+				break;
+			case 3 :
+				korName = '토'; engName = 'Sat';
+				break;
+			default: ;
+		}
+
+
+		console.log(day); //2
+		console.log(`한글 : ${korName}`); //화
+		console.log(`Eng : ${engName}`); //tue
+
+
+		let animal = prompt('동물을 선택하세요. \n 1. 강아지, 2. 고양이, 3. 부엉이, 4. 호랑이, 5. 병아리')
+		let sound;
+
+		switch(animal) {
+			case '1' : animal = '강아지'; sound = '멍멍'; break;
+			case '2' : animal = '고양이'; sound = '야옹'; break;
+			case '3' : animal = '부엉이'; sound = '부엉'; break;
+			case '4' : animal = '호랑이'; sound = '어흥'; break;
+			case '5' : animal = '병아리'; sound = '삐약'; break;
+			default : animal = '없음';
+		}
+		console.log(`당신이 고른 동물의 이름 : ${animal}, \n 울음소리는 : ${sound}`);
+
+		let menu = prompt('메뉴를 선택하세요 \n 1. 김밥, 2. 떡볶이, 3. 라면, 4. 돈까스, 5. 우동, 6. 튀김')
+		let price;
+
+		switch(menu) {
+			case '1' : menu = '김밥'; price = '4000'; break;
+			case '2' : menu = '떡복이'; price = '4000'; break;
+			case '3' : menu = '라면'; price = '5000'; break;
+			case '4' : menu = '돈까스'; price = '8000'; break;
+			case '5' : menu = '우동'; price = '5000'; break;
+			case '6' : menu = '튀김'; price = '4000'; break;
+		}
+		console.log(`선택메뉴 : ${menu}, 가격 : ${price}`);
+
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

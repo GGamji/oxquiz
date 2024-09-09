@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>스프레드연산자</title>
+   <script>
+      //spread operator (스프레드 연산자)
+      // ... (iterable : 순회가 가능, 나열, 반복 가능한 => 배열, 객체)
+      // 배열 또는 객체의 데이터를 펼쳐서 사용
+      // 복사 => 기존 배열의 데이터를 변형없이 새로운 배열로 복제
+      // 배열 또는 객체의 복사, 여러 배열의 데이터를 하나의 배열로 통합
+
+      const spring = ['Mar', 'Apr', 'May'];
+      const summer = ['Jun', 'Jul', 'Aug'];
+      const season1 = [spring, summer];
+      //season1 = [['Mar', 'Apr', 'May'], ['Jun', 'Jul', 'Aug']];
+      const season2 = [...spring, ...summer];
+      //season2 = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
+
+      console.log(spring);
+      console.log(...spring);
+      console.log(...spring, ...summer);
+      console.log(season1);
+      console.log(season1[1]); // ['Jun', 'Jul', 'Aug']
+      console.log(...season1);
+      console.log(season2[1]); // 'Apr'
+      console.log(...season2);
+
+      console.log('----------')
+      // animals 원본 배열과 동일한 새로운 배열을 복제
+      const animals = ['dog', 'cat', 'rabbit', 'ram'];
+      const animals2 = [...animals];
+
+      console.log(animals[1]);
+      console.log(animals2[1]);
+
+      console.log('--------');
+      const num1 = [661, 368, 20, 33, 9, 78];
+      const num2 = [8, 33, 46, 705];
+
+      console.log(Math.max(...num1));
+      console.log(Math.min(...num1));
+
+      //num1과 num2의 모든 숫자 중 최대값과 최소값을 구하라
+      console.log(Math.max(...num1, ...num2));
+      console.log(Math.min(...num1, ...num2));
+
+      const p1 = ['John', 'Doe', 30, 'Designer'];
+      const p2 = ['길동', '홍', 20, '의적'];
+
+      function personInfo(fname, lname, age, job) {
+         return `
+            이름 : ${fname} ${lname}
+            나이 : ${age}
+            직업 : ${job}
+         `
+      }
+      // console.log(personInfo(fname, lname, age, job));
+      console.log(personInfo(...p1));
+      console.log(personInfo(...p2));
+
+      const obj1 = {
+         name : 'banana',
+         color : 'yellow',
+      }
+      const obj2 = {kind: 'fruit'}
+
+      const objs = {obj1, obj2}
+      // {{name: 'banana', color: 'yellow'}, {kind: 'fruit'}}
+      const objSum = {...obj1, ...obj2}
+
+      console.log(objs); //key값 : obj1, obj2
+      console.log(objSum); //key값 : name, color, kind
+
+      const car1 = {
+         brand: 'Ford',
+         model: 'Muustang'
+      }
+      const car2 = {
+         year: '2021',
+         color: 'red'
+      }
+      const myCar = {...car1, ...car2}
+      console.group('CarInfo')
+         console.log(myCar.model);
+         console.log(myCar.year);
+         console.log(myCar.color);
+      console.groupEnd()
+   </script>
+</head>
+<body>
+
+</body>
+</html>

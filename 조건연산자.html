@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>조건연산자</title>
+	<script>
+		// 삼항 연산자
+		// 조건 ? A : B
+		// 조건이 참이면 A값, 조건이 거짓이면 B값
+		let n1 = -2;
+		console.log(n1 > 0 ? '양수' : '음수')
+
+		// 60점 이상이면 '합격', 그렇지 않으념 '불합격'
+		let score = prompt('점수를 입력')
+		let res = score >= 60 ? '합격' : '불합격'
+
+		console.log(score + '점', res);
+
+		// 성인인지 미성년
+		let age = prompt('나이를 입력')
+		let adult = age >= 18 ? '성인' : '미성년'
+
+		console.log(age + '세', adult);
+
+		let time = new Date().getHours();
+		// let time = 11
+		let apm = (time >= 12) ? '오후' : '오전';
+		let hour = (time < 12) ? time : (time-12);
+
+		console.log(apm + ' ' + hour + '시'); //오후 4시 // 16
+
+
+		// let week = new Date().getDay();
+		// week =
+		let week = '일';
+		// week = week == '토' || week == '일' ? '주말' : '평일';
+		week = week != '토' && week != '일' ? '평일' : '주말';
+
+		console.log('오늘은', week, '입니다.'); // 주말, 평일
+
+
+		//점수(score) 60점이 넘으면(초과) '합격' 60점이 안 넘으면 '불합격' 60점이면 '재평가'
+		//(조건) ? 'true' : 'not true'
+		//(변수 score의 값이 60점이 넘으면) ? '합격' : (60점과 같아? ) ? '재평가' : '불합격'
+
+		res = (score > 60) ? '합격' : (score == 60) ? '재평가' : '불합격';
+		console.log(res);
+
+		// 입력받은 숫자가 짝수인지, 홀수인지, 0인지
+		let num = prompt('숫자를 입력')
+		let isEven = (num != 0 && num % 2 == 0) ? '짝수' : (num == 0) ? '0' : '홀수'
+		console.log('숫자 ' + num + '은 ' + isEven + '임');
+
+
+		//
+		let day = new Date().getDay; //5 => index 0 ~ 6
+		let dayKorName = (day == 5) ? '금' : (day == 1) ? '월' : (day == 2) ? '화' : (day == 3) ? '수' : (day == 4) ? '목' : (day == 6) ? '토' : (day == 0) ? '일' : '금';
+
+		console.log('오늘은', dayKorName + '요일'); //금요일
+
+		// 3~5월 : 봄, 6~8월 : 여름, 9~11월 : 가을, 12,1,2월 : 겨울
+		let season = new Date().getMonth(); //6 => index 0 ~ 11
+		season = (season )
+		let seasonName = (season == 5, 6, 7) ? '여름' : (season == 8, 9, 10) ? '가을' : (season == 11, 0, 1) ? '겨울' : (season == 2, 3, 4) ? '봄' : '여름';
+		console.log(season + '월은' + seasonName + '입니다.'); // 7월은 여름입니다.
+
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
